@@ -90,6 +90,7 @@
                 <li><code>開啟測試報告.bat</code> 開啟最新 TestResultReport.html</li>
                 <li><code>啟動測試平台.bat</code> 啟動 Web 控制台 http://localhost:6690/</li>
                 <li><code>build_semi.bat</code> 僅建置被測 SemiInspectionDesktop.exe</li>
+                <li><code>setup_env.bat</code> 設定 APP_ROOT、ApplicationPath 等環境變數（由其他 .bat 自動呼叫）</li>
             </ul>
         </section>
 
@@ -98,10 +99,12 @@
             <table>
                 <tr><th>項目</th><th>路徑（相對 SQA_Inspetion_App）</th></tr>
                 <tr><td>Gherkin TPS</td><td><code>Automation_testcase/Test_cases/TPS.md</code></td></tr>
+                <tr><td>BDD 撰寫 skill</td><td><code>Automation_testcase/TPS_BDD_skill.md</code></td></tr>
                 <tr><td>Feature 檔</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></td></tr>
-                <tr><td>Step Definitions</td><td><code>.../StepDefinitions/Demo2DesktopSteps.cs</code></td></tr>
-                <tr><td>Page Objects</td><td><code>.../PageObjects/</code></td></tr>
-                <tr><td>HTML 報告</td><td><code>.../reports/TestResultReport.html</code></td></tr>
+                <tr><td>Step Definitions</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs</code></td></tr>
+                <tr><td>Page Objects</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/</code></td></tr>
+                <tr><td>HTML 報告（測試後產生）</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html</code></td></tr>
+                <tr><td>Web 控制台</td><td><code>Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py</code></td></tr>
                 <tr><td>設定摘要</td><td><code>config.json</code></td></tr>
             </table>
         </section>

@@ -29,10 +29,10 @@
             <h2>2.1 修改既有 TC 的標準流程</h2>
             <ol>
                 <li>修改 <code>Automation_testcase/Test_cases/TEST_PLAN.md</code>（目的、步驟、預期）</li>
-                <li>同步 <code>SemiInspection_10_TestCases.md</code>（總表、AutomationId）</li>
-                <li>更新 <code>TPS.md</code> 的 Gherkin 步驟</li>
-                <li>同步 <code>Features/Demo2Desktop.feature</code> 的 Scenario</li>
-                <li>若步驟語意變更 → 修改 <code>Demo2DesktopSteps.cs</code></li>
+                <li>同步 <code>Automation_testcase/Test_cases/SemiInspection_10_TestCases.md</code>（總表、AutomationId）</li>
+                <li>更新 <code>Automation_testcase/Test_cases/TPS.md</code> 的 Gherkin 步驟</li>
+                <li>同步 <code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code> 的 Scenario</li>
+                <li>若步驟語意變更 → 修改 <code>.../StepDefinitions/Demo2DesktopSteps.cs</code></li>
                 <li>若涉及 UI 操作 → 修改 <strong>PageObject</strong>（非 Steps）</li>
                 <li>單一 TC 驗證：<code>執行單一測試.bat TC01</code></li>
             </ol>
@@ -93,8 +93,8 @@ public void ThenMainWindowTitleShouldBe(string expectedTitle)
                 <li>標題格式：<code>TCxx - 簡短描述</code></li>
                 <li>標籤：<code>@Functional</code> 或 <code>@Negative</code> + 領域標籤</li>
                 <li>優先重用既有 Given/When/Then 步驟</li>
-                <li>新步驟先在 TPS.md 定稿，再實作 Step 與 PageObject</li>
-                <li>同步更新 TEST_PLAN.md 與 SemiInspection_10_TestCases.md</li>
+                <li>新步驟先在 <code>Automation_testcase/Test_cases/TPS.md</code> 定稿，再實作 Step 與 PageObject</li>
+                <li>同步更新 <code>Automation_testcase/Test_cases/TEST_PLAN.md</code> 與 <code>SemiInspection_10_TestCases.md</code></li>
             </ul>
         </section>
 
@@ -107,7 +107,7 @@ public void ThenMainWindowTitleShouldBe(string expectedTitle)
                 <li>檢查控制項的 Name、AutomationId、ControlType</li>
                 <li>更新 PageObject 與 SemiInspection_10_TestCases.md</li>
             </ol>
-            <p>若 Inspector 不存在，執行 <code>tools/install-flauinspect.ps1</code> 安裝。</p>
+            <p>若 Inspector 不存在，執行 <code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/tools/install-flauinspect.ps1</code> 安裝。</p>
         </section>
 
         <section>
