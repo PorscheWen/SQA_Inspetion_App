@@ -1,0 +1,38 @@
+# Build outputs
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+SemiInspectionDesktop/bin/
+SemiInspectionDesktop/obj/
+
+# Test artifacts
+**/Screenshots/
+**/FailureLogs/
+Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/*.html
+Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/*.xml
+
+# IDE / OS
+.vs/
+.vscode/
+*.user
+*.suo
+Thumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets
+.env
+*.env.local
+
+# FlaUI Inspector (download via install script)
+**/tools/FlaUIInspector/
+
+# Web dashboard runtime state
+Automation_testcase/Project_FlaUIBDD/web_dashboard/data/*
+!Automation_testcase/Project_FlaUIBDD/web_dashboard/data/.gitignore

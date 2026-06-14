@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQA Inspection App — 操作手冊</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>SQA Inspection App</h1>
+        <p>Semi Inspection Desktop · FlaUI BDD 自動化測試平台 — 操作手冊 v1.0</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">首頁</a></li>
+            <li><a href="01-TPS轉BDD.html">1. TPS → BDD</a></li>
+            <li><a href="02-修改BDD.html">2. 修改 BDD</a></li>
+            <li><a href="03-執行測試.html">3. 執行測試</a></li>
+            <li><a href="04-修復測試.html">4. 修復測試</a></li>
+            <li><a href="05-讀取報告.html">5. 讀取報告</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <section>
+            <h2>概述</h2>
+            <p>本手冊說明 <strong>SQA_Inspetion_App</strong> 專案中，從 TPS（Gherkin 測試程序規格）到 FlaUI BDD 自動化測試的完整工作流程。</p>
+            <div class="flow">
+                <span>TPS.md</span> <span class="arrow">→</span>
+                <span>Feature / Steps / PageObjects</span> <span class="arrow">→</span>
+                <span>dotnet test</span> <span class="arrow">→</span>
+                <span>HTML 報告</span>
+            </div>
+            <div class="card ok">
+                <strong>快速入口：</strong>雙擊專案根目錄的 <code>開啟操作手冊.bat</code> 可隨時開啟本頁。
+            </div>
+        </section>
+
+        <section>
+            <h2>五章節導覽</h2>
+            <div class="chapter-grid">
+                <a href="01-TPS轉BDD.html" style="text-decoration:none;color:inherit;">
+                    <div class="chapter-card">
+                        <span class="chapter-num">第 1 章</span>
+                        <h3>TPS 轉換成 BDD Testcases</h3>
+                        <p>三層文件鏈、Gherkin → Feature → StepDefinitions → PageObjects 的轉換步驟與 TC 對照表。</p>
+                    </div>
+                </a>
+                <a href="02-修改BDD.html" style="text-decoration:none;color:inherit;">
+                    <div class="chapter-card">
+                        <span class="chapter-num">第 2 章</span>
+                        <h3>如何修改 BDD Testcases</h3>
+                        <p>修改既有 TC、新增 Scenario、同步 TPS 與 Feature、使用 Inspector 確認控制項。</p>
+                    </div>
+                </a>
+                <a href="03-執行測試.html" style="text-decoration:none;color:inherit;">
+                    <div class="chapter-card">
+                        <span class="chapter-num">第 3 章</span>
+                        <h3>執行 BDD Automation Testcase</h3>
+                        <p>CLI 一鍵執行、單一 TC、Web 控制台（port 6690）三種方式。</p>
+                    </div>
+                </a>
+                <a href="04-修復測試.html" style="text-decoration:none;color:inherit;">
+                    <div class="chapter-card">
+                        <span class="chapter-num">第 4 章</span>
+                        <h3>如何修復 Automation Testcase</h3>
+                        <p>失敗排查流程、常見錯誤類型、FlaUI Inspector 除錯、修改 PageObject 與設定。</p>
+                    </div>
+                </a>
+                <a href="05-讀取報告.html" style="text-decoration:none;color:inherit;">
+                    <div class="chapter-card">
+                        <span class="chapter-num">第 5 章</span>
+                        <h3>讀取 Report</h3>
+                        <p>TestResultReport、ExtentReports、JUnit XML、失敗截圖的位置與解讀方式。</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2>執行用批次檔（.bat）</h2>
+            <p>以下批次檔位於專案根目錄 <code>SQA_Inspetion_App\</code>，雙擊即可執行：</p>
+            <ul class="bat-list">
+                <li><code>開啟操作手冊.bat</code> 以系統瀏覽器開啟本手冊（docs/index.html）</li>
+                <li><code>run_tests.bat</code> 建置被測 App + BDD 專案，執行全部 10 個 TC</li>
+                <li><code>執行單一測試.bat</code> 執行指定 TC（例如 TC01）；不帶參數會提示輸入</li>
+                <li><code>開啟測試報告.bat</code> 開啟最新 TestResultReport.html</li>
+                <li><code>啟動測試平台.bat</code> 啟動 Web 控制台 http://localhost:6690/</li>
+                <li><code>build_semi.bat</code> 僅建置被測 SemiInspectionDesktop.exe</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>關鍵路徑速查</h2>
+            <table>
+                <tr><th>項目</th><th>路徑（相對 SQA_Inspetion_App）</th></tr>
+                <tr><td>Gherkin TPS</td><td><code>Automation_testcase/Test_cases/TPS.md</code></td></tr>
+                <tr><td>Feature 檔</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></td></tr>
+                <tr><td>Step Definitions</td><td><code>.../StepDefinitions/Demo2DesktopSteps.cs</code></td></tr>
+                <tr><td>Page Objects</td><td><code>.../PageObjects/</code></td></tr>
+                <tr><td>HTML 報告</td><td><code>.../reports/TestResultReport.html</code></td></tr>
+                <tr><td>設定摘要</td><td><code>config.json</code></td></tr>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <p>SQA Inspection App 操作手冊 v1.0</p>
+        <p>技術棧：SpecFlow 3.9 + NUnit 4 + FlaUI 4 + .NET 8</p>
+    </footer>
+</div>
+</body>
+</html>

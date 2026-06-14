@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQA Inspection App — FlaUI BDD 測試控制台</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>SQA Inspection App — FlaUI BDD 測試控制台</h1>
+    <p>Semi Inspection Desktop · Gherkin TPS → SpecFlow · 勾選執行 · 測試報告（需 Windows + .NET SDK）</p>
+    <nav class="tabs" role="tablist">
+      <button type="button" class="tab-btn tab-select active" data-tab="select" role="tab" aria-selected="true">勾選 Features</button>
+      <button type="button" class="tab-btn tab-progress" data-tab="progress" role="tab">執行進度</button>
+      <button type="button" class="tab-btn tab-results" data-tab="results" role="tab">測試結果</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="panel-select" class="tab-panel panel-select active" role="tabpanel">
+      <div class="toolbar">
+        <button type="button" class="btn btn-secondary" id="btn-select-all">全選</button>
+        <button type="button" class="btn btn-secondary" id="btn-select-none">全不選</button>
+        <button type="button" class="btn btn-primary" id="btn-run">執行已勾選的測試</button>
+      </div>
+      <div id="features-list"></div>
+    </section>
+
+    <section id="panel-progress" class="tab-panel panel-progress" role="tabpanel">
+      <div class="toolbar">
+        <button type="button" class="btn btn-secondary" id="btn-refresh-progress">重新整理</button>
+        <span id="progress-label" style="color:var(--muted);font-size:0.9rem">尚未執行測試</span>
+      </div>
+      <div class="progress-summary">
+        <div class="stat-card"><div class="value" id="stat-total">0</div><div class="label">已選 Scenario</div></div>
+        <div class="stat-card run"><div class="value" id="stat-done">0</div><div class="label">已完成</div></div>
+        <div class="stat-card pass"><div class="value" id="stat-pass">0</div><div class="label">通過</div></div>
+        <div class="stat-card fail"><div class="value" id="stat-fail">0</div><div class="label">失敗</div></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <table class="status-table">
+        <thead>
+          <tr><th>Feature</th><th>Scenario</th><th>狀態</th><th>耗時</th></tr>
+        </thead>
+        <tbody id="progress-tbody"></tbody>
+      </table>
+      <pre class="log-box" id="log-tail">（等待測試輸出…）</pre>
+      <div id="progress-report-bar" hidden></div>
+    </section>
+
+    <section id="panel-results" class="tab-panel panel-results" role="tabpanel">
+      <div class="toolbar">
+        <button type="button" class="btn btn-secondary" id="btn-refresh-results">重新整理結果</button>
+      </div>
+      <div id="results-content">
+        <div class="empty-state">
+          <p>尚無測試結果</p>
+          <p>請先在「勾選 Features」勾選 Scenario 並執行測試</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

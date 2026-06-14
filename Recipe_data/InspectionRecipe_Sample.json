@@ -1,0 +1,38 @@
+{
+  "RecipeName": "Layer1_AOI_Recipe_v1",
+  "WaferID": "W-20260605-001",
+  "LotID": "LOT-SEM-A01",
+  "Layer": "M1",
+  "Step": "POST-ETCH",
+  "ToolID": "AOI-TOOL-03",
+  "OpticalMode": {
+    "Illumination": "Brightfield",
+    "Aperture": "NA 0.90",
+    "PixelSize": 0.5,
+    "FocusOffset": 0.0,
+    "ScanSpeed": 150
+  },
+  "DetectionPolicy": {
+    "Algorithm": "PatternCompare",
+    "Threshold": 45,
+    "SegmentBreak": 12,
+    "SNRMin": 8.5
+  },
+  "ReportingPolicy": {
+    "MaxNuisanceRate": 5.0,
+    "DefectClassSet": "Particle,Scratch,Bridge,Pattern",
+    "ReportEnabled": true
+  },
+  "InspectionPolicy": {
+    "ZoneOfInterest": "DieCore",
+    "RuleAction": "StopOnCritical",
+    "MaxRetry": 1
+  },
+  "DefectSummary": [
+    { "DefectType": "Particle", "DefectCount": 18, "DefectNumber": 2001, "Severity": "Major", "DOI": true },
+    { "DefectType": "Scratch", "DefectCount": 6, "DefectNumber": 2002, "Severity": "Critical", "DOI": true },
+    { "DefectType": "Bridge", "DefectCount": 3, "DefectNumber": 2003, "Severity": "Major", "DOI": true },
+    { "DefectType": "Pattern", "DefectCount": 9, "DefectNumber": 2004, "Severity": "Minor", "DOI": false },
+    { "DefectType": "Void", "DefectCount": 4, "DefectNumber": 2005, "Severity": "Minor", "DOI": false }
+  ]
+}

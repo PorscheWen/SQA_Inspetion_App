@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第 5 章 — 讀取 Report</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>第 5 章：讀取 Report</h1>
+        <p>HTML 報告、JUnit XML、失敗截圖的位置與解讀方式</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="01-TPS轉BDD.html">1. TPS → BDD</a></li>
+            <li><a href="02-修改BDD.html">2. 修改 BDD</a></li>
+            <li><a href="03-執行測試.html">3. 執行測試</a></li>
+            <li><a href="04-修復測試.html">4. 修復測試</a></li>
+            <li><a href="05-讀取報告.html" class="active">5. 讀取報告</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <section>
+            <h2>5.1 快速開啟報告</h2>
+            <p>雙擊專案根目錄的 <code>開啟測試報告.bat</code>，會以系統瀏覽器開啟最新的 TestResultReport.html。</p>
+            <div class="card ok">
+                建議優先閱讀 <strong>TestResultReport.html</strong>（TestComplete 風格），含每步操作截圖，最適合除錯。
+            </div>
+        </section>
+
+        <section>
+            <h2>5.2 報告檔案位置</h2>
+            <table>
+                <tr><th>報告類型</th><th>主要路徑</th><th>用途</th></tr>
+                <tr>
+                    <td><strong>TestResultReport</strong></td>
+                    <td><code>.../bin/Release/net8.0-windows/reports/TestResultReport.html</code></td>
+                    <td>步驟級 Pass/Fail、每步截圖、錯誤訊息（<strong>主要報告</strong>）</td>
+                </tr>
+                <tr>
+                    <td>ExtentReports</td>
+                    <td><code>.../bin/Release/net8.0-windows/reports/SemiInspectionTestReport.html</code></td>
+                    <td>傳統 HTML 報告、stack trace</td>
+                </tr>
+                <tr>
+                    <td>同步副本（Web 控制台用）</td>
+                    <td><code>.../Testcase_demo2_desktop_FlaUI_BDD/reports/</code></td>
+                    <td>Web 6690 讀取此目錄</td>
+                </tr>
+                <tr>
+                    <td>別名</td>
+                    <td><code>reports/Demo2TestReport.html</code></td>
+                    <td>指向 SemiInspectionTestReport</td>
+                </tr>
+                <tr>
+                    <td>JUnit XML</td>
+                    <td><code>reports/junit-results.xml</code></td>
+                    <td>CI 整合、Web 控制台解析</td>
+                </tr>
+                <tr>
+                    <td>失敗截圖</td>
+                    <td><code>bin/Release/net8.0-windows/Screenshots/</code></td>
+                    <td>點擊/步驟/Scenario 結束截圖</td>
+                </tr>
+            </table>
+            <p>完整路徑範例（相對 SQA_Inspetion_App）：</p>
+            <div class="code-block">Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/
+  bin/Release/net8.0-windows/reports/TestResultReport.html
+  reports/TestResultReport.html          ← Web 控制台同步副本</div>
+        </section>
+
+        <section>
+            <h2>5.3 TestResultReport.html 結構</h2>
+            <h3>頁首（Report Header）</h3>
+            <ul>
+                <li>Feature 名稱：<strong>Semi Inspection Desktop 測試</strong></li>
+                <li>執行時間區間</li>
+                <li>Feature 描述（User Story）</li>
+            </ul>
+
+            <h3>Summary 摘要列</h3>
+            <table>
+                <tr><th>欄位</th><th>說明</th></tr>
+                <tr><td>Test Cases</td><td>執行的 TC 總數</td></tr>
+                <tr><td>Passed</td><td>通過數（綠色）</td></tr>
+                <tr><td>Failed</td><td>失敗數（紅色）</td></tr>
+                <tr><td>Duration</td><td>總耗時</td></tr>
+            </table>
+
+            <h3>每個 Test Case 區塊</h3>
+            <p>點擊 TC 標題列可展開/收合，內容包含：</p>
+            <ul>
+                <li><strong>TC 編號與標題</strong> — 如 TC01 - Import Recipe 至 Recipe_data</li>
+                <li><strong>狀態徽章</strong> — PASSED（綠）/ FAILED（紅）</li>
+                <li><strong>標籤</strong> — @Functional @Import 等</li>
+                <li><strong>錯誤訊息</strong> — 失敗時顯示 Assert 或 Exception 內容</li>
+                <li><strong>步驟表</strong> — 每個 Given/When/Then 的 Pass/Fail、耗時</li>
+                <li><strong>操作截圖</strong> — 每步的 UI 截圖，點擊可 lightbox 放大</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5.4 如何解讀失敗報告</h2>
+            <ol>
+                <li>在 Summary 確認 Failed 數量</li>
+                <li>找到紅色邊框的 TC 區塊（<code>testcase fail</code>）</li>
+                <li>閱讀 <code>tc-error</code> 區塊的錯誤訊息</li>
+                <li>在步驟表中找到第一個 <strong>FAIL</strong> 的步驟</li>
+                <li>查看該步驟的操作截圖，確認 UI 當時狀態</li>
+                <li>對照 <a href="04-修復測試.html">第 4 章</a> 進行修復</li>
+            </ol>
+            <div class="card warn">
+                <strong>提示：</strong>若 TestResultReport 截圖路徑無法顯示，直接到 <code>Screenshots/</code> 目錄找同時間戳的 PNG 檔。
+            </div>
+        </section>
+
+        <section>
+            <h2>5.5 SemiInspectionTestReport.html（ExtentReports）</h2>
+            <p>傳統 ExtentReports 格式，適合查看：</p>
+            <ul>
+                <li>完整 Exception stack trace</li>
+                <li>Scenario 級別的 Pass/Fail 時間軸</li>
+                <li>嵌入的失敗截圖</li>
+            </ul>
+            <p>路徑：<code>reports/SemiInspectionTestReport.html</code></p>
+        </section>
+
+        <section>
+            <h2>5.6 JUnit XML（junit-results.xml）</h2>
+            <p>供 CI/CD 或 Web 控制台解析，結構範例：</p>
+            <div class="code-block">&lt;testcase name="TC01 - Import Recipe 至 Recipe_data" time="25.3"&gt;
+  &lt;failure message="Expected log to contain 'Import Recipe'"&gt;
+    ... stack trace ...
+  &lt;/failure&gt;
+&lt;/testcase&gt;</div>
+            <p>Web 控制台「測試結果」分頁會解析此檔顯示通過率與失敗清單。</p>
+        </section>
+
+        <section>
+            <h2>5.7 三種開啟報告的方式</h2>
+            <table>
+                <tr><th>方式</th><th>操作</th><th>適用情境</th></tr>
+                <tr>
+                    <td>批次檔</td>
+                    <td>雙擊 <code>開啟測試報告.bat</code></td>
+                    <td>CLI 跑完後快速查看</td>
+                </tr>
+                <tr>
+                    <td>直接開檔</td>
+                    <td>瀏覽器開啟 bin/Release/.../reports/TestResultReport.html</td>
+                    <td>開發除錯</td>
+                </tr>
+                <tr>
+                    <td>Web 控制台</td>
+                    <td>啟動測試平台.bat → 測試結果分頁 → 點報告連結</td>
+                    <td>勾選 TC 執行後線上查看</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>5.8 報告產生設定（App.config）</h2>
+            <table>
+                <tr><th>鍵</th><th>預設</th><th>效果</th></tr>
+                <tr><td>TakeScreenshotOnClick</td><td>true</td><td>每次 UI 操作截圖（出現在 TestResultReport）</td></tr>
+                <tr><td>TakeScreenshotOnFailure</td><td>true</td><td>Assert 失敗時額外截圖</td></tr>
+                <tr><td>TakeScreenshotOnStepComplete</td><td>true</td><td>每 Gherkin 步驟完成截圖</td></tr>
+            </table>
+            <p>報告由 <code>TestResultReportBuilder.cs</code> 與 <code>HtmlReportHelper.cs</code> 在 <code>AfterTestRun</code> Hook 中產生。</p>
+        </section>
+    </div>
+
+    <footer>
+        <p><a href="04-修復測試.html">← 上一章</a> · <a href="index.html">返回首頁</a></p>
+    </footer>
+</div>
+</body>
+</html>

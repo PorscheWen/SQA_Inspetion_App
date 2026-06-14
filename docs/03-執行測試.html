@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第 3 章 — 執行 BDD Automation Testcase</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>第 3 章：執行 BDD Automation Testcase</h1>
+        <p>CLI 批次檔、命令列、Web 控制台三種執行方式</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="01-TPS轉BDD.html">1. TPS → BDD</a></li>
+            <li><a href="02-修改BDD.html">2. 修改 BDD</a></li>
+            <li><a href="03-執行測試.html" class="active">3. 執行測試</a></li>
+            <li><a href="04-修復測試.html">4. 修復測試</a></li>
+            <li><a href="05-讀取報告.html">5. 讀取報告</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <section>
+            <h2>3.1 前置需求</h2>
+            <ul>
+                <li><strong>Windows 10/11</strong></li>
+                <li><strong>.NET SDK 8.0+</strong>（專案目標 <code>net8.0-windows</code>）</li>
+                <li><strong>Python 3.x</strong>（僅 Web 控制台需要）</li>
+                <li><strong>MSBuild .NET 3.5</strong>（建置被測 WinForms App）</li>
+            </ul>
+            <p>被測程式與測試資料：</p>
+            <div class="code-block">SemiInspectionDesktop\bin\Debug\SemiInspectionDesktop.exe
+Recipe_data\InspectionRecipe_Sample.json</div>
+        </section>
+
+        <section>
+            <h2>3.2 方式 A：批次檔一鍵執行（建議）</h2>
+            <table>
+                <tr><th>批次檔</th><th>用途</th></tr>
+                <tr><td><code>run_tests.bat</code></td><td>建置被測 App + BDD 專案，執行全部 10 個 TC</td></tr>
+                <tr><td><code>執行單一測試.bat TC01</code></td><td>建置後只跑指定 TC（TC01–TC10）</td></tr>
+                <tr><td><code>build_semi.bat</code></td><td>僅建置被測 SemiInspectionDesktop.exe</td></tr>
+                <tr><td><code>run_semi.bat</code></td><td>手動啟動被測 App（不含測試）</td></tr>
+                <tr><td><code>啟動測試平台.bat</code></td><td>開啟 Web 控制台 http://localhost:6690/</td></tr>
+                <tr><td><code>開啟測試報告.bat</code></td><td>開啟最新 TestResultReport.html</td></tr>
+            </table>
+            <h3>執行全部測試</h3>
+            <div class="code-block">cd SQA_Inspetion_App
+run_tests.bat</div>
+            <p>內部流程：<code>setup_env.bat</code> → <code>build_semi.bat</code> → <code>dotnet build -c Release</code> → <code>dotnet test -c Release</code></p>
+
+            <h3>執行單一 TC</h3>
+            <div class="code-block">執行單一測試.bat TC01
+執行單一測試.bat TC07</div>
+        </section>
+
+        <section>
+            <h2>3.3 方式 B：手動命令列</h2>
+            <h3>完整流程</h3>
+            <div class="code-block">cd SQA_Inspetion_App
+build_semi.bat
+
+cd Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD
+dotnet build -c Release
+dotnet test -c Release --no-build</div>
+
+            <h3>單一 TC</h3>
+            <div class="code-block">dotnet test -c Release --filter "Name~TC01"</div>
+
+            <h3>多個 TC</h3>
+            <div class="code-block">dotnet test -c Release --filter "Name~TC01|Name~TC03|Name~TC05"</div>
+
+            <h3>詳細 log + JUnit 報告</h3>
+            <div class="code-block">dotnet test -c Release ^
+  --logger "junit;LogFilePath=reports\junit-results.xml" ^
+  --logger "console;verbosity=detailed"</div>
+        </section>
+
+        <section>
+            <h2>3.4 方式 C：Web 控制台（圖形化）</h2>
+            <ol>
+                <li>雙擊 <code>啟動測試平台.bat</code></li>
+                <li>瀏覽器自動開啟 <strong>http://localhost:6690/</strong></li>
+                <li>在「Features」分頁勾選 TC01–TC10</li>
+                <li>點「執行已勾選的測試」</li>
+                <li>在「執行進度」看即時 log</li>
+                <li>在「測試結果」點 HTML 報告連結</li>
+            </ol>
+            <div class="card">
+                Web 控制台後端為 <code>web_dashboard/server.py</code>，會自動呼叫 <code>dotnet test</code> 並同步報告到 <code>reports/</code> 目錄。
+            </div>
+        </section>
+
+        <section>
+            <h2>3.5 環境變數（setup_env.bat）</h2>
+            <p><code>run_tests.bat</code> 與 <code>啟動測試平台.bat</code> 會自動載入：</p>
+            <table>
+                <tr><th>變數</th><th>預設值</th><th>說明</th></tr>
+                <tr><td>APP_ROOT</td><td>專案根目錄</td><td>ConfigHelper 向上尋找含 config.json 的目錄</td></tr>
+                <tr><td>ApplicationPath</td><td>{APP_ROOT}\SemiInspectionDesktop\bin\Debug\SemiInspectionDesktop.exe</td><td>被測 EXE</td></tr>
+                <tr><td>RecipeDataDirectory</td><td>{APP_ROOT}\Recipe_data</td><td>測試資料目錄</td></tr>
+                <tr><td>ProcessName</td><td>SemiInspectionDesktop</td><td>程序名稱</td></tr>
+                <tr><td>ApplicationTitle</td><td>Semi Inspection Desktop</td><td>主視窗標題</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>3.6 測試執行生命週期</h2>
+            <table>
+                <tr><th>Hook</th><th>時機</th><th>行為</th></tr>
+                <tr><td>BeforeTestRun</td><td>全部測試開始前</td><td>初始化 ExtentReports、TestResultReportBuilder</td></tr>
+                <tr><td>BeforeScenario</td><td>每個 TC 開始</td><td>Launch/Attach App、建立 Page Objects</td></tr>
+                <tr><td>BeforeStep / AfterStep</td><td>每個 Gherkin 步驟</td><td>記錄步驟、截圖、Pass/Fail</td></tr>
+                <tr><td>AfterScenario</td><td>每個 TC 結束</td><td>Scenario 完成截圖、關閉 App</td></tr>
+                <tr><td>AfterTestRun</td><td>全部測試結束</td><td>Flush HTML 報告</td></tr>
+            </table>
+            <p>每個 Scenario 獨立 Launch/Kill 被測程序，確保 TC 之間互不干擾。</p>
+        </section>
+
+        <section>
+            <h2>3.7 執行後下一步</h2>
+            <p>測試完成後：</p>
+            <ol>
+                <li>雙擊 <code>開啟測試報告.bat</code> 查看結果</li>
+                <li>若有失敗，參考 <a href="04-修復測試.html">第 4 章：修復測試</a></li>
+                <li>報告解讀見 <a href="05-讀取報告.html">第 5 章：讀取報告</a></li>
+            </ol>
+        </section>
+    </div>
+
+    <footer>
+        <p><a href="02-修改BDD.html">← 上一章</a> · <a href="index.html">首頁</a> · <a href="04-修復測試.html">下一章：修復測試 →</a></p>
+    </footer>
+</div>
+</body>
+</html>

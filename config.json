@@ -1,0 +1,17 @@
+{
+  "appName": "SQA Inspection App",
+  "appRoot": ".",
+  "paths": {
+    "tps": "Automation_testcase/Test_cases/TPS.md",
+    "testPlan": "Automation_testcase/Test_cases/TEST_PLAN.md",
+    "testCasesTable": "Automation_testcase/Test_cases/SemiInspection_10_TestCases.md",
+    "flauiProject": "Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD",
+    "features": "Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features",
+    "webDashboard": "Automation_testcase/Project_FlaUIBDD/web_dashboard",
+    "desktopExe": "SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe",
+    "recipeData": "Recipe_data",
+    "reports": "Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports",
+    "operationManual": "docs/index.html"
+  },
+  "dashboardPort": 6690
+}
