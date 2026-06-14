@@ -1,0 +1,516 @@
+<testsuites>
+  <testsuite name="Testcase_demo2_desktop_FlaUI_BDD.dll" tests="10" skipped="0" failures="1" errors="0" time="219.35825300000002" timestamp="2026-06-14T14:07:42" hostname="BAOGO-F16" id="0" package="Testcase_demo2_desktop_FlaUI_BDD.dll">
+    <properties />
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC01_ImportRecipe至Recipe_Data" time="21.1243340">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 3.9s
+Given 測試資料已就緒
+-> done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_001_step-end_步驟完成_220754684.png
+-> duration: TestHooks.AfterStep(): 135.5ms
+And 應用程式已重新啟動
+-> duration: Demo2DesktopSteps.Given應用程式已重新啟動(): 3.9s
+-> done: Demo2DesktopSteps.Given應用程式已重新啟動() (3.9s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_002_step-end_步驟完成_220759570.png
+When 我點擊工具列「Import Recipe」
+-> duration: Demo2DesktopSteps.When我點擊工具列("Import Recipe"): 2.8s
+-> done: Demo2DesktopSteps.When我點擊工具列("Import Recipe") (2.8s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_003_step-end_步驟完成_220802432.png
+And 我在檔案對話框選擇樣本 InspectionRecipe_Sample.json
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_004_action_找不到檔名欄位_220805722.png
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_005_action_路徑已輸入__InspectionRecipe_Sample.json_220807075.png
+-> duration: Demo2DesktopSteps.When我在檔案對話框選擇樣本Recipe(): 7.3s
+-> done: Demo2DesktopSteps.When我在檔案對話框選擇樣本Recipe() (7.3s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_006_step-end_步驟完成_220809813.png
+Then Recipe_data 應存在 InspectionRecipe_Sample.json
+-> done: Demo2DesktopSteps.ThenRecipe_data應存在Sample() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_007_step-end_步驟完成_220809869.png
+And 資料表應可見
+-> done: Demo2DesktopSteps.Then資料表應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_008_step-end_步驟完成_220809980.png
+And 日誌區應包含「Import Recipe」
+-> duration: Demo2DesktopSteps.Then日誌區應包含("Import Recipe"): 0.5s
+-> done: Demo2DesktopSteps.Then日誌區應包含("Import Recipe") (0.5s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_009_step-end_步驟完成_220810599.png
+-> duration: Scenario: TC01 - Import Recipe 至 Recipe_data: 19.9s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_010_complete_測試完成_220810648.png
+-> duration: TestHooks.AfterScenario(): 1.2s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC02_FileTree顯示Recipe_Data" time="5.1912130">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-> done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_001_step-end_步驟完成_220814495.png
+And 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_002_step-end_步驟完成_220815584.png
+Then 主視窗標題應為「Semi Inspection Desktop」
+-> done: Demo2DesktopSteps.Then主視窗標題應為("Semi Inspection D...") (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_003_step-end_步驟完成_220815647.png
+And 檔案樹應可見
+-> done: Demo2DesktopSteps.Then檔案樹應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_004_step-end_步驟完成_220815701.png
+And Recipe_data 應存在 InspectionRecipe_Sample.json
+-> done: Demo2DesktopSteps.ThenRecipe_data應存在Sample() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_005_step-end_步驟完成_220815749.png
+-> duration: Scenario: TC02 - File Tree 顯示 Recipe_data: 3.9s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_006_complete_測試完成_220815796.png
+-> duration: TestHooks.AfterScenario(): 1.3s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC03_RawData參數表" time="7.2914950">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-> done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_001_step-end_步驟完成_220819671.png
+And 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_002_step-end_步驟完成_220820775.png
+When 我點擊工具列「RawData」
+-> duration: Demo2DesktopSteps.When我點擊工具列("RawData"): 2.0s
+-> done: Demo2DesktopSteps.When我點擊工具列("RawData") (2.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_003_step-end_步驟完成_220822845.png
+Then 資料表應可見
+-> done: Demo2DesktopSteps.Then資料表應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_004_step-end_步驟完成_220822924.png
+And 日誌區應包含「RawData」
+-> duration: Demo2DesktopSteps.Then日誌區應包含("RawData"): 158.8ms
+-> done: Demo2DesktopSteps.Then日誌區應包含("RawData") (0.2s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_005_step-end_步驟完成_220823132.png
+-> duration: Scenario: TC03 - RawData 參數表: 6.1s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_006_complete_測試完成_220823182.png
+-> duration: TestHooks.AfterScenario(): 1.2s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC04_DefectChart曲線圖" time="9.9026570">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-> done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_001_step-end_步驟完成_220826968.png
+And 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_002_step-end_步驟完成_220828024.png
+When 我點擊工具列「RawData」
+-> duration: Demo2DesktopSteps.When我點擊工具列("RawData"): 2.0s
+-> done: Demo2DesktopSteps.When我點擊工具列("RawData") (2.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_003_step-end_步驟完成_220830133.png
+-> duration: TestHooks.AfterStep(): 104.3ms
+And 我點擊工具列「Defect Chart」
+-> duration: Demo2DesktopSteps.When我點擊工具列("Defect Chart"): 2.7s
+-> done: Demo2DesktopSteps.When我點擊工具列("Defect Chart") (2.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_004_step-end_步驟完成_220832898.png
+Then 日誌區應包含「Defect Chart」
+-> done: Demo2DesktopSteps.Then日誌區應包含("Defect Chart") (0.1s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_005_step-end_步驟完成_220833023.png
+-> duration: Scenario: TC04 - Defect Chart 曲線圖: 8.7s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_006_complete_測試完成_220833070.png
+-> duration: TestHooks.AfterScenario(): 1.2s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC05_檔案樹雙擊開啟Recipe" time="7.0612040">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-> done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_001_step-end_步驟完成_220836877.png
+And 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_002_step-end_步驟完成_220837955.png
+When 我在檔案樹雙擊 InspectionRecipe_Sample.json
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_003_click_點擊__雙擊_InspectionRecipe_Sample.json_220838169.png
+-> duration: Demo2DesktopSteps.When我在檔案樹雙擊Recipe(): 1.8s
+-> done: Demo2DesktopSteps.When我在檔案樹雙擊Recipe() (1.8s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_004_step-end_步驟完成_220839781.png
+Then 資料表應可見
+-> done: Demo2DesktopSteps.Then資料表應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_005_step-end_步驟完成_220839858.png
+And 日誌區應包含「Recipe」
+-> duration: Demo2DesktopSteps.Then日誌區應包含("Recipe"): 150.6ms
+-> done: Demo2DesktopSteps.Then日誌區應包含("Recipe") (0.2s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_006_step-end_步驟完成_220840088.png
+-> duration: Scenario: TC05 - 檔案樹雙擊開啟 Recipe: 5.8s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_007_complete_測試完成_220840144.png
+-> duration: TestHooks.AfterScenario(): 1.2s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC06_About對話框" time="115.8781890">
+      <failure type="failure" message="System.Runtime.InteropServices.COMException : Operation timed out. (0x80131505)">at Interop.UIAutomationClient.IUIAutomationElement.GetCurrentPropertyValueEx(Int32 propertyId, Int32 ignoreDefaultValue)
+   at FlaUI.Core.FrameworkAutomationElementBase.TryGetPropertyValue[T](PropertyId property, T&amp; value)
+   at FlaUI.Core.AutomationProperty`1.TryGetValue(TVal&amp; value)
+   at FlaUI.Core.AutomationProperty`1.get_ValueOrDefault()
+   at FlaUI.Core.AutomationElements.AutomationElement.get_BoundingRectangle()
+   at Demo2DesktopTests.PageObjects.BasePage.ClickByBounds(AutomationElement element) in C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\PageObjects\BasePage.cs:line 229
+   at Demo2DesktopTests.PageObjects.BasePage.Click(AutomationElement element, String label) in C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\PageObjects\BasePage.cs:line 219
+   at Demo2DesktopTests.PageObjects.MainWindowPage.TryClickToolbarElement(String automationId, String displayText) in C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\PageObjects\MainWindowPage.cs:line 140
+   at Demo2DesktopTests.PageObjects.MainWindowPage.ClickToolbar(String buttonText) in C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\PageObjects\MainWindowPage.cs:line 33
+   at Demo2DesktopTests.StepDefinitions.Demo2DesktopSteps.When我點擊工具列(String buttonText) in C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\StepDefinitions\Demo2DesktopSteps.cs:line 57
+   at InvokeStub_Action`2.Invoke(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+   at Testcase_demo2_desktop_FlaUI_BDD.Features.SemiInspectionDesktop測試Feature.ScenarioCleanup()
+   at Testcase_demo2_desktop_FlaUI_BDD.Features.SemiInspectionDesktop測試Feature.TC06_About對話框() in C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\Features\Demo2Desktop.feature:line 52
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</failure>
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC06_-_About_對話框_001_step-end_步驟完成_220844950.png
+When 我點擊工具列「About」
+-> error: Operation timed out. (0x80131505) (67.7s)
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC06_-_About_對話框_002_step-end_步驟完成_220952717.png
+-> duration: TestHooks.AfterStep(): 21.7s
+And 我關閉訊息對話框
+-> skipped because of previous errors
+-> duration: Scenario: TC06 - About 對話框: 93.0s
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC06_-_About_對話框_003_complete_測試完成_221014399.png
+-> duration: TestHooks.AfterScenario(): 22.8s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC07_匯入非JSON檔" time="14.8829240">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-> done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_001_step-end_步驟完成_221039803.png
+And 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_002_step-end_步驟完成_221040866.png
+When 我點擊工具列「Import Recipe」
+-> duration: Demo2DesktopSteps.When我點擊工具列("Import Recipe"): 2.7s
+-> done: Demo2DesktopSteps.When我點擊工具列("Import Recipe") (2.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_003_step-end_步驟完成_221043690.png
+And 我在檔案對話框選擇無效檔 _invalid_sample.txt
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_004_action_找不到檔名欄位_221046718.png
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_005_action_路徑已輸入___invalid_sample.txt_221048061.png
+-> duration: Demo2DesktopSteps.When我在檔案對話框選擇無效檔(): 6.2s
+-> done: Demo2DesktopSteps.When我在檔案對話框選擇無效檔() (6.2s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_006_step-end_步驟完成_221049922.png
+Then 不應將無效檔複製為 TC01_import_copy.json
+-> done: Demo2DesktopSteps.Then不應將無效檔複製為匯入檔() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_007_step-end_步驟完成_221049977.png
+And 我關閉訊息對話框
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_008_click_點擊__上移一行_221050435.png
+-> duration: Demo2DesktopSteps.When我關閉訊息對話框(): 0.7s
+-> done: Demo2DesktopSteps.When我關閉訊息對話框() (0.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_009_step-end_步驟完成_221050790.png
+-> duration: Scenario: TC07 - 匯入非 JSON 檔: 13.6s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_010_complete_測試完成_221050851.png
+-> duration: TestHooks.AfterScenario(): 1.3s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC08_無Recipe時繪圖" time="10.5027100">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 應用程式已重新啟動
+-> duration: Demo2DesktopSteps.Given應用程式已重新啟動(): 3.7s
+-> done: Demo2DesktopSteps.Given應用程式已重新啟動() (3.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_001_step-end_步驟完成_221058432.png
+When 我點擊工具列「Defect Chart」
+-> duration: Demo2DesktopSteps.When我點擊工具列("Defect Chart"): 2.7s
+-> done: Demo2DesktopSteps.When我點擊工具列("Defect Chart") (2.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_002_step-end_步驟完成_221101194.png
+Then 主視窗仍應存在
+-> done: Demo2DesktopSteps.Then主視窗仍應存在() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_003_step-end_步驟完成_221101274.png
+-> duration: Scenario: TC08 - 無 Recipe 時繪圖: 9.2s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_004_complete_測試完成_221101352.png
+-> duration: TestHooks.AfterScenario(): 1.3s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC09_開啟不存在Recipe" time="18.5876140">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_001_step-end_步驟完成_221106201.png
+When 我使用快捷鍵開啟 RawData 並選擇不存在檔 not_exist_99999.json
+-> duration: Demo2DesktopSteps.When我使用快捷鍵開啟不存在檔(): 13.6s
+-> done: Demo2DesktopSteps.When我使用快捷鍵開啟不存在檔() (13.6s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_002_step-end_步驟完成_221119853.png
+Then 主視窗仍應存在
+-> done: Demo2DesktopSteps.Then主視窗仍應存在() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_003_step-end_步驟完成_221119937.png
+-> duration: Scenario: TC09 - 開啟不存在 Recipe: 17.4s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_004_complete_測試完成_221119990.png
+-> duration: TestHooks.AfterScenario(): 1.2s
+
+]]></system-out>
+    </testcase>
+    <testcase classname="Testcase_demo2_desktop_FlaUI_BDD.Features" name="SemiInspectionDesktop測試Feature.TC10_RunInspection模擬檢測" time="8.9359130">
+      <system-out><![CDATA[-> duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-> done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_001_step-end_步驟完成_221123781.png
+And 應用程式已啟動
+-> duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-> done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_002_step-end_步驟完成_221124857.png
+When 我點擊工具列「RawData」
+-> duration: Demo2DesktopSteps.When我點擊工具列("RawData"): 2.0s
+-> done: Demo2DesktopSteps.When我點擊工具列("RawData") (2.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_003_step-end_步驟完成_221126922.png
+And 我點擊工具列「Run Inspection」
+-> duration: Demo2DesktopSteps.When我點擊工具列("Run Inspection"): 1.7s
+-> done: Demo2DesktopSteps.When我點擊工具列("Run Inspection") (1.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_004_step-end_步驟完成_221128670.png
+Then 日誌區應包含「Run Inspection」
+-> duration: Demo2DesktopSteps.Then日誌區應包含("Run Inspection"): 138.7ms
+-> done: Demo2DesktopSteps.Then日誌區應包含("Run Inspection") (0.1s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_005_step-end_步驟完成_221128859.png
+-> duration: Scenario: TC10 - Run Inspection 模擬檢測: 7.7s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_006_complete_測試完成_221128910.png
+-> duration: TestHooks.AfterScenario(): 1.2s
+
+]]></system-out>
+    </testcase>
+    <system-out>
+Test Framework Informational Messages:
+NUnit Adapter 5.0.0.0: Test execution started
+Running selected tests in C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Testcase_demo2_desktop_FlaUI_BDD.dll
+   NUnit3TestExecutor discovered 10 of 10 NUnit test cases using Current Discovery mode, Non-Explicit run
+-&gt; duration: TestHooks.BeforeScenario(): 3.9s
+Given 測試資料已就緒
+-&gt; done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_001_step-end_步驟完成_220754684.png
+-&gt; duration: TestHooks.AfterStep(): 135.5ms
+And 應用程式已重新啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已重新啟動(): 3.9s
+-&gt; done: Demo2DesktopSteps.Given應用程式已重新啟動() (3.9s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_002_step-end_步驟完成_220759570.png
+When 我點擊工具列「Import Recipe」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("Import Recipe"): 2.8s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("Import Recipe") (2.8s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_003_step-end_步驟完成_220802432.png
+And 我在檔案對話框選擇樣本 InspectionRecipe_Sample.json
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_004_action_找不到檔名欄位_220805722.png
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_005_action_路徑已輸入__InspectionRecipe_Sample.json_220807075.png
+-&gt; duration: Demo2DesktopSteps.When我在檔案對話框選擇樣本Recipe(): 7.3s
+-&gt; done: Demo2DesktopSteps.When我在檔案對話框選擇樣本Recipe() (7.3s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_006_step-end_步驟完成_220809813.png
+Then Recipe_data 應存在 InspectionRecipe_Sample.json
+-&gt; done: Demo2DesktopSteps.ThenRecipe_data應存在Sample() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_007_step-end_步驟完成_220809869.png
+And 資料表應可見
+-&gt; done: Demo2DesktopSteps.Then資料表應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_008_step-end_步驟完成_220809980.png
+And 日誌區應包含「Import Recipe」
+-&gt; duration: Demo2DesktopSteps.Then日誌區應包含("Import Recipe"): 0.5s
+-&gt; done: Demo2DesktopSteps.Then日誌區應包含("Import Recipe") (0.5s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_009_step-end_步驟完成_220810599.png
+-&gt; duration: Scenario: TC01 - Import Recipe 至 Recipe_data: 19.9s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC01_-_Import_Recipe_至_Recipe_data_010_complete_測試完成_220810648.png
+-&gt; duration: TestHooks.AfterScenario(): 1.2s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-&gt; done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_001_step-end_步驟完成_220814495.png
+And 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_002_step-end_步驟完成_220815584.png
+Then 主視窗標題應為「Semi Inspection Desktop」
+-&gt; done: Demo2DesktopSteps.Then主視窗標題應為("Semi Inspection D...") (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_003_step-end_步驟完成_220815647.png
+And 檔案樹應可見
+-&gt; done: Demo2DesktopSteps.Then檔案樹應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_004_step-end_步驟完成_220815701.png
+And Recipe_data 應存在 InspectionRecipe_Sample.json
+-&gt; done: Demo2DesktopSteps.ThenRecipe_data應存在Sample() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_005_step-end_步驟完成_220815749.png
+-&gt; duration: Scenario: TC02 - File Tree 顯示 Recipe_data: 3.9s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC02_-_File_Tree_顯示_Recipe_data_006_complete_測試完成_220815796.png
+-&gt; duration: TestHooks.AfterScenario(): 1.3s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-&gt; done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_001_step-end_步驟完成_220819671.png
+And 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_002_step-end_步驟完成_220820775.png
+When 我點擊工具列「RawData」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("RawData"): 2.0s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("RawData") (2.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_003_step-end_步驟完成_220822845.png
+Then 資料表應可見
+-&gt; done: Demo2DesktopSteps.Then資料表應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_004_step-end_步驟完成_220822924.png
+And 日誌區應包含「RawData」
+-&gt; duration: Demo2DesktopSteps.Then日誌區應包含("RawData"): 158.8ms
+-&gt; done: Demo2DesktopSteps.Then日誌區應包含("RawData") (0.2s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_005_step-end_步驟完成_220823132.png
+-&gt; duration: Scenario: TC03 - RawData 參數表: 6.1s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC03_-_RawData_參數表_006_complete_測試完成_220823182.png
+-&gt; duration: TestHooks.AfterScenario(): 1.2s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-&gt; done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_001_step-end_步驟完成_220826968.png
+And 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_002_step-end_步驟完成_220828024.png
+When 我點擊工具列「RawData」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("RawData"): 2.0s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("RawData") (2.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_003_step-end_步驟完成_220830133.png
+-&gt; duration: TestHooks.AfterStep(): 104.3ms
+And 我點擊工具列「Defect Chart」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("Defect Chart"): 2.7s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("Defect Chart") (2.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_004_step-end_步驟完成_220832898.png
+Then 日誌區應包含「Defect Chart」
+-&gt; done: Demo2DesktopSteps.Then日誌區應包含("Defect Chart") (0.1s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_005_step-end_步驟完成_220833023.png
+-&gt; duration: Scenario: TC04 - Defect Chart 曲線圖: 8.7s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC04_-_Defect_Chart_曲線圖_006_complete_測試完成_220833070.png
+-&gt; duration: TestHooks.AfterScenario(): 1.2s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-&gt; done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_001_step-end_步驟完成_220836877.png
+And 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_002_step-end_步驟完成_220837955.png
+When 我在檔案樹雙擊 InspectionRecipe_Sample.json
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_003_click_點擊__雙擊_InspectionRecipe_Sample.json_220838169.png
+-&gt; duration: Demo2DesktopSteps.When我在檔案樹雙擊Recipe(): 1.8s
+-&gt; done: Demo2DesktopSteps.When我在檔案樹雙擊Recipe() (1.8s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_004_step-end_步驟完成_220839781.png
+Then 資料表應可見
+-&gt; done: Demo2DesktopSteps.Then資料表應可見() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_005_step-end_步驟完成_220839858.png
+And 日誌區應包含「Recipe」
+-&gt; duration: Demo2DesktopSteps.Then日誌區應包含("Recipe"): 150.6ms
+-&gt; done: Demo2DesktopSteps.Then日誌區應包含("Recipe") (0.2s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_006_step-end_步驟完成_220840088.png
+-&gt; duration: Scenario: TC05 - 檔案樹雙擊開啟 Recipe: 5.8s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC05_-_檔案樹雙擊開啟_Recipe_007_complete_測試完成_220840144.png
+-&gt; duration: TestHooks.AfterScenario(): 1.2s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC06_-_About_對話框_001_step-end_步驟完成_220844950.png
+When 我點擊工具列「About」
+-&gt; error: Operation timed out. (0x80131505) (67.7s)
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC06_-_About_對話框_002_step-end_步驟完成_220952717.png
+-&gt; duration: TestHooks.AfterStep(): 21.7s
+And 我關閉訊息對話框
+-&gt; skipped because of previous errors
+-&gt; duration: Scenario: TC06 - About 對話框: 93.0s
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC06_-_About_對話框_003_complete_測試完成_221014399.png
+-&gt; duration: TestHooks.AfterScenario(): 22.8s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-&gt; done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_001_step-end_步驟完成_221039803.png
+And 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_002_step-end_步驟完成_221040866.png
+When 我點擊工具列「Import Recipe」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("Import Recipe"): 2.7s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("Import Recipe") (2.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_003_step-end_步驟完成_221043690.png
+And 我在檔案對話框選擇無效檔 _invalid_sample.txt
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_004_action_找不到檔名欄位_221046718.png
+桌面截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_005_action_路徑已輸入___invalid_sample.txt_221048061.png
+-&gt; duration: Demo2DesktopSteps.When我在檔案對話框選擇無效檔(): 6.2s
+-&gt; done: Demo2DesktopSteps.When我在檔案對話框選擇無效檔() (6.2s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_006_step-end_步驟完成_221049922.png
+Then 不應將無效檔複製為 TC01_import_copy.json
+-&gt; done: Demo2DesktopSteps.Then不應將無效檔複製為匯入檔() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_007_step-end_步驟完成_221049977.png
+And 我關閉訊息對話框
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_008_click_點擊__上移一行_221050435.png
+-&gt; duration: Demo2DesktopSteps.When我關閉訊息對話框(): 0.7s
+-&gt; done: Demo2DesktopSteps.When我關閉訊息對話框() (0.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_009_step-end_步驟完成_221050790.png
+-&gt; duration: Scenario: TC07 - 匯入非 JSON 檔: 13.6s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC07_-_匯入非_JSON_檔_010_complete_測試完成_221050851.png
+-&gt; duration: TestHooks.AfterScenario(): 1.3s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 應用程式已重新啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已重新啟動(): 3.7s
+-&gt; done: Demo2DesktopSteps.Given應用程式已重新啟動() (3.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_001_step-end_步驟完成_221058432.png
+When 我點擊工具列「Defect Chart」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("Defect Chart"): 2.7s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("Defect Chart") (2.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_002_step-end_步驟完成_221101194.png
+Then 主視窗仍應存在
+-&gt; done: Demo2DesktopSteps.Then主視窗仍應存在() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_003_step-end_步驟完成_221101274.png
+-&gt; duration: Scenario: TC08 - 無 Recipe 時繪圖: 9.2s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC08_-_無_Recipe_時繪圖_004_complete_測試完成_221101352.png
+-&gt; duration: TestHooks.AfterScenario(): 1.3s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_001_step-end_步驟完成_221106201.png
+When 我使用快捷鍵開啟 RawData 並選擇不存在檔 not_exist_99999.json
+-&gt; duration: Demo2DesktopSteps.When我使用快捷鍵開啟不存在檔(): 13.6s
+-&gt; done: Demo2DesktopSteps.When我使用快捷鍵開啟不存在檔() (13.6s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_002_step-end_步驟完成_221119853.png
+Then 主視窗仍應存在
+-&gt; done: Demo2DesktopSteps.Then主視窗仍應存在() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_003_step-end_步驟完成_221119937.png
+-&gt; duration: Scenario: TC09 - 開啟不存在 Recipe: 17.4s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC09_-_開啟不存在_Recipe_004_complete_測試完成_221119990.png
+-&gt; duration: TestHooks.AfterScenario(): 1.2s
+
+-&gt; duration: TestHooks.BeforeScenario(): 2.6s
+Given 測試資料已就緒
+-&gt; done: Demo2DesktopSteps.Given測試資料已就緒() (0.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_001_step-end_步驟完成_221123781.png
+And 應用程式已啟動
+-&gt; duration: Demo2DesktopSteps.Given應用程式已啟動(): 1.0s
+-&gt; done: Demo2DesktopSteps.Given應用程式已啟動() (1.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_002_step-end_步驟完成_221124857.png
+When 我點擊工具列「RawData」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("RawData"): 2.0s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("RawData") (2.0s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_003_step-end_步驟完成_221126922.png
+And 我點擊工具列「Run Inspection」
+-&gt; duration: Demo2DesktopSteps.When我點擊工具列("Run Inspection"): 1.7s
+-&gt; done: Demo2DesktopSteps.When我點擊工具列("Run Inspection") (1.7s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_004_step-end_步驟完成_221128670.png
+Then 日誌區應包含「Run Inspection」
+-&gt; duration: Demo2DesktopSteps.Then日誌區應包含("Run Inspection"): 138.7ms
+-&gt; done: Demo2DesktopSteps.Then日誌區應包含("Run Inspection") (0.1s)
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_005_step-end_步驟完成_221128859.png
+-&gt; duration: Scenario: TC10 - Run Inspection 模擬檢測: 7.7s
+截圖已儲存: C:\Users\BaoGo\Documents\ClaudeCode_Project\SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\bin\Release\net8.0-windows\Screenshots\TC10_-_Run_Inspection_模擬檢測_006_complete_測試完成_221128910.png
+-&gt; duration: TestHooks.AfterScenario(): 1.2s
+
+NUnit Adapter 5.0.0.0: Test execution complete
+</system-out>
+    <system-err></system-err>
+  </testsuite>
+</testsuites>

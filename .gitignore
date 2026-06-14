@@ -9,8 +9,7 @@ SemiInspectionDesktop/obj/
 # Test artifacts
 **/Screenshots/
 **/FailureLogs/
-Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/*.html
-Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/*.xml
+# reports/ 同步副本可提交（bin/Release 內報告仍由 **/Release/ 排除）
 
 # IDE / OS
 .vs/
