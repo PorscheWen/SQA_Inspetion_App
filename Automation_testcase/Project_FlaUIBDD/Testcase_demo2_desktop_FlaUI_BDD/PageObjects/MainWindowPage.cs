@@ -30,13 +30,12 @@ public class MainWindowPage : BasePage
 
         if (string.Equals(buttonText, "About", StringComparison.OrdinalIgnoreCase))
         {
-            if (TryClickToolbarElement("btnToolbar0About", buttonText))
+            if (TryOpenAboutDialog())
             {
                 return;
             }
 
-            OpenAboutViaKeyboard();
-            return;
+            throw new ElementNotAvailableException("找不到 About 對話框入口");
         }
 
         if (string.Equals(buttonText, "Import Recipe", StringComparison.OrdinalIgnoreCase))
@@ -83,6 +82,25 @@ public class MainWindowPage : BasePage
 
         Keyboard.Press(VirtualKeyShort.RETURN);
         Thread.Sleep(500);
+    }
+
+    private bool TryOpenAboutDialog()
+    {
+        var menuAbout = FindWinFormsControl("menuToolsAbout");
+        if (menuAbout != null && TryInvokeClick(menuAbout, "Tools > About"))
+        {
+            return true;
+        }
+
+        var toolbarAbout = FindByAutomationId("btnToolbar0About", ToolbarLookupMs)
+            ?? FindByName("About", ToolbarLookupMs);
+        if (toolbarAbout != null && TryInvokeClick(toolbarAbout, "About"))
+        {
+            return true;
+        }
+
+        OpenAboutViaKeyboard();
+        return true;
     }
 
     public void SendShortcut(VirtualKeyShort key, bool ctrl = false)

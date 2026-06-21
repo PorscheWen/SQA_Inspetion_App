@@ -190,6 +190,28 @@ public abstract class BasePage : IDisposable
         }
     }
 
+    protected bool TryInvokeClick(AutomationElement element, string? label = null)
+    {
+        var clickLabel = label ?? Helpers.ActionScreenshotHelper.DescribeElement(element);
+        try
+        {
+            if (element.Patterns.Invoke.IsSupported)
+            {
+                element.Patterns.Invoke.Pattern.Invoke();
+                Thread.Sleep(300);
+                Helpers.ActionScreenshotHelper.CaptureClick(clickLabel, Window, element);
+                Thread.Sleep(200);
+                return true;
+            }
+        }
+        catch
+        {
+            // fall through
+        }
+
+        return false;
+    }
+
     protected void Click(AutomationElement element, string? label = null)
     {
         var clickLabel = label ?? Helpers.ActionScreenshotHelper.DescribeElement(element);
@@ -216,7 +238,18 @@ public abstract class BasePage : IDisposable
         }
         catch (NoClickablePointException)
         {
-            ClickByBounds(element);
+            try
+            {
+                ClickByBounds(element);
+            }
+            catch (System.Runtime.InteropServices.COMException)
+            {
+                throw new ElementNotAvailableException("Element is not clickable via UIA bounds.");
+            }
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+            throw new ElementNotAvailableException("Element click timed out via UIA.");
         }
 
         Thread.Sleep(300);
