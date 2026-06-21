@@ -1,54 +1,54 @@
-# Semi Inspection Desktop — 10 Test Cases
+﻿﻿# Semi Inspection Desktop — 10 Test Cases
 
-對應測試計畫：[TEST_PLAN.md](TEST_PLAN.md)  
-Gherkin 測試程序：[TPS.md](TPS.md)  
-FlaUI BDD Feature：`../Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature`
+Test plan: [TEST_PLAN.md](TEST_PLAN.md)  
+Gherkin test procedures: [TPS.md](TPS.md)  
+FlaUI BDD Feature: `../Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature`
 
-## 案例總表
+## Summary table
 
-| ID | 類別 | 標題 | 主要操作 | 預期結果 | Defect# |
-|----|------|------|----------|----------|---------|
-| TC01 | Functional | Import Recipe | Import Recipe + 選 Sample JSON | Recipe_data 有檔案；DataGrid 可見；日誌含 Import Recipe | 2001 |
-| TC02 | Functional | File Tree | 啟動後檢視樹 | 標題 Semi Inspection Desktop；樹可見；Sample 存在 | 2002 |
-| TC03 | Functional | RawData | 點 RawData (Ctrl+E) | DataGrid 顯示參數表；日誌含 RawData | 2003 |
-| TC04 | Functional | Defect Chart | 載入 Recipe → Defect Chart | 日誌含 Defect Chart；5 類缺陷曲線 | 2004 |
-| TC05 | Functional | 樹狀雙擊 | 雙擊 InspectionRecipe_Sample.json | DataGrid 可見；日誌含 Recipe | 2005 |
-| TC06 | Functional | About | 點 About | About 對話框顯示功能說明 | 2006 |
-| TC07 | Negative | 無效匯入 | Import + _invalid_sample.txt | 警告；不複製無效檔 | 2007 |
-| TC08 | Negative | 無資料繪圖 | 重啟後直接 Defect Chart | 提示或警告；不當機 | 2008 |
-| TC09 | Negative | 不存在檔 | RawData + not_exist_99999.json | 錯誤訊息；主視窗存在 | 2009 |
-| TC10 | Functional | Run Inspection | 載入 Recipe → Run Inspection | 日誌含 Run Inspection 與檢測摘要 | 2010 |
+| ID | Category | Title | Main actions | Expected result | Defect# |
+|----|----------|-------|--------------|-----------------|---------|
+| TC01 | Functional | Import Recipe | Import Recipe + select Sample JSON + RawData | File in Recipe_data; RawData shows sample and parameters; log contains Import Recipe | 2001 |
+| TC02 | Functional | File Tree | Launch and view tree | Title Semi Inspection Desktop; tree visible; sample exists | 2002 |
+| TC03 | Functional | RawData | Click RawData (Ctrl+E) | DataGrid shows parameter table; log contains RawData | 2003 |
+| TC04 | Functional | Defect Chart | Load Recipe → Defect Chart | Log contains Defect Chart; 5-type defect curve | 2004 |
+| TC05 | Functional | Tree double-click | Double-click InspectionRecipe_Sample.json | DataGrid visible; log contains Recipe | 2005 |
+| TC06 | Functional | About | Click About | About dialog shows feature description | 2006 |
+| TC07 | Negative | Invalid import | Import + _invalid_sample.txt | Warning; invalid file not copied | 2007 |
+| TC08 | Negative | Chart without data | Relaunch → Defect Chart | Prompt or warning; no crash | 2008 |
+| TC09 | Negative | Missing file | RawData + not_exist_99999.json | Error message; main window exists | 2009 |
+| TC10 | Functional | Run Inspection | Load Recipe → Run Inspection | Log contains Run Inspection and inspection summary | 2010 |
 
 ---
 
-## 控制項對照（UI Automation）
+## Control mapping (UI Automation)
 
-| 顯示名稱 | AutomationId | 快捷鍵 | 備註 |
-|----------|--------------|--------|------|
+| Display name | AutomationId | Shortcut | Notes |
+|--------------|--------------|----------|-------|
 | Import Recipe | btnImportRecipe | Ctrl+I | Toolbar0 |
-| Run Inspection | btnRunInspection | Ctrl+R | Toolbar0 + Tools 選單 |
-| RawData | btnParameters | Ctrl+E | Toolbar1（按鈕文字 RawData） |
+| Run Inspection | btnRunInspection | Ctrl+R | Toolbar0 + Tools menu |
+| RawData | btnParameters | Ctrl+E | Toolbar1 (button text RawData) |
 | Defect Chart | btnDefectChart | Ctrl+D | Toolbar1 |
 | About | btnToolbar0About | — | Toolbar0 |
-| Close Recipe | menuFileCloseRecipe | Ctrl+W | File 選單 |
-| RawData 表格 | dataGridParameters | — | Category/Parameter/Value/Unit |
-| 檔案樹 | treeFiles | — | 雙擊 .json 載入 |
-| 圖表 | pictureBoxChart | — | Defect Chart Tab |
-| 日誌 | txtToolLog | — | 操作 log |
+| Close Recipe | menuFileCloseRecipe | Ctrl+W | File menu |
+| RawData table | dataGridParameters | — | Category/Parameter/Value/Unit |
+| File tree | treeFiles | — | Double-click .json to load |
+| Chart | pictureBoxChart | — | Defect Chart tab |
+| Log | txtToolLog | — | Operation log |
 
 ---
 
-## 測試資料
+## Test data
 
-| 檔案 | 用途 |
-|------|------|
-| `Recipe_data/InspectionRecipe_Sample.json` | 標準 Recipe（5 類 DefectSummary） |
-| `Recipe_data/_invalid_sample.txt` | TC07 非 JSON 匯入 |
-| `Recipe_data/not_exist_99999.json` | TC09（測試時不需預先建立） |
+| File | Purpose |
+|------|---------|
+| `Recipe_data/InspectionRecipe_Sample.json` | Standard Recipe (5 DefectSummary types) |
+| `Recipe_data/_invalid_sample.txt` | TC07 non-JSON import |
+| `Recipe_data/not_exist_99999.json` | TC09 (do not create before test) |
 
 ---
 
-## TC04 預期 DefectSummary（Sample）
+## TC04 expected DefectSummary (Sample)
 
 | DefectType | DefectCount |
 |------------|-------------|
@@ -60,15 +60,15 @@ FlaUI BDD Feature：`../Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Featur
 
 ---
 
-## TC10 預期日誌關鍵字
+## TC10 expected log keywords
 
-- `Run Inspection: 開始模擬檢測`
+- `Run Inspection: starting simulated inspection`
 - `Recipe: Layer1_AOI_Recipe_v1`
 - `Tool: AOI-TOOL-03`
-- `DefectSummary 合計`
+- `DefectSummary total`
 
 ---
 
-## Excel 匯出
+## Excel export
 
-執行 `generate_semi_testcases.py` 產生 `SemiInspection_10_TestCases.xlsx`。
+Run `generate_semi_testcases.py` to produce `SemiInspection_10_TestCases.xlsx`.

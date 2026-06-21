@@ -1,137 +1,140 @@
-# TPS — Test Procedure Specification（Gherkin）
+﻿﻿# TPS — Test Procedure Specification (Gherkin)
 
-**Test Procedure Specification（測試程序規格）**  
-以 Gherkin 語法描述 Semi Inspection Desktop 之 10 項測試程序。
+**Test Procedure Specification**  
+Describes 10 test procedures for Semi Inspection Desktop in Gherkin syntax.
 
-| 項目 | 內容 |
-|------|------|
-| 專案根目錄 | `SQA_Inspetion_App/`（可獨立運行） |
-| 來源 | [Test_cases/TEST_PLAN.md](Test_cases/TEST_PLAN.md) |
-| 案例總表 | [Test_cases/SemiInspection_10_TestCases.md](Test_cases/SemiInspection_10_TestCases.md) |
-| BDD 撰寫 skill | [TPS_BDD_skill.md](TPS_BDD_skill.md) |
-| 被測程式 | `../SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe` |
-| 測試資料目錄 | `../Recipe_data/` |
-| 標準樣本 | `InspectionRecipe_Sample.json` |
-| 自動化 Feature | `Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature` |
-| Web 控制台 | `Project_FlaUIBDD/web_dashboard/`（http://localhost:6690） |
-| 語言 | 繁體中文（步驟用語與 FlaUI BDD 一致） |
+| Item | Value |
+|------|-------|
+| Project root | `SQA_Inspetion_App/` (standalone) |
+| Source | [Test_cases/TEST_PLAN.md](Test_cases/TEST_PLAN.md) |
+| Case summary | [Test_cases/SemiInspection_10_TestCases.md](Test_cases/SemiInspection_10_TestCases.md) |
+| BDD authoring skill | [TPS_BDD_skill.md](TPS_BDD_skill.md) |
+| Application under test | `../SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe` |
+| Test data directory | `../Recipe_data/` |
+| Standard sample | `InspectionRecipe_Sample.json` |
+| Automation Feature | `Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature` |
+| Web dashboard | `Project_FlaUIBDD/web_dashboard/` (http://localhost:6690) |
+| Language | English (step wording matches FlaUI BDD) |
 
-## 前置條件（Background）
+## Preconditions (Background)
 
 ```gherkin
-# language: zh-TW
-Background: Semi Inspection Desktop 測試環境
-  Given 工作目錄為 SQA_Inspetion_App
-  And 已執行 build_semi.bat 建置被測程式
-  And Recipe_data 含 InspectionRecipe_Sample.json
-  And Recipe_data 含 _invalid_sample.txt（TC07 用）
+Background: Semi Inspection Desktop test environment
+  Given the working directory is SQA_Inspetion_App
+  And build_semi.bat has been run to build the application
+  And Recipe_data contains InspectionRecipe_Sample.json
+  And Recipe_data contains _invalid_sample.txt (for TC07)
 ```
 
 ## Feature
 
 ```gherkin
-# language: zh-TW
-Feature: Semi Inspection Desktop 測試
-  作為測試人員
-  我想要驗證 Semi Inspection Desktop 的 Recipe、RawData 與圖表功能
-  以確保 Recipe_data 工作流程正常
+Feature: Semi Inspection Desktop Tests
+  As a tester
+  I want to verify Recipe, RawData, and chart features
+  So that the Recipe_data workflow works correctly
 
-  # --- Functional（7）---
+  # --- Functional (7) ---
 
   @Functional @Import @Defect2001
-  Scenario: TC01 - Import Recipe 至 Recipe_data
-    # 目的：驗證 Import Recipe 可匯入 JSON 並顯示 RawData
-    Given 測試資料已就緒
-    And 應用程式已重新啟動
-    When 我點擊工具列「Import Recipe」
-    And 我在檔案對話框選擇樣本 InspectionRecipe_Sample.json
-    Then Recipe_data 應存在 InspectionRecipe_Sample.json
-    And 資料表應可見
-    And 日誌區應包含「Import Recipe」
+  Scenario: TC01 - Import Recipe to Recipe_data
+    # Purpose: verify Import Recipe imports JSON and shows RawData
+    Given test data is ready
+    And the application has relaunched
+    When I click toolbar "Import Recipe"
+    And I select sample InspectionRecipe_Sample.json in the file dialog
+    And I click toolbar "RawData"
+    Then Recipe_data should contain InspectionRecipe_Sample.json
+    And the data table should be visible
+    And the RawData view should show filename InspectionRecipe_Sample.json
+    And the RawData parameter table should contain "Layer1_AOI_Recipe_v1"
+    And the RawData parameter table should contain "W-20260605-001"
+    And the RawData parameter table should contain "Brightfield"
+    And the log should contain "Import Recipe"
 
   @Functional @FileTree @Defect2002
-  Scenario: TC02 - File Tree 顯示 Recipe_data
-    # 目的：左側樹狀目錄指向 Recipe_data
-    Given 測試資料已就緒
-    And 應用程式已啟動
-    Then 主視窗標題應為「Semi Inspection Desktop」
-    And 檔案樹應可見
-    And Recipe_data 應存在 InspectionRecipe_Sample.json
+  Scenario: TC02 - File Tree shows Recipe_data
+    # Purpose: left tree points to Recipe_data
+    Given test data is ready
+    And the application has started
+    Then the main window title should be "Semi Inspection Desktop"
+    And the file tree should be visible
+    And Recipe_data should contain InspectionRecipe_Sample.json
 
   @Functional @RawData @Defect2003
-  Scenario: TC03 - RawData 參數表
-    # 目的：RawData 按鈕切換並載入 Inspection 參數（btnParameters / Ctrl+E）
-    Given 測試資料已就緒
-    And 應用程式已啟動
-    When 我點擊工具列「RawData」
-    Then 資料表應可見
-    And 日誌區應包含「RawData」
+  Scenario: TC03 - RawData parameter table
+    # Purpose: RawData button switches and loads inspection parameters (btnParameters / Ctrl+E)
+    Given test data is ready
+    And the application has started
+    When I click toolbar "RawData"
+    Then the data table should be visible
+    And the log should contain "RawData"
 
   @Functional @Chart @Defect2004
-  Scenario: TC04 - Defect Chart 曲線圖
-    # 目的：DefectSummary 繪製 DefectType / DefectCount 曲線（Sample 共 5 類）
-    Given 測試資料已就緒
-    And 應用程式已啟動
-    When 我點擊工具列「RawData」
-    And 我點擊工具列「Defect Chart」
-    Then 日誌區應包含「Defect Chart」
+  Scenario: TC04 - Defect Chart
+    # Purpose: DefectSummary draws DefectType / DefectCount curve (Sample has 5 types)
+    Given test data is ready
+    And the application has started
+    When I click toolbar "RawData"
+    And I click toolbar "Defect Chart"
+    Then the log should contain "Defect Chart"
 
   @Functional @FileTree @Defect2005
-  Scenario: TC05 - 檔案樹雙擊開啟 Recipe
-    # 目的：從 File Tree 直接開 JSON Recipe
-    Given 測試資料已就緒
-    And 應用程式已啟動
-    When 我在檔案樹雙擊 InspectionRecipe_Sample.json
-    Then 資料表應可見
-    And 日誌區應包含「Recipe」
+  Scenario: TC05 - Double-click Recipe in file tree
+    # Purpose: open JSON Recipe from File Tree
+    Given test data is ready
+    And the application has started
+    When I double-click InspectionRecipe_Sample.json in the file tree
+    Then the data table should be visible
+    And the log should contain "Recipe"
 
   @Functional @About @Defect2006
-  Scenario: TC06 - About 對話框
-    # 目的：About 顯示功能與 Inspection 資料區段說明
-    Given 應用程式已啟動
-    When 我點擊工具列「About」
-    And 我關閉訊息對話框
+  Scenario: TC06 - About dialog
+    # Purpose: About shows feature and Inspection data section description
+    Given the application has started
+    When I click toolbar "About"
+    And I close the message dialog
 
   @Functional @Inspection @Defect2010
-  Scenario: TC10 - Run Inspection 模擬檢測
-    # 目的：依 Recipe 執行模擬 AOI 檢測並寫入日誌
-    Given 測試資料已就緒
-    And 應用程式已啟動
-    When 我點擊工具列「RawData」
-    And 我點擊工具列「Run Inspection」
-    Then 日誌區應包含「Run Inspection」
+  Scenario: TC10 - Run Inspection simulation
+    # Purpose: run simulated AOI inspection from Recipe and write log
+    Given test data is ready
+    And the application has started
+    When I click toolbar "RawData"
+    And I click toolbar "Run Inspection"
+    Then the log should contain "Run Inspection"
 
-  # --- Negative（3）---
+  # --- Negative (3) ---
 
   @Negative @Import @Defect2007
-  Scenario: TC07 - 匯入非 JSON 檔
-    # 目的：非 JSON 匯入應警告且不寫入 TC01_import_copy.json
-    Given 測試資料已就緒
-    And 應用程式已啟動
-    When 我點擊工具列「Import Recipe」
-    And 我在檔案對話框選擇無效檔 _invalid_sample.txt
-    Then 不應將無效檔複製為 TC01_import_copy.json
-    And 我關閉訊息對話框
+  Scenario: TC07 - Import non-JSON file
+    # Purpose: non-JSON import shows warning and does not write TC01_import_copy.json
+    Given test data is ready
+    And the application has started
+    When I click toolbar "Import Recipe"
+    And I select invalid file _invalid_sample.txt in the file dialog
+    Then the invalid file should not be copied as TC01_import_copy.json
+    And I close the message dialog
 
   @Negative @Chart @Defect2008
-  Scenario: TC08 - 無 Recipe 時繪圖
-    # 目的：未載入 Recipe 時按 Defect Chart 不當機
-    Given 應用程式已重新啟動
-    When 我點擊工具列「Defect Chart」
-    Then 主視窗仍應存在
+  Scenario: TC08 - Chart without Recipe
+    # Purpose: Defect Chart without loaded Recipe does not crash
+    Given the application has relaunched
+    When I click toolbar "Defect Chart"
+    Then the main window should still exist
 
   @Negative @RawData @Defect2009
-  Scenario: TC09 - 開啟不存在 Recipe
-    # 目的：選擇不存在 JSON 時顯示錯誤且主視窗仍存在
-    Given 應用程式已啟動
-    When 我使用快捷鍵開啟 RawData 並選擇不存在檔 not_exist_99999.json
-    Then 主視窗仍應存在
+  Scenario: TC09 - Open non-existent Recipe
+    # Purpose: missing JSON shows error and main window remains
+    Given the application has started
+    When I open RawData via shortcut and select missing file not_exist_99999.json
+    Then the main window should still exist
 ```
 
-## Scenario 對照表
+## Scenario mapping
 
-| ID | 標籤 | Defect# | 類別 |
-|----|------|---------|------|
+| ID | Tags | Defect# | Category |
+|----|------|---------|----------|
 | TC01 | @Functional @Import | 2001 | Functional |
 | TC02 | @Functional @FileTree | 2002 | Functional |
 | TC03 | @Functional @RawData | 2003 | Functional |
@@ -143,58 +146,59 @@ Feature: Semi Inspection Desktop 測試
 | TC09 | @Negative @RawData | 2009 | Negative |
 | TC10 | @Functional @Inspection | 2010 | Functional |
 
-## 測試資料（Gherkin 註記）
+## Test data (Gherkin notes)
 
 ```gherkin
-# 標準 Recipe（TC01、TC04、TC05、TC10）
+# Standard Recipe (TC01, TC04, TC05, TC10)
 #   Recipe_data/InspectionRecipe_Sample.json
-#   DefectSummary 5 類：Particle(18)、Scratch(6)、Bridge(3)、Pattern(9)、Void(4)
+#   DefectSummary 5 types: Particle(18), Scratch(6), Bridge(3), Pattern(9), Void(4)
 
-# 無效匯入（TC07）
+# Invalid import (TC07)
 #   Recipe_data/_invalid_sample.txt
 
-# 不存在檔（TC09，不需預先建立）
+# Missing file (TC09, do not create beforehand)
 #   Recipe_data/not_exist_99999.json
 ```
 
-## 執行方式
+## Execution
 
-**手動：** 依各 Scenario 的 Given / When / Then 逐步操作。
+**Manual:** Follow each Scenario's Given / When / Then steps.
 
-**自動化（FlaUI BDD）：**
+**Automation (FlaUI BDD):**
 
 ```bat
 cd SQA_Inspetion_App
 run_tests.bat
 ```
 
-**單一 TC：**
+**Single TC:**
 
 ```bat
 cd SQA_Inspetion_App\Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD
 dotnet test -c Release --filter "Name~TC01"
 ```
 
-**Web 控制台：**
+**Web dashboard:**
 
 ```bat
 cd SQA_Inspetion_App
 啟動測試平台.bat
 ```
 
-瀏覽器開啟 http://localhost:6690/，勾選 Feature 後執行測試。
+Open http://localhost:6690/ in a browser, select Feature, and run tests.
 
-## 報告位置
+## Report locations
 
-| 類型 | 路徑（相對 FlaUI 專案） |
-|------|-------------------------|
-| TestResult（步驟 + 截圖） | `bin/Release/net8.0-windows/reports/TestResultReport.html` |
+| Type | Path (relative to FlaUI project) |
+|------|----------------------------------|
+| TestResult (steps + screenshots) | `bin/Release/net8.0-windows/reports/TestResultReport.html` |
 | ExtentReports | `bin/Release/net8.0-windows/reports/SemiInspectionTestReport.html` |
 | JUnit | `reports/junit-results.xml` |
 
-## 修訂紀錄
+## Revision history
 
-| 版本 | 日期 | 說明 |
-|------|------|------|
-| 1.0 | 2026-06-05 | 依 TEST_PLAN.md 初版 Gherkin TPS |
-| 1.1 | 2026-06-14 | 路徑改為 SQA_Inspetion_App 獨立專案；補 Web 控制台與報告說明 |
+| Version | Date | Description |
+|---------|------|-------------|
+| 1.0 | 2026-06-05 | Initial Gherkin TPS from TEST_PLAN.md |
+| 1.1 | 2026-06-14 | Paths for standalone SQA_Inspetion_App; Web dashboard and reports |
+| 1.2 | 2026-06-21 | English step wording; TC01 RawData parameter checks |

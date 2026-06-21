@@ -3,7 +3,7 @@
     "feature": "en-US"
   },
   "bindingCulture": {
-    "name": "zh-TW"
+    "name": "en-US"
   },
   "trace": {
     "traceSuccessfulSteps": true,

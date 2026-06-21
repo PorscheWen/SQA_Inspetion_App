@@ -28,13 +28,13 @@
         <section>
             <h2>2.1 修改既有 TC 的標準流程</h2>
             <ol>
-                <li>修改 <code>Automation_testcase/Test_cases/TEST_PLAN.md</code>（目的、步驟、預期）</li>
-                <li>同步 <code>Automation_testcase/Test_cases/SemiInspection_10_TestCases.md</code>（總表、AutomationId）</li>
-                <li>更新 <code>Automation_testcase/Test_cases/TPS.md</code> 的 Gherkin 步驟</li>
-                <li>同步 <code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code> 的 Scenario</li>
-                <li>若步驟語意變更 → 修改 <code>.../StepDefinitions/Demo2DesktopSteps.cs</code></li>
+                <li>修改 <a href="../Automation_testcase/Test_cases/TEST_PLAN.md" class="file-link"><code>Automation_testcase/Test_cases/TEST_PLAN.md</code></a>（目的、步驟、預期）</li>
+                <li>同步 <a href="../Automation_testcase/Test_cases/SemiInspection_10_TestCases.md" class="file-link"><code>Automation_testcase/Test_cases/SemiInspection_10_TestCases.md</code></a>（總表、AutomationId）</li>
+                <li>更新 <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a> 的 Gherkin 步驟</li>
+                <li>同步 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></a> 的 Scenario</li>
+                <li>若步驟語意變更 → 修改 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>.../StepDefinitions/Demo2DesktopSteps.cs</code></a></li>
                 <li>若涉及 UI 操作 → 修改 <strong>PageObject</strong>（非 Steps）</li>
-                <li>單一 TC 驗證：<code>執行單一測試.bat TC01</code></li>
+                <li>單一 TC 驗證：<a href="../執行單一測試.bat" class="file-link"><code>執行單一測試.bat TC01</code></a></li>
             </ol>
             <div class="card warn">
                 <strong>重要：</strong>永遠先改 TPS 定稿，再改 Feature 與程式碼。避免 Feature 與 TPS 不一致。
@@ -45,40 +45,40 @@
             <h2>2.2 可修改的檔案與用途</h2>
             <table>
                 <tr><th>檔案</th><th>何時修改</th><th>範例</th></tr>
-                <tr><td><code>Demo2Desktop.feature</code></td><td>步驟文字、標籤、Scenario 標題</td><td>新增 Then 斷言步驟</td></tr>
-                <tr><td><code>Demo2DesktopSteps.cs</code></td><td>新 Gherkin 步驟需綁定 C# 方法</td><td><code>[When(@"我在檔案樹雙擊 (.*)")]</code></td></tr>
-                <tr><td><code>MainWindowPage.cs</code></td><td>工具列按鈕、快捷鍵、About</td><td>新增 ToolbarMap 項目</td></tr>
-                <tr><td><code>WorkspacePage.cs</code></td><td>檔案樹、資料表、日誌、圖表</td><td>修改 LogContains 邏輯</td></tr>
-                <tr><td><code>FileDialogPage.cs</code></td><td>開啟檔案對話框操作</td><td>路徑輸入 fallback</td></tr>
-                <tr><td><code>MessageBoxPage.cs</code></td><td>訊息對話框驗證與關閉</td><td>TC06、TC07</td></tr>
-                <tr><td><code>App.config</code></td><td>EXE 路徑、逾時、截圖設定</td><td>ElementTimeout</td></tr>
-                <tr><td><code>TestHooks.cs</code></td><td>App 啟動/關閉、報告生命週期</td><td>BeforeScenario 邏輯</td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>Demo2Desktop.feature</code></a></td><td>步驟文字、標籤、Scenario 標題</td><td>新增 Then 斷言步驟</td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>Demo2DesktopSteps.cs</code></a></td><td>新 Gherkin 步驟需綁定 C# 方法</td><td><code>[When(@"I double-click InspectionRecipe_Sample\.json in the file tree")]</code></td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/MainWindowPage.cs" class="file-link"><code>MainWindowPage.cs</code></a></td><td>工具列按鈕、快捷鍵、About</td><td>新增 ToolbarMap 項目</td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/WorkspacePage.cs" class="file-link"><code>WorkspacePage.cs</code></a></td><td>檔案樹、資料表、日誌、圖表</td><td>修改 LogContains 邏輯</td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/FileDialogPage.cs" class="file-link"><code>FileDialogPage.cs</code></a></td><td>開啟檔案對話框操作</td><td>路徑輸入 fallback</td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/MessageBoxPage.cs" class="file-link"><code>MessageBoxPage.cs</code></a></td><td>訊息對話框驗證與關閉</td><td>TC06、TC07</td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/App.config" class="file-link"><code>App.config</code></a></td><td>EXE 路徑、逾時、截圖設定</td><td>ElementTimeout</td></tr>
+                <tr><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Hooks/TestHooks.cs" class="file-link"><code>TestHooks.cs</code></a></td><td>App 啟動/關閉、報告生命週期</td><td>BeforeScenario 邏輯</td></tr>
             </table>
         </section>
 
         <section>
             <h2>2.3 修改 Feature 步驟</h2>
             <p>Feature 檔路徑：</p>
-            <div class="code-block">Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</div>
+            <p><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></a></p>
             <h3>範例：在 TC03 新增 Then 斷言</h3>
             <div class="code-block">@Functional @RawData
-Scenario: TC03 - RawData 參數表
-  Given 測試資料已就緒
-  And 應用程式已啟動
-  When 我點擊工具列「RawData」
-  Then 資料表應可見
-  And 日誌區應包含「RawData」
-  And 主視窗標題應為「Semi Inspection Desktop」   ← 新增步驟</div>
-            <p>新增步驟後，確認 <code>Demo2DesktopSteps.cs</code> 已有對應綁定；若無，需新增 Step 方法。</p>
+Scenario: TC03 - RawData parameter table
+  Given test data is ready
+  And the application has started
+  When I click toolbar "RawData"
+  Then the data table should be visible
+  And the log should contain "RawData"
+  And the main window title should be "Semi Inspection Desktop"   ← new step</div>
+            <p>新增步驟後，確認 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>Demo2DesktopSteps.cs</code></a> 已有對應綁定；若無，需新增 Step 方法。</p>
         </section>
 
         <section>
             <h2>2.4 新增 Gherkin 步驟綁定</h2>
-            <p>在 <code>Demo2DesktopSteps.cs</code> 新增方法，regex 必須與 Feature 步驟完全匹配：</p>
-            <div class="code-block">[Then(@"主視窗標題應為「(.*)」")]
-public void ThenMainWindowTitleShouldBe(string expectedTitle)
+            <p>在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>Demo2DesktopSteps.cs</code></a> 新增方法，regex 必須與 Feature 步驟完全匹配：</p>
+            <div class="code-block">[Then(@"the main window title should be ""(.*)""")]
+public void ThenTheMainWindowTitleShouldBe(string expectedTitle)
 {
-    var actual = _mainWindowPage.GetWindowTitle();
+    var actual = Main.GetWindowTitle();
     ClassicAssert.AreEqual(expectedTitle, actual);
 }</div>
             <div class="card">
@@ -90,11 +90,11 @@ public void ThenMainWindowTitleShouldBe(string expectedTitle)
             <h2>2.5 新增 TC 的規則</h2>
             <ul>
                 <li>一個 Scenario = 一個 TC，編號連續（TC11、TC12…）</li>
-                <li>標題格式：<code>TCxx - 簡短描述</code></li>
+                <li>標題格式：<code>TCxx - short description</code>（英文）</li>
                 <li>標籤：<code>@Functional</code> 或 <code>@Negative</code> + 領域標籤</li>
                 <li>優先重用既有 Given/When/Then 步驟</li>
-                <li>新步驟先在 <code>Automation_testcase/Test_cases/TPS.md</code> 定稿，再實作 Step 與 PageObject</li>
-                <li>同步更新 <code>Automation_testcase/Test_cases/TEST_PLAN.md</code> 與 <code>SemiInspection_10_TestCases.md</code></li>
+                <li>新步驟先在 <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a> 定稿，再實作 Step 與 PageObject</li>
+                <li>同步更新 <a href="../Automation_testcase/Test_cases/TEST_PLAN.md" class="file-link"><code>TEST_PLAN.md</code></a> 與 <a href="../Automation_testcase/Test_cases/SemiInspection_10_TestCases.md" class="file-link"><code>SemiInspection_10_TestCases.md</code></a></li>
             </ul>
         </section>
 
@@ -102,12 +102,12 @@ public void ThenMainWindowTitleShouldBe(string expectedTitle)
             <h2>2.6 使用 FlaUI Inspector 確認控制項</h2>
             <p>修改 UI 相關 PageObject 前，建議用 Inspector 確認 AutomationId：</p>
             <ol>
-                <li>雙擊 <code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/開啟Inspector.bat</code></li>
+                <li>雙擊 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/開啟Inspector.bat" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/開啟Inspector.bat</code></a></li>
                 <li>選擇行程 <strong>SemiInspectionDesktop</strong></li>
                 <li>檢查控制項的 Name、AutomationId、ControlType</li>
-                <li>更新 PageObject 與 SemiInspection_10_TestCases.md</li>
+                <li>更新 PageObject 與 <a href="../Automation_testcase/Test_cases/SemiInspection_10_TestCases.md" class="file-link">SemiInspection_10_TestCases.md</a></li>
             </ol>
-            <p>若 Inspector 不存在，執行 <code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/tools/install-flauinspect.ps1</code> 安裝。</p>
+            <p>若 Inspector 不存在，執行 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/tools/install-flauinspect.ps1" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/tools/install-flauinspect.ps1</code></a> 安裝。</p>
         </section>
 
         <section>
@@ -121,7 +121,7 @@ public void ThenMainWindowTitleShouldBe(string expectedTitle)
                 <tr><td>TakeScreenshotOnClick</td><td>每步操作截圖</td><td>報告需更詳細截圖</td></tr>
                 <tr><td>TakeScreenshotOnFailure</td><td>失敗時截圖</td><td>除錯需求</td></tr>
             </table>
-            <p>環境變數可由 <code>setup_env.bat</code> 覆寫，優先於 App.config。</p>
+            <p>設定檔：<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/App.config" class="file-link"><code>App.config</code></a>；環境變數可由 <a href="../setup_env.bat" class="file-link"><code>setup_env.bat</code></a> 覆寫，優先於 App.config。</p>
         </section>
 
         <section>
@@ -133,6 +133,7 @@ build_semi.bat
             <div class="code-block">cd Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD
 dotnet build -c Release
 dotnet test -c Release --filter "Name~TC03"</div>
+            <p>驗證通過後，參考 <a href="05-讀取報告.html">第 5 章：讀取報告</a> 確認 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a>。</p>
         </section>
     </div>
 
@@ -140,5 +141,6 @@ dotnet test -c Release --filter "Name~TC03"</div>
         <p><a href="01-TPS轉BDD.html">← 上一章</a> · <a href="index.html">首頁</a> · <a href="03-執行測試.html">下一章：執行測試 →</a></p>
     </footer>
 </div>
+<script src="launcher.js"></script>
 </body>
 </html>

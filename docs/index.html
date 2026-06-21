@@ -10,7 +10,7 @@
 <div class="container">
     <header>
         <h1>SQA Inspection App</h1>
-        <p>Semi Inspection Desktop · FlaUI BDD 自動化測試平台 — 操作手冊 v1.0</p>
+        <p>Semi Inspection Desktop · FlaUI BDD 自動化測試平台 — 操作手冊 v1.1</p>
     </header>
 
     <nav>
@@ -27,20 +27,69 @@
     <div class="content">
         <section>
             <h2>概述</h2>
-            <p>本手冊說明 <strong>SQA_Inspetion_App</strong> 專案中，從 TPS（Gherkin 測試程序規格）到 FlaUI BDD 自動化測試的完整工作流程。</p>
+            <p>本手冊說明 <strong>SQA_Inspetion_App</strong> 專案中，從 TPS（Gherkin 測試程序規格）到 FlaUI BDD 自動化測試的完整工作流程。TPS／Feature 的 Given / When / Then 步驟使用<strong>英文</strong>撰寫。</p>
             <div class="flow">
-                <span>TPS.md</span> <span class="arrow">→</span>
-                <span>Feature / Steps / PageObjects</span> <span class="arrow">→</span>
+                <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link">TPS.md</a> <span class="arrow">→</span>
+                <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link">Feature / Steps / PageObjects</a> <span class="arrow">→</span>
                 <span>dotnet test</span> <span class="arrow">→</span>
-                <span>HTML 報告</span>
+                <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/TestResultReport.html" class="file-link">HTML 報告</a>
             </div>
             <div class="card ok">
-                <strong>快速入口：</strong>雙擊專案根目錄的 <code>開啟操作手冊.bat</code> 可隨時開啟本頁。
+                <strong>快速入口：</strong>雙擊 <span class="launch-bat" data-launch-bat="開啟操作手冊.bat"><code>開啟操作手冊.bat</code></span> 啟動本機伺服器並開啟此頁（<code>http://localhost:6688/docs/index.html</code>）。
             </div>
         </section>
 
         <section>
-            <h2>五章節導覽</h2>
+            <h2>快速啟動</h2>
+            <p>點擊下方卡片即可<strong>一鍵執行</strong>（會在新視窗啟動對應 .bat；需透過 <code>開啟操作手冊.bat</code> 開啟本頁）：</p>
+            <div class="quick-actions">
+                <a href="#" class="quick-action primary launch-bat" data-launch-bat="啟動InspectionApp.bat">
+                    <h3>啟動 Inspection App</h3>
+                    <p>建置（若需要）並啟動 Semi Inspection Desktop 被測程式</p>
+                    <code>啟動InspectionApp.bat</code>
+                </a>
+                <a href="#" class="quick-action launch-bat" data-launch-bat="啟動測試平台.bat">
+                    <h3>啟動測試平台</h3>
+                    <p>Web 控制台勾選 TC、執行測試、查看報告</p>
+                    <code>啟動測試平台.bat</code>
+                </a>
+                <a href="#" class="quick-action launch-bat" data-launch-bat="run_tests.bat">
+                    <h3>執行全部測試</h3>
+                    <p>建置 App + BDD，一次跑完 TC01–TC10</p>
+                    <code>run_tests.bat</code>
+                </a>
+                <a href="#" class="quick-action launch-bat" data-launch-bat="執行單一測試.bat">
+                    <h3>執行單一測試</h3>
+                    <p>只跑指定 TC，例如 TC01、TC07</p>
+                    <code>執行單一測試.bat TC01</code>
+                </a>
+                <a href="#" class="quick-action launch-bat" data-launch-bat="開啟測試報告.bat">
+                    <h3>開啟測試報告</h3>
+                    <p>查看最新 TestResultReport.html</p>
+                    <code>開啟測試報告.bat</code>
+                </a>
+                <a href="#" class="quick-action launch-bat" data-launch-exe="SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe">
+                    <h3>直接開啟 EXE</h3>
+                    <p>已建置時可直接啟動（若不存在會先建置）</p>
+                    <code>SemiInspectionDesktop.exe</code>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2>執行流程</h2>
+            <p>以下為<strong>整個 BDD 自動化執行流程（7 步驟）</strong>：從讀取 TPS 規格、對照與實作程式碼，到建置、執行測試與確認報告。</p>
+            <ol>
+                <li><strong>讀取 TPS</strong> — 在 <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a> 找到對應 TC 的 Given / When / Then。詳見 <a href="01-TPS轉BDD.html">第 1 章</a></li>
+                <li><strong>對照 Feature</strong> — 確認 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>.../Features/Demo2Desktop.feature</code></a> 中 Scenario 標題、標籤、步驟語意一致。</li>
+                <li><strong>實作 StepDefinitions</strong> — 在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>.../StepDefinitions/Demo2DesktopSteps.cs</code></a> 新增或修改步驟綁定（只做編排與 Assert）。</li>
+                <li><strong>實作 PageObjects</strong> — FlaUI 操作放在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/" class="file-link">Page Object</a>，<strong>不要</strong>寫在 Steps 內。詳見 <a href="02-修改BDD.html">第 2 章</a></li>
+                <li><strong>設定路徑</strong> — 更新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/App.config" class="file-link"><code>App.config</code></a> 相對路徑，或由 <a href="../setup_env.bat" class="file-link"><code>setup_env.bat</code></a> 環境變數覆寫。</li>
+                <li><strong>驗證</strong> — 執行 <span class="launch-bat file-link" data-launch-bat="build_semi.bat"><code>build_semi.bat</code></span> → <code>dotnet build -c Release</code> → 單一 TC 測試（<span class="launch-bat file-link" data-launch-bat="執行單一測試.bat"><code>執行單一測試.bat</code></span>）。詳見 <a href="03-執行測試.html">第 3 章</a></li>
+                <li><strong>確認報告</strong> — 檢查 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html" class="file-link"><code>.../reports/TestResultReport.html</code></a> 已產生。詳見 <a href="05-讀取報告.html">第 5 章</a>；失敗時見 <a href="04-修復測試.html">第 4 章</a></li>
+            </ol>
+
+            <h3>章節詳細說明</h3>
             <div class="chapter-grid">
                 <a href="01-TPS轉BDD.html" style="text-decoration:none;color:inherit;">
                     <div class="chapter-card">
@@ -82,38 +131,92 @@
 
         <section>
             <h2>執行用批次檔（.bat）</h2>
-            <p>以下批次檔位於專案根目錄 <code>SQA_Inspetion_App\</code>，雙擊即可執行：</p>
-            <ul class="bat-list">
-                <li><code>開啟操作手冊.bat</code> 以系統瀏覽器開啟本手冊（docs/index.html）</li>
-                <li><code>run_tests.bat</code> 建置被測 App + BDD 專案，執行全部 10 個 TC</li>
-                <li><code>執行單一測試.bat</code> 執行指定 TC（例如 TC01）；不帶參數會提示輸入</li>
-                <li><code>開啟測試報告.bat</code> 開啟最新 TestResultReport.html</li>
-                <li><code>啟動測試平台.bat</code> 啟動 Web 控制台 http://localhost:6690/</li>
-                <li><code>build_semi.bat</code> 僅建置被測 SemiInspectionDesktop.exe</li>
-                <li><code>setup_env.bat</code> 設定 APP_ROOT、ApplicationPath 等環境變數（由其他 .bat 自動呼叫）</li>
-            </ul>
+            <p>以下批次檔位於專案根目錄 <code>SQA_Inspetion_App\</code>，點擊名稱即可執行（需透過 <code>開啟操作手冊.bat</code> 開啟本頁）：</p>
+            <table class="bat-table">
+                <tr><th>分類</th><th>批次檔</th><th>說明</th></tr>
+
+                <tr class="cat-row"><td colspan="3">操作手冊</td></tr>
+                <tr>
+                    <td>手冊</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="開啟操作手冊.bat"><code>開啟操作手冊.bat</code></span></td>
+                    <td class="bat-desc">啟動本機伺服器（port 6688）並開啟本手冊<br><a href="index.html">docs/index.html</a></td>
+                </tr>
+
+                <tr class="cat-row"><td colspan="3">被測 App（Semi Inspection Desktop）</td></tr>
+                <tr>
+                    <td>啟動</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="啟動InspectionApp.bat"><code>啟動InspectionApp.bat</code></span></td>
+                    <td class="bat-desc">
+                        <strong>建議入口。</strong>必要時先建置，再啟動 Semi Inspection Desktop。
+                        <span class="bat-sub">內部呼叫 <span class="launch-bat file-link" data-launch-bat="run_semi.bat"><code>run_semi.bat</code></span> 啟動 EXE</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>啟動</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="run_semi.bat"><code>run_semi.bat</code></span></td>
+                    <td class="bat-desc">僅啟動被測 App（不含測試）；若 EXE 不存在會自動建置</td>
+                </tr>
+                <tr>
+                    <td>建置</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="build_semi.bat"><code>build_semi.bat</code></span></td>
+                    <td class="bat-desc">僅建置 <span class="launch-bat file-link" data-launch-exe="SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe"><code>SemiInspectionDesktop.exe</code></span>，不啟動程式</td>
+                </tr>
+
+                <tr class="cat-row"><td colspan="3">測試執行</td></tr>
+                <tr>
+                    <td>全套</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="run_tests.bat"><code>run_tests.bat</code></span></td>
+                    <td class="bat-desc">建置被測 App + BDD 專案，執行全部 10 個 TC</td>
+                </tr>
+                <tr>
+                    <td>單一</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="執行單一測試.bat"><code>執行單一測試.bat</code></span></td>
+                    <td class="bat-desc">只跑指定 TC（TC01–TC10）；點擊後會提示輸入編號</td>
+                </tr>
+
+                <tr class="cat-row"><td colspan="3">報告與控制台</td></tr>
+                <tr>
+                    <td>報告</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="開啟測試報告.bat"><code>開啟測試報告.bat</code></span></td>
+                    <td class="bat-desc">開啟最新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a></td>
+                </tr>
+                <tr>
+                    <td>Web</td>
+                    <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="啟動測試平台.bat"><code>啟動測試平台.bat</code></span></td>
+                    <td class="bat-desc">啟動 Web 控制台 <a href="http://localhost:6690/" target="_blank" rel="noopener">http://localhost:6690/</a></td>
+                </tr>
+
+                <tr class="cat-row"><td colspan="3">環境設定</td></tr>
+                <tr>
+                    <td>環境</td>
+                    <td class="bat-name"><code>setup_env.bat</code></td>
+                    <td class="bat-desc">設定 APP_ROOT、ApplicationPath 等環境變數；由其他 .bat 自動呼叫，通常無需手動執行</td>
+                </tr>
+            </table>
         </section>
 
         <section>
             <h2>關鍵路徑速查</h2>
             <table>
                 <tr><th>項目</th><th>路徑（相對 SQA_Inspetion_App）</th></tr>
-                <tr><td>Gherkin TPS</td><td><code>Automation_testcase/Test_cases/TPS.md</code></td></tr>
-                <tr><td>BDD 撰寫 skill</td><td><code>Automation_testcase/TPS_BDD_skill.md</code></td></tr>
-                <tr><td>Feature 檔</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></td></tr>
-                <tr><td>Step Definitions</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs</code></td></tr>
-                <tr><td>Page Objects</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/</code></td></tr>
-                <tr><td>HTML 報告（測試後產生）</td><td><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html</code></td></tr>
-                <tr><td>Web 控制台</td><td><code>Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py</code></td></tr>
-                <tr><td>設定摘要</td><td><code>config.json</code></td></tr>
+                <tr><td>被測 App（Inspection）</td><td><span class="launch-bat file-link" data-launch-exe="SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe"><code>SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe</code></span> · 啟動：<span class="launch-bat file-link" data-launch-bat="啟動InspectionApp.bat"><code>啟動InspectionApp.bat</code></span></td></tr>
+                <tr><td>Gherkin TPS</td><td><a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a></td></tr>
+                <tr><td>BDD 撰寫 skill</td><td><a href="../Automation_testcase/TPS_BDD_skill.md" class="file-link"><code>Automation_testcase/TPS_BDD_skill.md</code></a></td></tr>
+                <tr><td>Feature 檔</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></a></td></tr>
+                <tr><td>Step Definitions</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs</code></a></td></tr>
+                <tr><td>Page Objects</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/</code></a></td></tr>
+                <tr><td>HTML 報告（測試後產生）</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html</code></a></td></tr>
+                <tr><td>Web 控制台</td><td><a href="../Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py</code></a></td></tr>
+                <tr><td>設定摘要</td><td><a href="../config.json" class="file-link"><code>config.json</code></a></td></tr>
             </table>
         </section>
     </div>
 
     <footer>
-        <p>SQA Inspection App 操作手冊 v1.0</p>
+        <p>SQA Inspection App 操作手冊 v1.1</p>
         <p>技術棧：SpecFlow 3.9 + NUnit 4 + FlaUI 4 + .NET 8</p>
     </footer>
 </div>
+<script src="launcher.js"></script>
 </body>
 </html>

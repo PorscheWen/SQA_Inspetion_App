@@ -84,6 +84,62 @@ public class WorkspacePage : BasePage
         Thread.Sleep(800);
     }
 
+    public bool GridContainsText(string expected, int waitMs = 10000)
+    {
+        var deadline = DateTime.UtcNow.AddMilliseconds(waitMs);
+        while (DateTime.UtcNow < deadline)
+        {
+            if (TryGridContainsText(expected))
+            {
+                return true;
+            }
+
+            Thread.Sleep(250);
+        }
+
+        return false;
+    }
+
+    public bool RawDataShowsFileName(string fileName, int waitMs = 10000)
+    {
+        var deadline = DateTime.UtcNow.AddMilliseconds(waitMs);
+        while (DateTime.UtcNow < deadline)
+        {
+            if (LogContains(fileName, waitMs: 500) || TryGridContainsText(fileName))
+            {
+                return true;
+            }
+
+            Thread.Sleep(250);
+        }
+
+        return false;
+    }
+
+    private bool TryGridContainsText(string expected)
+    {
+        var grid = FindDataGrid();
+        if (grid == null)
+        {
+            return false;
+        }
+
+        if (ElementTextContains(grid, expected))
+        {
+            return true;
+        }
+
+        foreach (var el in grid.FindAllDescendants())
+        {
+            if (ElementTextContains(el, expected))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private AutomationElement? WaitForTree(int timeoutMs)
     {
         return Retry.WhileNull(FindTreeView, TimeSpan.FromMilliseconds(timeoutMs)).Result;

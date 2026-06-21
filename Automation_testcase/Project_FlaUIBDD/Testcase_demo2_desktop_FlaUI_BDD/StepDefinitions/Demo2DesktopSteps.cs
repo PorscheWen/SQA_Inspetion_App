@@ -23,29 +23,29 @@ public class Demo2DesktopSteps
     private FileDialogPage FileDialog => _scenarioContext.Get<FileDialogPage>("FileDialogPage");
     private MessageBoxPage MessageBox => _scenarioContext.Get<MessageBoxPage>("MessageBoxPage");
 
-    [Given(@"測試資料已就緒")]
-    public void Given測試資料已就緒()
+    [Given(@"test data is ready")]
+    public void GivenTestDataIsReady()
     {
         TestDataHelper.EnsureTestDataReady();
     }
 
-    [Given(@"應用程式已啟動")]
-    public void Given應用程式已啟動()
+    [Given(@"the application has started")]
+    public void GivenTheApplicationHasStarted()
     {
-        ClassicAssert.IsTrue(Main.IsMainWindowVisible(), "主視窗應已啟動");
+        ClassicAssert.IsTrue(Main.IsMainWindowVisible(), "Main window is not visible");
         Thread.Sleep(1000);
     }
 
-    [Given(@"應用程式已重新啟動")]
-    public void Given應用程式已重新啟動()
+    [Given(@"the application has relaunched")]
+    public void GivenTheApplicationHasRelaunched()
     {
         TestHooks.RelaunchApplication();
         TestHooks.BindPagesToScenario(_scenarioContext);
         ClassicAssert.IsTrue(Main.IsMainWindowVisible());
     }
 
-    [When(@"我點擊工具列「(.*)」")]
-    public void When我點擊工具列(string buttonText)
+    [When(@"I click toolbar ""(.*)""")]
+    public void WhenIClickToolbar(string buttonText)
     {
         if (string.Equals(buttonText, "Run Inspection", StringComparison.OrdinalIgnoreCase))
         {
@@ -69,21 +69,21 @@ public class Demo2DesktopSteps
         }
     }
 
-    [When(@"我在檔案對話框選擇樣本 InspectionRecipe_Sample\.json")]
-    public void When我在檔案對話框選擇樣本Recipe()
+    [When(@"I select sample InspectionRecipe_Sample\.json in the file dialog")]
+    public void WhenISelectSampleInspectionRecipeInFileDialog()
     {
         FileDialog.OpenFile(ConfigHelper.GetSampleRecipePath());
         Workspace.WaitAfterDataTableAction();
     }
 
-    [When(@"我在檔案對話框選擇無效檔 _invalid_sample\.txt")]
-    public void When我在檔案對話框選擇無效檔()
+    [When(@"I select invalid file _invalid_sample\.txt in the file dialog")]
+    public void WhenISelectInvalidFileInFileDialog()
     {
         FileDialog.OpenFile(ConfigHelper.GetInvalidSamplePath());
     }
 
-    [When(@"我在檔案樹雙擊 InspectionRecipe_Sample\.json")]
-    public void When我在檔案樹雙擊Recipe()
+    [When(@"I double-click InspectionRecipe_Sample\.json in the file tree")]
+    public void WhenIDoubleClickInspectionRecipeInFileTree()
     {
         Workspace.DoubleClickTreeItem("InspectionRecipe_Sample.json");
         if (!Workspace.IsGridVisible())
@@ -92,15 +92,15 @@ public class Demo2DesktopSteps
         }
     }
 
-    [When(@"我關閉訊息對話框")]
-    [Then(@"我關閉訊息對話框")]
-    public void When我關閉訊息對話框()
+    [When(@"I close the message dialog")]
+    [Then(@"I close the message dialog")]
+    public void WhenICloseTheMessageDialog()
     {
         MessageBox.ClickOk();
     }
 
-    [When(@"我使用快捷鍵開啟 RawData 並選擇不存在檔 not_exist_99999\.json")]
-    public void When我使用快捷鍵開啟不存在檔()
+    [When(@"I open RawData via shortcut and select missing file not_exist_99999\.json")]
+    public void WhenIOpenRawDataViaShortcutAndSelectMissingFile()
     {
         Main.SendParametersShortcut();
         Thread.Sleep(500);
@@ -115,54 +115,70 @@ public class Demo2DesktopSteps
         }
     }
 
-    [Then(@"Recipe_data 應存在 InspectionRecipe_Sample\.json")]
-    public void ThenRecipe_data應存在Sample()
+    [Then(@"Recipe_data should contain InspectionRecipe_Sample\.json")]
+    public void ThenRecipeDataShouldContainInspectionRecipeSampleJson()
     {
         ClassicAssert.IsTrue(
             File.Exists(ConfigHelper.GetSampleRecipePath()),
-            "Recipe_data 應存在 InspectionRecipe_Sample.json");
+            "Recipe_data should contain InspectionRecipe_Sample.json");
     }
 
-    [Then(@"主視窗標題應為「(.*)」")]
-    public void Then主視窗標題應為(string expected)
+    [Then(@"the main window title should be ""(.*)""")]
+    public void ThenTheMainWindowTitleShouldBe(string expected)
     {
         ClassicAssert.AreEqual(expected, Main.GetWindowTitle());
     }
 
-    [Then(@"檔案樹應可見")]
-    public void Then檔案樹應可見()
+    [Then(@"the file tree should be visible")]
+    public void ThenTheFileTreeShouldBeVisible()
     {
         ClassicAssert.IsTrue(
             Workspace.IsTreeVisible(),
-            "找不到 File Tree（請確認 treeFiles / SysTreeView32 可被 UIA 存取）");
+            "File Tree not visible (check treeFiles / SysTreeView32 UIA access)");
     }
 
-    [Then(@"資料表應可見")]
-    public void Then資料表應可見()
+    [Then(@"the data table should be visible")]
+    public void ThenTheDataTableShouldBeVisible()
     {
         ClassicAssert.IsTrue(
             Workspace.IsGridVisible(),
-            "找不到 DataGridView（請確認 dataGridParameters 已載入且 Tab 在 RawData）");
+            "DataGridView not visible (check dataGridParameters on RawData tab)");
     }
 
-    [Then(@"日誌區應包含「(.*)」")]
-    public void Then日誌區應包含(string expected)
+    [Then(@"the RawData view should show filename (.+)")]
+    public void ThenTheRawDataViewShouldShowFilename(string fileName)
+    {
+        ClassicAssert.IsTrue(
+            Workspace.RawDataShowsFileName(fileName),
+            "RawData view does not show filename: " + fileName);
+    }
+
+    [Then(@"the RawData parameter table should contain ""(.*)""")]
+    public void ThenTheRawDataParameterTableShouldContain(string expected)
+    {
+        ClassicAssert.IsTrue(
+            Workspace.GridContainsText(expected),
+            "RawData parameter table does not contain: " + expected);
+    }
+
+    [Then(@"the log should contain ""(.*)""")]
+    public void ThenTheLogShouldContain(string expected)
     {
         ClassicAssert.IsTrue(
             Workspace.LogContains(expected),
-            "日誌區未包含預期文字: " + expected + "（檢查 txtToolLog / lblToolPlugin）");
+            "Log does not contain: " + expected + " (check txtToolLog / lblToolPlugin)");
     }
 
-    [Then(@"不應將無效檔複製為 TC01_import_copy\.json")]
-    public void Then不應將無效檔複製為匯入檔()
+    [Then(@"the invalid file should not be copied as TC01_import_copy\.json")]
+    public void ThenTheInvalidFileShouldNotBeCopiedAsTc01ImportCopy()
     {
         ClassicAssert.IsFalse(
             TestDataHelper.ImportTargetExists(),
-            "無效檔不應被複製為 TC01_import_copy.json");
+            "Invalid file must not be copied to TC01_import_copy.json");
     }
 
-    [Then(@"主視窗仍應存在")]
-    public void Then主視窗仍應存在()
+    [Then(@"the main window should still exist")]
+    public void ThenTheMainWindowShouldStillExist()
     {
         ClassicAssert.IsTrue(Main.IsMainWindowVisible());
     }

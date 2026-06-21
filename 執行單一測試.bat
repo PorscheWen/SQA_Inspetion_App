@@ -13,14 +13,20 @@ if "%TC%"=="" (
     set /p TC="請輸入 TC 編號 (例如 TC01): "
 )
 
+for /f "tokens=*" %%a in ("%TC%") do set "TC=%%a"
+set "TC=%TC: =%"
+
 if "%TC%"=="" (
     echo [ERROR] 未指定 TC 編號
     pause
     exit /b 1
 )
 
-echo %TC% | findstr /i /r "^TC[0-9][0-9]$" >nul
-if errorlevel 1 (
+set "VALID=0"
+for %%t in (01 02 03 04 05 06 07 08 09 10) do (
+    if /i "%TC%"=="TC%%t" set "VALID=1"
+)
+if "%VALID%"=="0" (
     echo [ERROR] 格式錯誤，請使用 TC01 ~ TC10
     pause
     exit /b 1
