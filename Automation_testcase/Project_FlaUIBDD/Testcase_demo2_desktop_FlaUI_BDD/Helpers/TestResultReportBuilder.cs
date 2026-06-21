@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Demo2DesktopTests.Helpers;
 
-/// <summary>TestComplete 風格：每個 TestCase 含操作步驟與對應截圖。</summary>
+/// <summary>步驟級 HTML 報告：每個 TestCase 含操作步驟與對應截圖。</summary>
 public static class TestResultReportBuilder
 {
     private static readonly object Lock = new();
@@ -209,7 +209,7 @@ public static class TestResultReportBuilder
 
         sb.AppendLine("  <header class=\"report-header\">");
         sb.AppendLine($"    <h1>{Encode(_featureName)}</h1>");
-        sb.AppendLine("    <p class=\"subtitle\">TestComplete 風格測試結果報告 · FlaUI BDD</p>");
+        sb.AppendLine("    <p class=\"subtitle\">FlaUI BDD 測試結果報告 · 含步驟截圖</p>");
         if (!string.IsNullOrWhiteSpace(_featureDescription))
         {
             sb.AppendLine($"    <p class=\"feature-desc\">{Encode(_featureDescription)}</p>");

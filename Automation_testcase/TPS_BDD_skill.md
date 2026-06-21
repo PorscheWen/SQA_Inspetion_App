@@ -73,7 +73,7 @@ Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/
 ├── Helpers/
 │   ├── ConfigHelper.cs
 │   ├── ActionScreenshotHelper.cs
-│   ├── TestResultReportBuilder.cs   # TestComplete 風格 HTML
+│   ├── TestResultReportBuilder.cs   # 步驟級 HTML 報告（含截圖）
 │   ├── HtmlReportHelper.cs          # ExtentReports
 │   ├── DialogHelper.cs
 │   ├── KeyboardInputHelper.cs
@@ -180,26 +180,12 @@ cd SQA_Inspetion_App
 
 | 報告 | 路徑 | 說明 |
 |------|------|------|
-| TestResult（步驟 + 截圖） | `bin/Release/net8.0-windows/reports/TestResultReport.html` | TestComplete 風格 |
+| TestResult（步驟 + 截圖） | `bin/Release/net8.0-windows/reports/TestResultReport.html` | 步驟級 HTML 報告 |
 | ExtentReports | `bin/Release/net8.0-windows/reports/SemiInspectionTestReport.html` | 傳統 HTML |
 | 別名（相容舊連結） | `reports/Demo2TestReport.html` → SemiInspectionTestReport | Web 控制台別名 |
 | JUnit | `reports/junit-results.xml` | CI / 控制台解析 |
 
 測試結束後 Web 控制台會同步 `bin/.../reports/` → 專案 `reports/`。
-
-## TestComplete → FlaUI 對照（歷史參考）
-
-若來源為 TestComplete Python 腳本，轉換時對照：
-
-| TestComplete | FlaUI / 本專案 |
-|--------------|----------------|
-| `Sys.Process(...)` | `Application.Launch` / `Attach`（`TestHooks`） |
-| `Find(["WndCaption", title])` | `cf.ByName("Semi Inspection Desktop")` |
-| `FindChild("WndCaption", text)` | `MainWindowPage.ClickToolbar(text)` |
-| `ClrClassName` TreeView / DataGridView | `cf.ByAutomationId("treeFiles")` 等 |
-| 快捷鍵 `^i` / `^e` / `^d` | `KeyboardInputHelper` 或工具列 Invoke |
-| `control_desktop("screenshot")` | `ActionScreenshotHelper` / `ScreenshotHelper` |
-| Excel / xlsx 匯入 | **已改為 JSON Recipe**（`InspectionRecipe_Sample.json`） |
 
 ## 完成檢查清單
 
