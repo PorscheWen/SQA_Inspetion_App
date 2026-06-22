@@ -3,7 +3,7 @@ chcp 65001 >nul 2>&1
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-set "TEST_DIR=%~dp0Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD"
+set "TEST_DIR=%~dp0Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD"
 set "REPORT_BIN=%TEST_DIR%\bin\Release\net8.0-windows\reports\TestResultReport.html"
 set "REPORT_SYNC=%TEST_DIR%\reports\TestResultReport.html"
 

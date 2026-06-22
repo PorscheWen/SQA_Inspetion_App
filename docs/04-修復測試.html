@@ -31,7 +31,7 @@
                 <li><strong>確認被測 App 已建置</strong> — <a href="../build_semi.bat" class="file-link"><code>build_semi.bat</code></a></li>
                 <li><strong>縮小範圍</strong> — 只跑失敗的 TC：<a href="../執行單一測試.bat" class="file-link"><code>執行單一測試.bat TCxx</code></a></li>
                 <li><strong>讀取報告</strong> — <a href="../開啟測試報告.bat" class="file-link"><code>開啟測試報告.bat</code></a>，找到失敗步驟與 error message</li>
-                <li><strong>查看截圖</strong> — <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/Screenshots/" class="file-link"><code>bin/Release/net8.0-windows/Screenshots/</code></a></li>
+                <li><strong>查看截圖</strong> — <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/bin/Release/net8.0-windows/Screenshots/" class="file-link"><code>bin/Release/net8.0-windows/Screenshots/</code></a></li>
                 <li><strong>分類錯誤</strong> — 依下表判斷修改位置</li>
                 <li><strong>Inspector 除錯</strong> — 確認 AutomationId（UI 相關失敗）</li>
                 <li><strong>修改程式碼</strong> — PageObject / App.config / Steps</li>
@@ -47,49 +47,49 @@
                     <td>找不到 EXE</td>
                     <td>FileNotFoundException、ApplicationPath 錯誤</td>
                     <td>是否執行 <a href="../build_semi.bat" class="file-link">build_semi.bat</a></td>
-                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/App.config" class="file-link">App.config</a>、<a href="../setup_env.bat" class="file-link">setup_env.bat</a></td>
+                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/App.config" class="file-link">App.config</a>、<a href="../setup_env.bat" class="file-link">setup_env.bat</a></td>
                 </tr>
                 <tr>
                     <td>UIA Timeout</td>
                     <td>找不到控制項、WaitUntilEnabled 逾時</td>
                     <td>Inspector 確認 AutomationId</td>
-                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/" class="file-link">PageObjects</a>、ElementTimeout</td>
+                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/" class="file-link">PageObjects</a>、ElementTimeout</td>
                 </tr>
                 <tr>
                     <td>日誌 Assert 失敗</td>
                     <td>the log should contain "xxx" failed</td>
                     <td>實際 log 內容 vs 預期字串</td>
-                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/WorkspacePage.cs" class="file-link">WorkspacePage.LogContains</a>、Then 步驟</td>
+                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/WorkspacePage.cs" class="file-link">WorkspacePage.LogContains</a>、Then 步驟</td>
                 </tr>
                 <tr>
                     <td>TC01 檔案對話框</td>
                     <td>選檔失敗、路徑輸入無效</td>
                     <td>IME 環境、modal 對話框</td>
-                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/FileDialogPage.cs" class="file-link">FileDialogPage</a>（1148、剪貼簿 fallback）</td>
+                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/FileDialogPage.cs" class="file-link">FileDialogPage</a>（1148、剪貼簿 fallback）</td>
                 </tr>
                 <tr>
                     <td>TC07–TC09 MessageBox</td>
                     <td>對話框未關閉或找不到</td>
                     <td>對話框標題/按鈕文字</td>
-                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/MessageBoxPage.cs" class="file-link">MessageBoxPage</a></td>
+                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/MessageBoxPage.cs" class="file-link">MessageBoxPage</a></td>
                 </tr>
                 <tr>
                     <td>TC08/TC09 主視窗</td>
                     <td>App crash 或主視窗消失</td>
                     <td>被測 App 是否異常退出</td>
-                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/MainWindowPage.cs" class="file-link">MainWindowPage.IsMainWindowVisible</a></td>
+                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/MainWindowPage.cs" class="file-link">MainWindowPage.IsMainWindowVisible</a></td>
                 </tr>
                 <tr>
                     <td>Step 綁定失敗</td>
                     <td>BindingException、找不到步驟定義</td>
                     <td>Feature 步驟 vs Steps regex</td>
-                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link">Demo2DesktopSteps.cs</a></td>
+                    <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/StepDefinitions/Inspection_AppSteps.cs" class="file-link">Inspection_AppSteps.cs</a></td>
                 </tr>
                 <tr>
                     <td>測試資料缺失</td>
                     <td>Recipe_data 找不到樣本檔</td>
                     <td><a href="../Recipe_data/" class="file-link">Recipe_data</a> 目錄內容</td>
-                    <td>TestDataHelper、<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/App.config" class="file-link">App.config</a></td>
+                    <td>TestDataHelper、<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/App.config" class="file-link">App.config</a></td>
                 </tr>
             </table>
         </section>
@@ -97,8 +97,8 @@
         <section>
             <h2>4.3 使用 FlaUI Inspector 除錯</h2>
             <ol>
-                <li>雙擊 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/開啟Inspector.bat" class="file-link"><code>Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD\開啟Inspector.bat</code></a></li>
-                <li>若 Inspector 不存在，執行 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/tools/install-flauinspect.ps1" class="file-link"><code>tools\install-flauinspect.ps1</code></a></li>
+                <li>雙擊 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/開啟Inspector.bat" class="file-link"><code>Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\開啟Inspector.bat</code></a></li>
+                <li>若 Inspector 不存在，執行 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/install-flauinspect.ps1" class="file-link"><code>tools\install-flauinspect.ps1</code></a></li>
                 <li>在 Inspector 選擇 <strong>SemiInspectionDesktop</strong> 行程</li>
                 <li>點選失敗步驟涉及的控制項，記錄：
                     <ul>
@@ -113,7 +113,7 @@
 
         <section>
             <h2>4.4 詳細 log 重跑</h2>
-            <div class="code-block">cd Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD
+            <div class="code-block">cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
 dotnet test -c Release --filter "Name~TC01" --logger "console;verbosity=detailed"</div>
             <p>詳細 log 會顯示每個步驟的執行順序與 Assert 失敗的完整 stack trace。</p>
         </section>
@@ -124,7 +124,7 @@ dotnet test -c Release --filter "Name~TC01" --logger "console;verbosity=detailed
             <p>若 Inspector 顯示 Import 按鈕的 AutomationId 從 <code>btnImportRecipe</code> 改為 <code>btnImport</code>：</p>
             <div class="code-block">// MainWindowPage.cs — ToolbarMap
 ["Import Recipe"] = ("btnImport", VirtualKeyShort.KEY_I),</div>
-            <p>修改檔案：<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/MainWindowPage.cs" class="file-link"><code>MainWindowPage.cs</code></a></p>
+            <p>修改檔案：<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/MainWindowPage.cs" class="file-link"><code>MainWindowPage.cs</code></a></p>
 
             <h3>延長逾時</h3>
             <div class="code-block">&lt;!-- App.config --&gt;
@@ -141,7 +141,7 @@ dotnet test -c Release --filter "Name~TC01" --logger "console;verbosity=detailed
         <section>
             <h2>4.6 已知限制與注意事項</h2>
             <ul>
-                <li><strong>FileDialog + IME</strong>：繁體中文輸入法環境下，<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/FileDialogPage.cs" class="file-link">FileDialogPage</a> 使用剪貼簿 + 鍵盤 fallback</li>
+                <li><strong>FileDialog + IME</strong>：繁體中文輸入法環境下，<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/FileDialogPage.cs" class="file-link">FileDialogPage</a> 使用剪貼簿 + 鍵盤 fallback</li>
                 <li><strong>每 Scenario 獨立程序</strong>：TC 之間會 Kill/Launch App，確保狀態乾淨</li>
                 <li><strong>執行前關閉其他 modal</strong>：避免檔案對話框被其他視窗遮擋</li>
                 <li><strong>Release 組態</strong>：正式執行使用 <code>-c Release</code>，報告產生在 Release 輸出目錄</li>

@@ -22,7 +22,7 @@ SQA_Inspetion_App/
     │   ├── TEST_PLAN.md
     │   └── SemiInspection_10_TestCases.md
     └── Project_FlaUIBDD/
-        ├── Testcase_demo2_desktop_FlaUI_BDD/   # SpecFlow + FlaUI
+        ├── Testcase_Inspection_App_FlaUI_BDD/   # SpecFlow + FlaUI
         └── web_dashboard/                      # 網頁控制台
 ```
 
@@ -75,7 +75,7 @@ run_tests.bat
 ### 單一 TC
 
 ```bat
-cd Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD
+cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
 dotnet test -c Release --filter "Name~TC01"
 ```
 
@@ -83,7 +83,7 @@ dotnet test -c Release --filter "Name~TC01"
 
 | 類型 | 路徑 |
 |------|------|
-| HTML | `Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/SemiInspectionTestReport.html` |
+| HTML | `Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/SemiInspectionTestReport.html` |
 | JUnit | `.../reports/junit-results.xml` |
 | 失敗截圖 | `bin/Release/net8.0-windows/Screenshots/` |
 

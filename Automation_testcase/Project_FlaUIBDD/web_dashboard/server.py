@@ -26,13 +26,13 @@ PORT = int(os.environ.get("FLAUIBDD_DASHBOARD_PORT", "6690"))
 WEB_ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = WEB_ROOT.parent
 APP_ROOT = PROJECT_ROOT.parent.parent
-TEST_PROJECT = PROJECT_ROOT / "Testcase_demo2_desktop_FlaUI_BDD"
+TEST_PROJECT = PROJECT_ROOT / "Testcase_Inspection_App_FlaUI_BDD"
 FEATURES_DIR = TEST_PROJECT / "Features"
 REPORTS_DIR = TEST_PROJECT / "reports"
 DEFAULT_CONFIGURATION = "Release"
 # 舊版 / 文件中的報告檔名 → 實際檔案
 REPORT_ALIASES: dict[str, str] = {
-    "Demo2TestReport.html": "SemiInspectionTestReport.html",
+    "Inspection_AppTestReport.html": "SemiInspectionTestReport.html",
 }
 TEST_CASES_DIR = APP_ROOT / "Automation_testcase" / "Test_cases"
 TPS_FILE = TEST_CASES_DIR / "TPS.md"
@@ -233,7 +233,7 @@ def sync_html_reports(configuration: str = DEFAULT_CONFIGURATION) -> None:
 
     extent = REPORTS_DIR / "SemiInspectionTestReport.html"
     if extent.is_file():
-        shutil.copy2(extent, REPORTS_DIR / "Demo2TestReport.html")
+        shutil.copy2(extent, REPORTS_DIR / "Inspection_AppTestReport.html")
 
     media_src = src / "media"
     if media_src.is_dir():
@@ -317,9 +317,9 @@ def parse_junit_results(configuration: str = DEFAULT_CONFIGURATION) -> dict | No
     extent_link = report_link("SemiInspectionTestReport.html")
     if extent_link:
         reports["html"] = extent_link
-    demo2_link = report_link("Demo2TestReport.html")
-    if demo2_link:
-        reports["demo2"] = demo2_link
+    inspection_app_link = report_link("Inspection_AppTestReport.html")
+    if inspection_app_link:
+        reports["inspection_app"] = inspection_app_link
 
     return {
         "generatedAt": datetime.fromtimestamp(junit_path.stat().st_mtime, timezone.utc).isoformat(),

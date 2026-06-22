@@ -29,7 +29,7 @@
             <h2>1.1 什麼是 TPS？</h2>
             <p><strong>TPS（Test Procedure Specification）</strong> 在本專案中以 Gherkin 格式撰寫，存放於：</p>
             <p><a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a></p>
-            <p>每個 TC 以 <code>Scenario: TCxx - short description</code> 定義 Given / When / Then 步驟，使用<strong>英文</strong>（與 <code>Demo2Desktop.feature</code>、<code>Demo2DesktopSteps.cs</code> 一致）。</p>
+            <p>每個 TC 以 <code>Scenario: TCxx - short description</code> 定義 Given / When / Then 步驟，使用<strong>英文</strong>（與 <code>Inspection_App.feature</code>、<code>Inspection_AppSteps.cs</code> 一致）。</p>
         </section>
 
         <section>
@@ -41,7 +41,7 @@
                 <tr><td>2</td><td><a href="../Automation_testcase/Test_cases/SemiInspection_10_TestCases.md" class="file-link"><code>Automation_testcase/Test_cases/SemiInspection_10_TestCases.md</code></a></td><td>案例總表 + UI AutomationId 對照</td></tr>
                 <tr><td>3</td><td><a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a></td><td>Gherkin 程序規格（Given/When/Then）</td></tr>
                 <tr><td>—</td><td><a href="../Automation_testcase/TPS_BDD_skill.md" class="file-link"><code>Automation_testcase/TPS_BDD_skill.md</code></a></td><td>Agent 轉換／維護 BDD 的 skill 指引</td></tr>
-                <tr><td>4</td><td>Feature + Steps + PageObjects</td><td>可執行的 BDD 自動化程式碼（見 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link">Demo2Desktop.feature</a>）</td></tr>
+                <tr><td>4</td><td>Feature + Steps + PageObjects</td><td>可執行的 BDD 自動化程式碼（見 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature" class="file-link">Inspection_App.feature</a>）</td></tr>
             </table>
             <div class="card warn">
                 <strong>規則：</strong>一個 Scenario = 一個 TC；標題格式 <code>TCxx - short description</code>（英文）；Gherkin 步驟使用英文；標籤使用 <code>@Functional</code> / <code>@Negative</code> + 領域標籤（如 <code>@Import</code>、<code>@RawData</code>）。
@@ -68,7 +68,7 @@ Scenario: TC01 - Import Recipe to Recipe_data
   And the log should contain "Import Recipe"</div>
 
             <h3>對應 Feature 檔</h3>
-            <p><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></a></p>
+            <p><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature</code></a></p>
             <p>TPS 中的每個 Scenario 直接複製到 Feature 檔，步驟文字必須與 StepDefinitions 的 regex 綁定完全一致。</p>
         </section>
 
@@ -76,10 +76,10 @@ Scenario: TC01 - Import Recipe to Recipe_data
             <h2>1.4 StepDefinitions 與 PageObject 分工</h2>
             <table>
                 <tr><th>層級</th><th>檔案</th><th>職責</th></tr>
-                <tr><td>StepDefinitions</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>Demo2DesktopSteps.cs</code></a></td><td><code>[Given]</code> / <code>[When]</code> / <code>[Then]</code> 綁定；呼叫 PageObject；NUnit Assert</td></tr>
-                <tr><td>PageObject</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/MainWindowPage.cs" class="file-link"><code>MainWindowPage.cs</code></a> 等</td><td>FlaUI 找控制項、點擊、輸入、讀取日誌</td></tr>
-                <tr><td>Hooks</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Hooks/TestHooks.cs" class="file-link"><code>TestHooks.cs</code></a></td><td>啟動/關閉 App、報告初始化、截圖</td></tr>
-                <tr><td>Helpers</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Helpers/ConfigHelper.cs" class="file-link"><code>ConfigHelper.cs</code></a> 等</td><td>路徑解析、截圖、報告產生</td></tr>
+                <tr><td>StepDefinitions</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/StepDefinitions/Inspection_AppSteps.cs" class="file-link"><code>Inspection_AppSteps.cs</code></a></td><td><code>[Given]</code> / <code>[When]</code> / <code>[Then]</code> 綁定；呼叫 PageObject；NUnit Assert</td></tr>
+                <tr><td>PageObject</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/MainWindowPage.cs" class="file-link"><code>MainWindowPage.cs</code></a> 等</td><td>FlaUI 找控制項、點擊、輸入、讀取日誌</td></tr>
+                <tr><td>Hooks</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Hooks/TestHooks.cs" class="file-link"><code>TestHooks.cs</code></a></td><td>啟動/關閉 App、報告初始化、截圖</td></tr>
+                <tr><td>Helpers</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Helpers/ConfigHelper.cs" class="file-link"><code>ConfigHelper.cs</code></a> 等</td><td>路徑解析、截圖、報告產生</td></tr>
             </table>
             <h3>Step 綁定範例</h3>
             <div class="code-block">[When(@"I click toolbar ""(.*)""")]
@@ -110,7 +110,7 @@ public void ThenTheLogShouldContain(string keyword)
                 <tr><td>TC09</td><td>Open non-existent Recipe</td><td>@Negative @RawData</td><td>Negative</td><td>2009</td></tr>
                 <tr><td>TC10</td><td>Run Inspection simulation</td><td>@Functional @Inspection</td><td>Functional</td><td>2010</td></tr>
             </table>
-            <p>完整 Gherkin 定義見 <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link">TPS.md</a> 與 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link">Demo2Desktop.feature</a>。</p>
+            <p>完整 Gherkin 定義見 <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link">TPS.md</a> 與 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature" class="file-link">Inspection_App.feature</a>。</p>
         </section>
 
         <section>
@@ -135,11 +135,11 @@ public void ThenTheLogShouldContain(string keyword)
             <h2>1.7 完成檢查清單</h2>
             <ul>
                 <li><a href="../Automation_testcase/Test_cases/TPS.md" class="file-link">TPS.md</a>、Feature、Steps 步驟文字一致</li>
-                <li>新步驟已在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link">Demo2DesktopSteps.cs</a> 綁定</li>
+                <li>新步驟已在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/StepDefinitions/Inspection_AppSteps.cs" class="file-link">Inspection_AppSteps.cs</a> 綁定</li>
                 <li>UI 操作在 PageObject 而非 Steps</li>
-                <li><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/App.config" class="file-link">App.config</a> 路徑正確（相對 APP_ROOT）</li>
+                <li><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/App.config" class="file-link">App.config</a> 路徑正確（相對 APP_ROOT）</li>
                 <li><code>dotnet test -c Release --filter "Name~TCxx"</code> 通過</li>
-                <li><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a> 含步驟截圖</li>
+                <li><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a> 含步驟截圖</li>
             </ul>
         </section>
     </div>

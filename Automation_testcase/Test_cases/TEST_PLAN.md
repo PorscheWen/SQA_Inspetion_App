@@ -1,4 +1,4 @@
-﻿﻿# Semi Inspection Desktop — Test Plan (10 Test Cases)
+﻿# Semi Inspection Desktop — Test Plan (10 Test Cases)
 
 | Category | Count |
 |----------|-------|
@@ -96,4 +96,4 @@ Output: `SemiInspection_10_TestCases.xlsx`
 
 ## Automation mapping
 
-FlaUI BDD: `Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature`
+FlaUI BDD: `Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature`

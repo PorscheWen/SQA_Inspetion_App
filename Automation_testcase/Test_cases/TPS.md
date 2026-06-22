@@ -1,4 +1,4 @@
-﻿﻿# TPS — Test Procedure Specification (Gherkin)
+﻿# TPS — Test Procedure Specification (Gherkin)
 
 **Test Procedure Specification**  
 Describes 10 test procedures for Semi Inspection Desktop in Gherkin syntax.
@@ -9,7 +9,7 @@ Describes 10 test procedures for Semi Inspection Desktop in Gherkin syntax.
 | Application under test | `SemiInspectionDesktop\bin\Debug\SemiInspectionDesktop.exe` |
 | Test data directory | `Recipe_data/` |
 | Standard sample | `InspectionRecipe_Sample.json` |
-| Automation Feature | `../Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature` |
+| Automation Feature | `../Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature` |
 | Language | English (step wording matches FlaUI BDD) |
 
 ## Preconditions (Background)

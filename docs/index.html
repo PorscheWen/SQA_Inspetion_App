@@ -30,9 +30,9 @@
             <p>本手冊說明 <strong>SQA_Inspetion_App</strong> 專案中，從 TPS（Gherkin 測試程序規格）到 FlaUI BDD 自動化測試的完整工作流程。TPS／Feature 的 Given / When / Then 步驟使用<strong>英文</strong>撰寫。</p>
             <div class="flow">
                 <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link">TPS.md</a> <span class="arrow">→</span>
-                <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link">Feature / Steps / PageObjects</a> <span class="arrow">→</span>
+                <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature" class="file-link">Feature / Steps / PageObjects</a> <span class="arrow">→</span>
                 <span>dotnet test</span> <span class="arrow">→</span>
-                <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/TestResultReport.html" class="file-link">HTML 報告</a>
+                <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html" class="file-link">HTML 報告</a>
             </div>
             <div class="card ok">
                 <strong>快速入口：</strong>雙擊 <span class="launch-bat" data-launch-bat="開啟操作手冊.bat"><code>開啟操作手冊.bat</code></span> 啟動本機伺服器並開啟此頁（<code>http://localhost:6688/docs/index.html</code>）。
@@ -81,12 +81,12 @@
             <p>以下為<strong>整個 BDD 自動化執行流程（7 步驟）</strong>：從讀取 TPS 規格、對照與實作程式碼，到建置、執行測試與確認報告。</p>
             <ol>
                 <li><strong>讀取 TPS</strong> — 在 <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a> 找到對應 TC 的 Given / When / Then。詳見 <a href="01-TPS轉BDD.html">第 1 章</a></li>
-                <li><strong>對照 Feature</strong> — 確認 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>.../Features/Demo2Desktop.feature</code></a> 中 Scenario 標題、標籤、步驟語意一致。</li>
-                <li><strong>實作 StepDefinitions</strong> — 在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>.../StepDefinitions/Demo2DesktopSteps.cs</code></a> 新增或修改步驟綁定（只做編排與 Assert）。</li>
-                <li><strong>實作 PageObjects</strong> — FlaUI 操作放在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/" class="file-link">Page Object</a>，<strong>不要</strong>寫在 Steps 內。詳見 <a href="02-修改BDD.html">第 2 章</a></li>
-                <li><strong>設定路徑</strong> — 更新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/App.config" class="file-link"><code>App.config</code></a> 相對路徑，或由 <a href="../setup_env.bat" class="file-link"><code>setup_env.bat</code></a> 環境變數覆寫。</li>
+                <li><strong>對照 Feature</strong> — 確認 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature" class="file-link"><code>.../Features/Inspection_App.feature</code></a> 中 Scenario 標題、標籤、步驟語意一致。</li>
+                <li><strong>實作 StepDefinitions</strong> — 在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/StepDefinitions/Inspection_AppSteps.cs" class="file-link"><code>.../StepDefinitions/Inspection_AppSteps.cs</code></a> 新增或修改步驟綁定（只做編排與 Assert）。</li>
+                <li><strong>實作 PageObjects</strong> — FlaUI 操作放在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/" class="file-link">Page Object</a>，<strong>不要</strong>寫在 Steps 內。詳見 <a href="02-修改BDD.html">第 2 章</a></li>
+                <li><strong>設定路徑</strong> — 更新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/App.config" class="file-link"><code>App.config</code></a> 相對路徑，或由 <a href="../setup_env.bat" class="file-link"><code>setup_env.bat</code></a> 環境變數覆寫。</li>
                 <li><strong>驗證</strong> — 執行 <span class="launch-bat file-link" data-launch-bat="build_semi.bat"><code>build_semi.bat</code></span> → <code>dotnet build -c Release</code> → 單一 TC 測試（<span class="launch-bat file-link" data-launch-bat="執行單一測試.bat"><code>執行單一測試.bat</code></span>）。詳見 <a href="03-執行測試.html">第 3 章</a></li>
-                <li><strong>確認報告</strong> — 檢查 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html" class="file-link"><code>.../reports/TestResultReport.html</code></a> 已產生。詳見 <a href="05-讀取報告.html">第 5 章</a>；失敗時見 <a href="04-修復測試.html">第 4 章</a></li>
+                <li><strong>確認報告</strong> — 檢查 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html" class="file-link"><code>.../reports/TestResultReport.html</code></a> 已產生。詳見 <a href="05-讀取報告.html">第 5 章</a>；失敗時見 <a href="04-修復測試.html">第 4 章</a></li>
             </ol>
 
             <h3>章節詳細說明</h3>
@@ -178,7 +178,7 @@
                 <tr>
                     <td>報告</td>
                     <td class="bat-name"><span class="launch-bat file-link" data-launch-bat="開啟測試報告.bat"><code>開啟測試報告.bat</code></span></td>
-                    <td class="bat-desc">開啟最新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a></td>
+                    <td class="bat-desc">開啟最新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a></td>
                 </tr>
                 <tr>
                     <td>Web</td>
@@ -202,10 +202,10 @@
                 <tr><td>被測 App（Inspection）</td><td><span class="launch-bat file-link" data-launch-exe="SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe"><code>SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe</code></span> · 啟動：<span class="launch-bat file-link" data-launch-bat="啟動InspectionApp.bat"><code>啟動InspectionApp.bat</code></span></td></tr>
                 <tr><td>Gherkin TPS</td><td><a href="../Automation_testcase/Test_cases/TPS.md" class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a></td></tr>
                 <tr><td>BDD 撰寫 skill</td><td><a href="../Automation_testcase/TPS_BDD_skill.md" class="file-link"><code>Automation_testcase/TPS_BDD_skill.md</code></a></td></tr>
-                <tr><td>Feature 檔</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature</code></a></td></tr>
-                <tr><td>Step Definitions</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/StepDefinitions/Demo2DesktopSteps.cs</code></a></td></tr>
-                <tr><td>Page Objects</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/PageObjects/</code></a></td></tr>
-                <tr><td>HTML 報告（測試後產生）</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html</code></a></td></tr>
+                <tr><td>Feature 檔</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature</code></a></td></tr>
+                <tr><td>Step Definitions</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/StepDefinitions/Inspection_AppSteps.cs" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/StepDefinitions/Inspection_AppSteps.cs</code></a></td></tr>
+                <tr><td>Page Objects</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/</code></a></td></tr>
+                <tr><td>HTML 報告（測試後產生）</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html</code></a></td></tr>
                 <tr><td>Web 控制台</td><td><a href="../Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py</code></a></td></tr>
                 <tr><td>設定摘要</td><td><a href="../config.json" class="file-link"><code>config.json</code></a></td></tr>
             </table>

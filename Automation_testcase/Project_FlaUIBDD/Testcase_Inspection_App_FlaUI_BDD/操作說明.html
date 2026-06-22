@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspection App FlaUI BDD 操作說明</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft JhengHei', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.8;
+            color: #d0d0d0;
+            background: #000;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(255, 140, 0, 0.25);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #90ee90 0%, #98fb98 100%);
+            color: #1a1a1a;
+            padding: 36px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.2em; margin-bottom: 8px; }
+        nav {
+            background: #2a2a2a;
+            padding: 16px;
+            border-bottom: 3px solid #ff8c00;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #ff8c00;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #1a1a1a;
+            font-weight: 600;
+        }
+        nav a:hover { background: #ff8c00; color: #fff; }
+        .content { padding: 32px; }
+        section { margin-bottom: 40px; scroll-margin-top: 70px; }
+        h2 {
+            color: #ff8c00;
+            font-size: 1.75em;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #ff8c00;
+        }
+        h3 { color: #87ceeb; font-size: 1.3em; margin: 20px 0 12px; }
+        h4 { color: #b0b0b0; margin: 14px 0 8px; }
+        p, li { margin-bottom: 10px; }
+        ul { padding-left: 24px; }
+        code {
+            background: #2d2d2d;
+            color: #7ec8e3;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
+        .code-block {
+            background: #0d1117;
+            border: 1px solid #ff8c00;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            font-size: 0.92em;
+            line-height: 1.5;
+            color: #c9d1d9;
+        }
+        .card {
+            border-left: 4px solid #ff8c00;
+            background: #252525;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .card.warn { border-color: #ffd700; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th { background: #2a2a2a; color: #ff8c00; }
+        tr:nth-child(even) { background: #222; }
+        a { color: #ff8c00; }
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #888;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Inspection App FlaUI BDD</h1>
+        <p>操作說明 v1.0 — SpecFlow + NUnit + FlaUI</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">概述</a></li>
+            <li><a href="#prereq">前置</a></li>
+            <li><a href="#quick">快速開始</a></li>
+            <li><a href="#batch">批次檔</a></li>
+            <li><a href="#tests">測試案例</a></li>
+            <li><a href="#inspector">Inspector</a></li>
+            <li><a href="#config">設定</a></li>
+            <li><a href="#trouble">疑難排解</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <section id="overview">
+            <h2>概述</h2>
+            <p>本專案為 <strong>Semi Inspection Desktop</strong> 的自動化測試，以 Gherkin（<code>Features/Inspection_App.feature</code>）描述 TC01～TC10，並以 FlaUI 操作 WinForms UI。</p>
+            <div class="card ok">
+                完整五章節操作手冊請見專案根目錄 <code>docs/index.html</code>，雙擊 <code>開啟操作手冊.bat</code> 開啟。
+            </div>
+            <div class="code-block">Testcase_Inspection_App_FlaUI_BDD/
+├── Features/           Inspection_App.feature（Gherkin）
+├── StepDefinitions/    Inspection_AppSteps.cs
+├── PageObjects/        MainWindowPage, WorkspacePage, FileDialogPage…
+├── Helpers/            Config, Dialog, Screenshot, HtmlReport…
+├── Hooks/              TestHooks.cs
+├── tools/FlaUIInspector/   FlaUI Inspector（UI 偵錯）
+├── reports/            junit-results.xml、HTML 報告
+├── 開啟Inspector.bat
+├── 開啟操作說明.bat    ← 本說明
+└── App.config          被測程式與 Recipe_data 路徑</div>
+            <p>上層還有 <code>Project_FlaUIBDD/web_dashboard/</code> Web 控制台（port <strong>6690</strong>）。</p>
+        </section>
+
+        <section id="prereq">
+            <h2>前置需求</h2>
+            <ul>
+                <li><strong>.NET 8 SDK</strong>（專案目標 <code>net8.0-windows</code>）</li>
+                <li><strong>Python 3</strong>（僅 Web 控制台需要）</li>
+                <li>已建置被測程式：專案根目錄 <code>build_semi.bat</code></li>
+                <li>測試資料目錄：<code>Recipe_data\</code>（含 <code>InspectionRecipe_Sample.json</code>）</li>
+            </ul>
+            <div class="card warn">
+                <strong>App.config</strong> 使用相對路徑（以 <code>SQA_Inspetion_App</code> 根目錄解析），或由 <code>setup_env.bat</code> 環境變數覆寫。
+            </div>
+        </section>
+
+        <section id="quick">
+            <h2>快速開始</h2>
+            <h3>1. 建置 Semi Inspection 桌面程式</h3>
+            <div class="code-block">cd SQA_Inspetion_App
+build_semi.bat</div>
+            <p>產出：<code>SemiInspectionDesktop\bin\Debug\SemiInspectionDesktop.exe</code></p>
+
+            <h3>2. 建置並執行測試（命令列）</h3>
+            <div class="code-block">cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
+dotnet build -c Release
+dotnet test -c Release --no-build</div>
+            <p>單一案例範例：</p>
+            <div class="code-block">dotnet test -c Release --filter "Name~TC01"</div>
+
+            <h3>3. Web 控制台（建議）</h3>
+            <p>雙擊 <code>..\web_dashboard\開啟控制台.bat</code>，瀏覽器開啟 <a href="http://localhost:6690/">http://localhost:6690/</a>，可勾選 Feature、啟動 exe、執行 <code>dotnet test</code> 並看結果。</p>
+
+            <h3>4. 查看 HTML 報告</h3>
+            <p>測試完成後開啟：</p>
+            <div class="code-block">bin\Release\net8.0-windows\reports\TestResultReport.html
+bin\Release\net8.0-windows\reports\SemiInspectionTestReport.html</div>
+        </section>
+
+        <section id="batch">
+            <h2>批次檔一覽</h2>
+            <table>
+                <tr><th>檔案</th><th>用途</th></tr>
+                <tr><td><code>開啟操作說明.bat</code></td><td>以系統預設瀏覽器開啟本說明（<code>操作說明.html</code>）</td></tr>
+                <tr><td><code>開啟Inspector.bat</code></td><td>啟動 Inspection App（若未執行）+ FlaUI Inspector，檢視控制項 AutomationId</td></tr>
+                <tr><td><code>..\web_dashboard\開啟控制台.bat</code></td><td>啟動 Web 測試控制台（port 6690）</td></tr>
+                <tr><td><code>tools\install-flauinspect.ps1</code></td><td>下載並安裝 FlaUInspect 至 <code>tools\FlaUIInspector\</code></td></tr>
+            </table>
+        </section>
+
+        <section id="tests">
+            <h2>測試案例（TC01～TC10）</h2>
+            <p>規格對照：<code>Automation_testcase\Test_cases\SemiInspection_10_TestCases.md</code></p>
+            <table>
+                <tr><th>編號</th><th>摘要</th></tr>
+                <tr><td>TC01</td><td>Import Recipe → Recipe_data（Ctrl+I）</td></tr>
+                <tr><td>TC02</td><td>File Tree 顯示 Recipe_data</td></tr>
+                <tr><td>TC03</td><td>RawData 參數表</td></tr>
+                <tr><td>TC04</td><td>Defect Chart 曲線圖</td></tr>
+                <tr><td>TC05</td><td>檔案樹雙擊開啟 Recipe JSON</td></tr>
+                <tr><td>TC06</td><td>About 對話框</td></tr>
+                <tr><td>TC07～TC10</td><td>其餘功能（見 feature 檔）</td></tr>
+            </table>
+            <h3>重要控制項名稱（Inspector / FlaUI）</h3>
+            <ul>
+                <li><code>treeFiles</code> — 檔案樹</li>
+                <li><code>dataGridParameters</code> — RawData 參數表</li>
+                <li><code>txtToolLog</code> — 日誌區</li>
+                <li>工具列：<code>btnImportRecipe</code>、<code>btnParameters</code>、<code>btnDefectChart</code> 等</li>
+            </ul>
+        </section>
+
+        <section id="inspector">
+            <h2>FlaUI Inspector</h2>
+            <ol>
+                <li>確認 <code>tools\FlaUIInspector\FlaUIInspector.exe</code> 存在；若無，執行 <code>tools\install-flauinspect.ps1</code>。</li>
+                <li>雙擊 <code>開啟Inspector.bat</code>。</li>
+                <li>在 Inspector 選擇行程 <strong>SemiInspectionDesktop</strong>，檢查上述控制項的 Name / AutomationId。</li>
+            </ol>
+            <p>官方下載：<a href="https://github.com/FlaUI/FlaUInspect/releases" target="_blank">FlaUI/FlaUInspect</a>（v3 主程式為 <code>FlaUInspect.exe</code>，本專案已提供 <code>FlaUIInspector.exe</code> 別名）。</p>
+        </section>
+
+        <section id="config">
+            <h2>App.config 主要鍵值</h2>
+            <table>
+                <tr><th>鍵</th><th>說明</th></tr>
+                <tr><td>ApplicationPath</td><td>SemiInspectionDesktop.exe 完整路徑</td></tr>
+                <tr><td>TestDataDirectory</td><td>Recipe_data 資料夾</td></tr>
+                <tr><td>SampleXlsx</td><td>預設樣本檔（X.xlsx）</td></tr>
+                <tr><td>DefaultTimeout / ElementTimeout</td><td>等待逾時（毫秒）</td></tr>
+                <tr><td>TakeScreenshotOnFailure</td><td>失敗時截圖至 Screenshots/</td></tr>
+            </table>
+        </section>
+
+        <section id="trouble">
+            <h2>疑難排解</h2>
+            <h4>找不到 SemiInspectionDesktop.exe</h4>
+            <p>執行專案根目錄 <code>build_semi.bat</code>；路徑由 App.config 相對路徑或環境變數自動解析。</p>
+            <h4>UIA Timeout / 找不到控制項</h4>
+            <p>用 Inspector 確認控制項 <code>Name</code> 與程式一致；必要時延長 <code>ElementTimeout</code>。</p>
+            <h4>TC01 檔案對話框失敗</h4>
+            <p>測試以鍵盤輸入路徑為主；執行前關閉其他 modal 對話框。</p>
+            <h4>Web 控制台無法啟動</h4>
+            <p>確認已安裝 Python，且 6690 port 未被占用。</p>
+            <div class="card">
+                完整規格見
+                <a href="../../Test_cases/SemiInspection_10_TestCases.md">SemiInspection_10_TestCases.md</a>、
+                <a href="../../Test_cases/TEST_PLAN.md">TEST_PLAN.md</a>。
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Inspection App FlaUI BDD 操作說明 v1.0</p>
+        <p>雙擊 <strong>開啟操作說明.bat</strong> 可隨時開啟本頁</p>
+    </footer>
+</div>
+</body>
+</html>

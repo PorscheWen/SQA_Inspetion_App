@@ -1,8 +1,8 @@
-﻿﻿# Semi Inspection Desktop — 10 Test Cases
+﻿# Semi Inspection Desktop — 10 Test Cases
 
 Test plan: [TEST_PLAN.md](TEST_PLAN.md)  
 Gherkin test procedures: [TPS.md](TPS.md)  
-FlaUI BDD Feature: `../Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Features/Demo2Desktop.feature`
+FlaUI BDD Feature: `../Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature`
 
 ## Summary table
 

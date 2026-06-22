@@ -37,7 +37,7 @@ echo [SQA Inspection App] 建置被測程式...
 call "%~dp0build_semi.bat"
 if errorlevel 1 exit /b 1
 
-set "TEST_DIR=%~dp0Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD"
+set "TEST_DIR=%~dp0Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD"
 cd /d "%TEST_DIR%"
 
 echo.

@@ -19,10 +19,10 @@ description: >-
 | Gherkin TPS | `Automation_testcase/Test_cases/TPS.md` |
 | 測試計畫 | `Automation_testcase/Test_cases/TEST_PLAN.md` |
 | 案例總表 | `Automation_testcase/Test_cases/SemiInspection_10_TestCases.md` |
-| FlaUI BDD 專案 | `Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/` |
-| Feature | `.../Features/Demo2Desktop.feature` |
+| FlaUI BDD 專案 | `Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/` |
+| Feature | `.../Features/Inspection_App.feature` |
 | Web 控制台 | `Automation_testcase/Project_FlaUIBDD/web_dashboard/`（port **6690**） |
-| 操作說明 | `.../Testcase_demo2_desktop_FlaUI_BDD/操作說明.html` |
+| 操作說明 | `.../Testcase_Inspection_App_FlaUI_BDD/操作說明.html` |
 
 **應用程式常數（寫入 `App.config` 或環境變數，勿硬編在 Step 內）：**
 
@@ -45,12 +45,12 @@ description: >-
 3. **TPS.md** — Gherkin 程序規格（繁體中文）
 4. **Feature + Steps + PageObject** — 可執行 BDD
 
-**規則：** 一個 Scenario = 一個 TC；標題格式 `TCxx - 簡短描述`；標籤 `@Functional` / `@Negative` + 領域標籤（`@Import`、`@RawData`、`@Chart` 等）。
+**規則：** 一個 Scenario 或 **Scenario Outline** = 一個 TC；標題格式 `TCxx - 簡短描述`；標籤 `@Functional` / `@Negative` + 領域標籤（`@Import`、`@RawData`、`@Chart` 等）；使用 DDT 時加 `@DDT`。
 
 ## 執行流程（Agent 依序完成）
 
 1. **讀取** `TPS.md`、`SemiInspection_10_TestCases.md` 中對應 TC 的 Given / When / Then。
-2. **對照** `Features/Demo2Desktop.feature` 確認 Scenario 標題、標籤、步驟語意一致。
+2. **對照** `Features/Inspection_App.feature` 確認 Scenario 標題、標籤、步驟語意一致。
 3. **實作或更新** StepDefinitions、PageObjects；UI 操作不放 Steps 內。
 4. **設定** `App.config` 使用相對路徑；必要時更新 `setup_env.bat` 環境變數。
 5. **驗證**：`build_semi.bat` → `dotnet build -c Release` → `dotnet test -c Release --filter "Name~TCxx"`。
@@ -60,9 +60,9 @@ description: >-
 ## 現有專案結構
 
 ```
-Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/
-├── Features/Demo2Desktop.feature
-├── StepDefinitions/Demo2DesktopSteps.cs
+Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/
+├── Features/Inspection_App.feature
+├── StepDefinitions/Inspection_AppSteps.cs
 ├── PageObjects/
 │   ├── BasePage.cs
 │   ├── MainWindowPage.cs      # 工具列、快捷鍵、About
@@ -119,16 +119,94 @@ Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/
 
 ### 1. Feature File
 
-- 每個 TPS Scenario → `Demo2Desktop.feature` 中一個 `Scenario`。
+- 每個 TPS Scenario → `Inspection_App.feature` 中一個 `Scenario` 或 `Scenario Outline`。
 - 語言：繁體中文（`# language: zh-TW` 可寫在 TPS；Feature 步驟與 Steps 綁定一致）。
 - 重用既有 Given / When / Then；新步驟先在 TPS.md 定稿再實作 Step。
+- **有多組測試資料時**改用 `Scenario Outline` + `Examples`（見下方 **DDT** 章節）。
 
 ### 2. Step Definitions
 
-- `[Binding]` 類別 `Demo2DesktopSteps`。
+- `[Binding]` 類別 `Inspection_AppSteps`。
 - `ScenarioContext` 保存匯入檔路徑、選取的樹節點等。
 - Steps 只做編排與 Assert；FlaUI 操作委派 Page Object。
 - 失敗 / 點擊 / 步驟完成截圖：`ActionScreenshotHelper` → `Screenshots/`。
+- **DDT 步驟**：以 `(.*)` 或 `"(.*)"` 接收 `<placeholder>`；檔名以 `ConfigHelper.GetRecipeDataDirectory()` 組完整路徑；**勿**為 Examples 每一列寫死獨立 Step。
+
+## DDT（Data-Driven Testing / 資料驅動測試）
+
+### 概念
+
+**DDT** 指同一測試流程以**多組輸入／預期結果**重複執行。在 SpecFlow 中以 **`Scenario Outline` + `Examples` 表格** 實作；表格欄位對應步驟中的 `<placeholder>`，SpecFlow 每列產生一個獨立測試案例。
+
+### 何時使用
+
+| 情境 | 作法 | 本專案範例 |
+|------|------|------------|
+| 同一 TC 需驗證多組參數值 | `Scenario Outline` + `Examples` | **TC01** RawData 參數表（3 列） |
+| 同一 TC 需測多個檔名／路徑 | 步驟參數化 + `Examples` | 未來 Recipe_data 新增 JSON 時擴充 TC05 |
+| 僅一組固定資料 | 維持 `Scenario`，步驟仍可用參數化 regex | TC02–TC10 多數案例 |
+| 不同業務目的 | 維持獨立 Scenario（一 TC 一 Scenario/Outline） | 不將 TC03 與 TC04 合併 |
+
+### Feature 撰寫規範
+
+```gherkin
+@Functional @Import @DDT
+Scenario Outline: TC01 - Import Recipe to Recipe_data
+  Given test data is ready
+  And the application has relaunched
+  When I click toolbar "Import Recipe"
+  And I select file "<recipe_file>" in the file dialog
+  And I click toolbar "RawData"
+  Then Recipe_data should contain "<recipe_file>"
+  And the data table should be visible
+  And the RawData view should show filename <recipe_file>
+  And the RawData parameter table should contain "<expected_parameter>"
+  And the log should contain "Import Recipe"
+
+  Examples:
+    | recipe_file                   | expected_parameter    |
+    | InspectionRecipe_Sample.json  | Layer1_AOI_Recipe_v1 |
+    | InspectionRecipe_Sample.json  | W-20260605-001       |
+    | InspectionRecipe_Sample.json  | Brightfield          |
+```
+
+**規則：**
+
+- 標題仍為 `TCxx - 簡短描述`；使用 Outline 時寫 `Scenario Outline:`。
+- 加 `@DDT` 標籤，方便 `--filter "Category=DDT"` 或 Web 控制台篩選。
+- `Examples` 表頭用 **snake_case**（如 `recipe_file`、`expected_parameter`），與 `<placeholder>` 一致。
+- 檔名 placeholder 寫在引號內 `"<recipe_file>"`；不含空格的檔名展示步驟可不加引號 `<recipe_file>`。
+- 斷言字串用 `"<expected_parameter>"`；固定常數（如 log 關鍵字 `"Import Recipe"`）維持字面量。
+
+### Step Definitions 規範
+
+```csharp
+[When(@"I select file ""(.*)"" in the file dialog")]
+public void WhenISelectFileInFileDialog(string fileName)
+{
+    var path = Path.Combine(ConfigHelper.GetRecipeDataDirectory(), fileName);
+    FileDialog.OpenFile(path);
+    Workspace.WaitAfterDataTableAction();
+}
+
+[Then(@"Recipe_data should contain ""(.*)""")]
+public void ThenRecipeDataShouldContain(string fileName)
+{
+    var path = Path.Combine(ConfigHelper.GetRecipeDataDirectory(), fileName);
+    ClassicAssert.IsTrue(File.Exists(path), "Recipe_data should contain " + fileName);
+}
+```
+
+- 一組 regex 綁定所有 Examples 列；**禁止** `InspectionRecipe_Sample\.json` 寫死在 Step regex 內（改由 Examples 或 `App.config` 提供）。
+- 需要列級上下文時，可存入 `ScenarioContext`（如 `_scenarioContext["recipe_file"] = fileName`）。
+- 報告：SpecFlow 會為每列 Examples 產生獨立 Scenario 名稱（含列索引），`TestResultReport.html` 逐步驟記錄。
+
+### 本專案 DDT 對照
+
+| TC | 類型 | Examples 欄位 | 說明 |
+|----|------|---------------|------|
+| TC01 | **Scenario Outline** | `recipe_file`, `expected_parameter` | 匯入後驗證 3 組 RawData 參數 |
+| TC02–TC10 | Scenario（步驟參數化） | — | 單列資料；步驟用 `"<file>"` 形式以便日後擴充 |
 
 ### 3. Page Object Model
 
@@ -163,7 +241,7 @@ build_semi.bat                    REM 建置被測 WinForms
 run_tests.bat                     REM 全套 TC + 報告（含 setup_env.bat）
 
 REM 單一 TC
-cd Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD
+cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
 dotnet test -c Release --filter "Name~TC01"
 ```
 
@@ -182,7 +260,7 @@ cd SQA_Inspetion_App
 |------|------|------|
 | TestResult（步驟 + 截圖） | `bin/Release/net8.0-windows/reports/TestResultReport.html` | 步驟級 HTML 報告 |
 | ExtentReports | `bin/Release/net8.0-windows/reports/SemiInspectionTestReport.html` | 傳統 HTML |
-| 別名（相容舊連結） | `reports/Demo2TestReport.html` → SemiInspectionTestReport | Web 控制台別名 |
+| 別名（相容舊連結） | `reports/Inspection_AppTestReport.html` → SemiInspectionTestReport | Web 控制台別名 |
 | JUnit | `reports/junit-results.xml` | CI / 控制台解析 |
 
 測試結束後 Web 控制台會同步 `bin/.../reports/` → 專案 `reports/`。
@@ -190,7 +268,8 @@ cd SQA_Inspetion_App
 ## 完成檢查清單
 
 - [ ] TPS.md、TEST_PLAN、SemiInspection_10_TestCases 與 Feature 同步
-- [ ] 10 個 Scenario 與 TC01–TC10 對齊
+- [ ] 10 個 Scenario / Scenario Outline 與 TC01–TC10 對齊
+- [ ] TC01 使用 `Scenario Outline` + `@DDT`；其餘 TC 步驟已參數化（檔名、無效檔等）
 - [ ] 控制項 AutomationId 與 `SemiInspection_10_TestCases.md` 一致
 - [ ] `App.config` 使用相對路徑（或可覆寫的環境變數）
 - [ ] TC07–TC09 驗證 MessageBox / 主視窗仍存在

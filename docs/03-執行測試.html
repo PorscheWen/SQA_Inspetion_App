@@ -49,7 +49,7 @@
                 <tr><td><a href="../build_semi.bat" class="file-link"><code>build_semi.bat</code></a></td><td>僅建置被測 SemiInspectionDesktop.exe</td></tr>
                 <tr><td><a href="../run_semi.bat" class="file-link"><code>run_semi.bat</code></a></td><td>手動啟動被測 App（不含測試）</td></tr>
                 <tr><td><a href="../啟動測試平台.bat" class="file-link"><code>啟動測試平台.bat</code></a></td><td>開啟 Web 控制台 <a href="http://localhost:6690/" target="_blank" rel="noopener">http://localhost:6690/</a></td></tr>
-                <tr><td><a href="../開啟測試報告.bat" class="file-link"><code>開啟測試報告.bat</code></a></td><td>開啟最新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a></td></tr>
+                <tr><td><a href="../開啟測試報告.bat" class="file-link"><code>開啟測試報告.bat</code></a></td><td>開啟最新 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html" class="file-link">TestResultReport.html</a></td></tr>
             </table>
             <h3>執行全部測試</h3>
             <div class="code-block">cd SQA_Inspetion_App
@@ -67,10 +67,10 @@ run_tests.bat</div>
             <div class="code-block">cd SQA_Inspetion_App
 build_semi.bat
 
-cd Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD
+cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
 dotnet build -c Release
 dotnet test -c Release --no-build</div>
-            <p>工作目錄：<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/" class="file-link"><code>Automation_testcase\Project_FlaUIBDD\Testcase_demo2_desktop_FlaUI_BDD</code></a></p>
+            <p>工作目錄：<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/" class="file-link"><code>Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD</code></a></p>
 
             <h3>單一 TC</h3>
             <div class="code-block">dotnet test -c Release --filter "Name~TC01"</div>
@@ -82,7 +82,7 @@ dotnet test -c Release --no-build</div>
             <div class="code-block">dotnet test -c Release ^
   --logger "junit;LogFilePath=reports\junit-results.xml" ^
   --logger "console;verbosity=detailed"</div>
-            <p>JUnit 輸出：<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/junit-results.xml" class="file-link"><code>reports/junit-results.xml</code></a></p>
+            <p>JUnit 輸出：<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/junit-results.xml" class="file-link"><code>reports/junit-results.xml</code></a></p>
         </section>
 
         <section>
@@ -96,7 +96,7 @@ dotnet test -c Release --no-build</div>
                 <li>在「測試結果」點 HTML 報告連結</li>
             </ol>
             <div class="card">
-                Web 控制台後端為 <a href="../Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py</code></a>，會自動呼叫 <code>dotnet test</code> 並同步報告到 FlaUI 專案 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/reports/" class="file-link"><code>reports/</code></a> 目錄。
+                Web 控制台後端為 <a href="../Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py" class="file-link"><code>Automation_testcase/Project_FlaUIBDD/web_dashboard/server.py</code></a>，會自動呼叫 <code>dotnet test</code> 並同步報告到 FlaUI 專案 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/" class="file-link"><code>reports/</code></a> 目錄。
             </div>
         </section>
 
@@ -105,7 +105,7 @@ dotnet test -c Release --no-build</div>
             <p><a href="../run_tests.bat" class="file-link"><code>run_tests.bat</code></a> 與 <a href="../啟動測試平台.bat" class="file-link"><code>啟動測試平台.bat</code></a> 會自動載入 <a href="../setup_env.bat" class="file-link"><code>setup_env.bat</code></a>：</p>
             <table>
                 <tr><th>變數</th><th>預設值</th><th>說明</th></tr>
-                <tr><td>APP_ROOT</td><td>專案根目錄</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Helpers/ConfigHelper.cs" class="file-link">ConfigHelper</a> 向上尋找含 <a href="../config.json" class="file-link">config.json</a> 的目錄</td></tr>
+                <tr><td>APP_ROOT</td><td>專案根目錄</td><td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Helpers/ConfigHelper.cs" class="file-link">ConfigHelper</a> 向上尋找含 <a href="../config.json" class="file-link">config.json</a> 的目錄</td></tr>
                 <tr><td>ApplicationPath</td><td>{APP_ROOT}\SemiInspectionDesktop\bin\Debug\SemiInspectionDesktop.exe</td><td>被測 EXE</td></tr>
                 <tr><td>RecipeDataDirectory</td><td>{APP_ROOT}\Recipe_data</td><td>測試資料目錄</td></tr>
                 <tr><td>ProcessName</td><td>SemiInspectionDesktop</td><td>程序名稱</td></tr>
@@ -115,10 +115,10 @@ dotnet test -c Release --no-build</div>
 
         <section>
             <h2>3.6 測試執行生命週期</h2>
-            <p>生命週期定義於 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Hooks/TestHooks.cs" class="file-link"><code>Hooks/TestHooks.cs</code></a>：</p>
+            <p>生命週期定義於 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Hooks/TestHooks.cs" class="file-link"><code>Hooks/TestHooks.cs</code></a>：</p>
             <table>
                 <tr><th>Hook</th><th>時機</th><th>行為</th></tr>
-                <tr><td>BeforeTestRun</td><td>全部測試開始前</td><td>初始化 ExtentReports、<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_demo2_desktop_FlaUI_BDD/Helpers/TestResultReportBuilder.cs" class="file-link">TestResultReportBuilder</a></td></tr>
+                <tr><td>BeforeTestRun</td><td>全部測試開始前</td><td>初始化 ExtentReports、<a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Helpers/TestResultReportBuilder.cs" class="file-link">TestResultReportBuilder</a></td></tr>
                 <tr><td>BeforeScenario</td><td>每個 TC 開始</td><td>Launch/Attach App、建立 Page Objects</td></tr>
                 <tr><td>BeforeStep / AfterStep</td><td>每個 Gherkin 步驟</td><td>記錄步驟、截圖、Pass/Fail</td></tr>
                 <tr><td>AfterScenario</td><td>每個 TC 結束</td><td>Scenario 完成截圖、關閉 App</td></tr>
