@@ -224,6 +224,8 @@ public static class TestResultReportBuilder
         sb.AppendLine($"    <div class=\"summary-card time\"><span class=\"num\">{(finishedAt - _runStartedAt).TotalSeconds:F0}s</span><span class=\"label\">Duration</span></div>");
         sb.AppendLine("  </section>");
 
+        AppendGuideSection(sb);
+
         sb.AppendLine("  <main class=\"test-list\">");
         for (var i = 0; i < Scenarios.Count; i++)
         {
@@ -245,6 +247,55 @@ public static class TestResultReportBuilder
 
         sb.AppendLine("</body></html>");
         return sb.ToString();
+    }
+
+    private static void AppendGuideSection(StringBuilder sb)
+    {
+        sb.AppendLine("  <section class=\"report-guide\">");
+        sb.AppendLine("    <h2 class=\"guide-heading\">測試說明</h2>");
+        sb.AppendLine("    <div class=\"guide-grid\">");
+
+        sb.AppendLine("      <article class=\"guide-card\">");
+        sb.AppendLine("        <h3>測試注意事項</h3>");
+        sb.AppendLine("        <ul>");
+        sb.AppendLine("          <li>執行前請先跑 <code>build_semi.bat</code> 建置被測 WinForms，並確認 <code>Recipe_data</code> 含樣本 JSON 與 TC07 無效檔。</li>");
+        sb.AppendLine("          <li>路徑由 <code>App.config</code> 或 <code>setup_env.bat</code> 注入；勿在 Step 內硬編 EXE / 資料夾路徑。</li>");
+        sb.AppendLine("          <li>每個 Scenario 會啟動（或重啟）獨立 <code>SemiInspectionDesktop</code> 程序；測試進行中請勿以滑鼠/鍵盤操作被測視窗。</li>");
+        sb.AppendLine("          <li>TC01 使用 <code>@DDT</code>，Examples 共 3 列，每列會完整重跑匯入流程；篩選：<code>--filter \"Category=DDT\"</code>。</li>");
+        sb.AppendLine("          <li>失敗時優先查看本報告步驟截圖，或 <code>Screenshots/</code> 目錄中同時間戳 PNG。</li>");
+        sb.AppendLine("        </ul>");
+        sb.AppendLine("      </article>");
+
+        sb.AppendLine("      <article class=\"guide-card\">");
+        sb.AppendLine("        <h3>已知瓶頸</h3>");
+        sb.AppendLine("        <ul>");
+        sb.AppendLine("          <li><strong>FileDialog（#32770）</strong>：IME 中文環境下檔名欄位 UIA 可能不穩，已實作剪貼簿 + Alt+N fallback；仍偶發找不到對話框（TC01）。</li>");
+        sb.AppendLine("          <li><strong>RawData 表格</strong>：<code>dataGridParameters</code> UIA 列舉較慢，切換 RawData 後需等待載入。</li>");
+        sb.AppendLine("          <li><strong>檔案樹</strong>：<code>treeFiles</code> / SysTreeView32 在不同 Windows 版本 UIA 深度不一，雙擊前需確認節點可見。</li>");
+        sb.AppendLine("          <li><strong>Defect Chart</strong>：繪圖後需約 1～2 秒穩定時間；無 Recipe 時僅驗證主視窗未當掉（TC08）。</li>");
+        sb.AppendLine("          <li><strong>執行時間</strong>：10 TC 含 DDT 展開約 2～3 分鐘；不建議平行執行（程序啟動/關閉競爭）。</li>");
+        sb.AppendLine("        </ul>");
+        sb.AppendLine("      </article>");
+
+        sb.AppendLine("      <article class=\"guide-card\">");
+        sb.AppendLine("        <h3>BDD 與 DDT 解說</h3>");
+        sb.AppendLine("        <p><strong>BDD（Behavior-Driven Development）</strong>：以 Gherkin 描述行為（Given / When / Then），<code>Inspection_App.feature</code> 對應 TC01～TC10；StepDefinitions 只做編排與 Assert，FlaUI 操作在 Page Object。</p>");
+        sb.AppendLine("        <p><strong>DDT（Data-Driven Testing）</strong>：同一流程以多組資料重複驗證。SpecFlow 使用 <code>Scenario Outline</code> + <code>Examples</code>；步驟中的 <code>&lt;placeholder&gt;</code> 對應表格欄位。</p>");
+        sb.AppendLine("        <pre class=\"guide-code\">@Functional @Import @DDT");
+        sb.AppendLine("Scenario Outline: TC01 - Import Recipe to Recipe_data");
+        sb.AppendLine("  ...");
+        sb.AppendLine("  And the RawData parameter table should contain \"&lt;expected_parameter&gt;\"");
+        sb.AppendLine("");
+        sb.AppendLine("  Examples:");
+        sb.AppendLine("    | recipe_file                  | expected_parameter   |");
+        sb.AppendLine("    | InspectionRecipe_Sample.json | Layer1_AOI_Recipe_v1 |");
+        sb.AppendLine("    | InspectionRecipe_Sample.json | W-20260605-001     |");
+        sb.AppendLine("    | InspectionRecipe_Sample.json | Brightfield        |</pre>");
+        sb.AppendLine("        <p class=\"guide-note\">規則：一 TC 一 Scenario 或 Outline；DDT 加 <code>@DDT</code> 標籤。詳見 <code>Automation_testcase/TPS_BDD_skill.md</code>。</p>");
+        sb.AppendLine("      </article>");
+
+        sb.AppendLine("    </div>");
+        sb.AppendLine("  </section>");
     }
 
     private static void AppendScenario(StringBuilder sb, ScenarioRecord scenario, int caseIndex)
@@ -356,6 +407,19 @@ public static class TestResultReportBuilder
         .summary-card.fail .num { color: #dc2626; }
         .summary-card.time .num { color: #2563eb; font-size: 1.4rem; }
         .summary-card .label { font-size: .85rem; color: #64748b; }
+        .report-guide { padding: 0 32px 24px; }
+        .guide-heading { margin: 0 0 16px; font-size: 1.15rem; color: #1e3a5f; }
+        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .guide-card { background: #fff; border-radius: 10px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.06); border-top: 4px solid #2563eb; }
+        .guide-card h3 { margin: 0 0 12px; font-size: 1rem; color: #1e40af; }
+        .guide-card ul { margin: 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.55; color: #334155; }
+        .guide-card li { margin-bottom: 8px; }
+        .guide-card li:last-child { margin-bottom: 0; }
+        .guide-card p { margin: 0 0 10px; font-size: .88rem; line-height: 1.55; color: #334155; }
+        .guide-card p:last-child { margin-bottom: 0; }
+        .guide-card code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: .82rem; }
+        .guide-code { margin: 10px 0; padding: 12px; background: #0f172a; color: #e2e8f0; border-radius: 8px; font-size: .78rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; }
+        .guide-note { font-size: .82rem !important; color: #64748b !important; }
         .test-list { padding: 0 32px 40px; }
         .testcase { background: #fff; border-radius: 10px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.06); overflow: hidden; border-left: 5px solid #94a3b8; }
         .testcase.pass { border-left-color: #16a34a; }

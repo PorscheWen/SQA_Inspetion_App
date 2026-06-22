@@ -258,7 +258,7 @@ cd SQA_Inspetion_App
 
 | 報告 | 路徑 | 說明 |
 |------|------|------|
-| TestResult（步驟 + 截圖） | `bin/Release/net8.0-windows/reports/TestResultReport.html` | 步驟級 HTML 報告 |
+| TestResult（步驟 + 截圖） | `bin/Release/net8.0-windows/reports/TestResultReport.html` | 步驟級 HTML 報告；**首頁含測試注意事項、已知瓶頸、BDD/DDT 解說** |
 | ExtentReports | `bin/Release/net8.0-windows/reports/SemiInspectionTestReport.html` | 傳統 HTML |
 | 別名（相容舊連結） | `reports/Inspection_AppTestReport.html` → SemiInspectionTestReport | Web 控制台別名 |
 | JUnit | `reports/junit-results.xml` | CI / 控制台解析 |
