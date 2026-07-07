@@ -1,0 +1,8 @@
+# 通用：交由 Git 自動處理換行（後面的專屬規則會覆寫此行）
+* text=auto
+
+# Windows 批次檔必須保留 CRLF，否則 GitHub「Download ZIP」下載後在 cmd 無法執行。
+# 用 -text（不做換行正規化）讓 CRLF 原封不動存進 repo，連 ZIP 匯出也會是 CRLF。
+*.bat -text
+*.cmd -text
+*.ps1 -text
