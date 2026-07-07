@@ -27,7 +27,19 @@ if exist "%REPORT_BIN%" (
     exit /b 1
 )
 
-start "" "%REPORT%"
+rem 用現代瀏覽器開啟；避免 .html 綁定到已停用的 IE 導致開不起來
+set "BROWSER="
+if exist "%ProgramFiles%\Microsoft\Edge\Application\msedge.exe" set "BROWSER=%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"
+if not defined BROWSER if exist "%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe" set "BROWSER=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
+if not defined BROWSER if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe" set "BROWSER=%ProgramFiles%\Google\Chrome\Application\chrome.exe"
+if not defined BROWSER if exist "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" set "BROWSER=%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"
+if not defined BROWSER if exist "%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe" set "BROWSER=%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"
+
+if defined BROWSER (
+    start "" "%BROWSER%" "%REPORT%"
+) else (
+    start "" "%REPORT%"
+)
 echo 已開啟: %REPORT%
 echo.
 echo 其他報告:
