@@ -16,7 +16,19 @@ from urllib.parse import unquote, urlparse
 
 PORT = int(os.environ.get("MANUAL_SERVER_PORT", "6688"))
 DOCS_DIR = Path(__file__).resolve().parent
-APP_ROOT = DOCS_DIR.parent
+
+
+def resolve_app_root() -> Path:
+    raw = os.environ.get("APP_ROOT", str(DOCS_DIR.parent)).strip()
+    if not raw:
+        raw = str(DOCS_DIR.parent)
+    candidate = Path(raw).expanduser()
+    if not candidate.is_absolute():
+        candidate = (Path.cwd() / candidate).resolve()
+    return candidate.resolve()
+
+
+APP_ROOT = resolve_app_root()
 
 ALLOWED_BATS: dict[str, str] = {
     "啟動InspectionApp.bat": "啟動 Inspection App",

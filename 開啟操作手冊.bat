@@ -1,7 +1,11 @@
 @echo off
 chcp 65001 >nul 2>&1
 setlocal EnableExtensions
-cd /d "%~dp0"
+set "PROJECT_ROOT=%~dp0"
+if defined APP_ROOT set "PROJECT_ROOT=%APP_ROOT%"
+if defined SQA_APP_ROOT set "PROJECT_ROOT=%SQA_APP_ROOT%"
+if "%PROJECT_ROOT:~-1%"=="\" set "PROJECT_ROOT=%PROJECT_ROOT:~0,-1%"
+cd /d "%PROJECT_ROOT%"
 
 echo ========================================
 echo   SQA Inspection App - 操作手冊
@@ -23,5 +27,5 @@ if not errorlevel 1 (
 
 echo 啟動操作手冊伺服器 (port %PORT%) ...
 start "" "%URL%"
-python "%~dp0docs\server.py"
+python "%PROJECT_ROOT%\docs\server.py"
 exit /b %ERRORLEVEL%

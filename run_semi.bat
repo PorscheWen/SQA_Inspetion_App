@@ -1,6 +1,10 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+set "PROJECT_ROOT=%~dp0"
+if defined APP_ROOT set "PROJECT_ROOT=%APP_ROOT%"
+if defined SQA_APP_ROOT set "PROJECT_ROOT=%SQA_APP_ROOT%"
+if "%PROJECT_ROOT:~-1%"=="\" set "PROJECT_ROOT=%PROJECT_ROOT:~0,-1%"
+cd /d "%PROJECT_ROOT%"
 
 set EXE=SemiInspectionDesktop\bin\Debug\SemiInspectionDesktop.exe
 

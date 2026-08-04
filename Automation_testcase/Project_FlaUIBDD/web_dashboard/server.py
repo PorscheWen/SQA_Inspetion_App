@@ -25,7 +25,19 @@ from urllib.parse import urlparse
 PORT = int(os.environ.get("FLAUIBDD_DASHBOARD_PORT", "6690"))
 WEB_ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = WEB_ROOT.parent
-APP_ROOT = PROJECT_ROOT.parent.parent
+
+
+def resolve_app_root() -> Path:
+    raw = os.environ.get("APP_ROOT", str(PROJECT_ROOT.parent.parent)).strip()
+    if not raw:
+        raw = str(PROJECT_ROOT.parent.parent)
+    candidate = Path(raw).expanduser()
+    if not candidate.is_absolute():
+        candidate = (Path.cwd() / candidate).resolve()
+    return candidate.resolve()
+
+
+APP_ROOT = resolve_app_root()
 TEST_PROJECT = PROJECT_ROOT / "Testcase_Inspection_App_FlaUI_BDD"
 FEATURES_DIR = TEST_PROJECT / "Features"
 REPORTS_DIR = TEST_PROJECT / "reports"
