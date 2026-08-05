@@ -270,3 +270,107 @@ footer {
 }
 .flow span { color: #87ceeb; font-weight: 600; }
 .flow .arrow { color: #ff8c00; font-size: 1.2em; }
+
+/* Getting Started flowcharts */
+.flowchart {
+    background: #0d1117;
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 20px 16px;
+    margin: 16px 0 20px;
+    overflow-x: auto;
+}
+.flowchart-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
+}
+.flowchart-row.split { margin: 4px 0; }
+.flowchart-connector,
+.flow-arrow-v {
+    display: block;
+    text-align: center;
+    color: #ff8c00;
+    font-size: 1.4em;
+    font-weight: 700;
+    line-height: 1.6;
+    margin: 6px 0;
+}
+.flow-arrow {
+    align-self: center;
+    color: #ff8c00;
+    font-size: 1.4em;
+    font-weight: 700;
+    padding: 0 4px;
+}
+.flow-node {
+    flex: 1 1 140px;
+    max-width: 220px;
+    background: #252525;
+    border: 1px solid #555;
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+}
+.flow-node.primary {
+    border-color: #90ee90;
+    background: linear-gradient(135deg, #1f2a1f 0%, #252525 100%);
+}
+.flow-node.ok { border-color: #90ee90; }
+.flowchart.vertical .flow-node {
+    flex: none;
+    width: min(100%, 420px);
+    max-width: 420px;
+    margin: 0 auto;
+}
+.flowchart.vertical .flowchart-row.split {
+    width: min(100%, 520px);
+    margin-left: auto;
+    margin-right: auto;
+}
+.flow-num {
+    display: inline-block;
+    min-width: 1.6em;
+    padding: 2px 8px;
+    margin-bottom: 8px;
+    border-radius: 999px;
+    background: #ff8c00;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 0.85em;
+}
+.flow-node.primary .flow-num { background: #90ee90; }
+.flow-node strong {
+    display: block;
+    color: #ffb347;
+    font-size: 1.02em;
+    margin-bottom: 6px;
+}
+.flow-node.primary strong { color: #90ee90; }
+.flow-meta {
+    display: block;
+    color: #9a9a9a;
+    font-size: 0.88em;
+    line-height: 1.45;
+}
+.who-flow .who-a { border-color: #87ceeb; }
+.who-flow .who-a .flow-num { background: #87ceeb; }
+.who-flow .who-a strong { color: #87ceeb; }
+.simple-chain .flow-arrow-v {
+    font-size: 1em;
+    font-weight: 600;
+    color: #b0b0b0;
+}
+.simple-chain .flow-arrow-v {
+    letter-spacing: 0.02em;
+}
+@media (max-width: 700px) {
+    .flowchart:not(.vertical) .flow-arrow { display: none; }
+    .flowchart:not(.vertical) .flowchart-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    .flowchart:not(.vertical) .flow-node { max-width: 320px; width: 100%; }
+}

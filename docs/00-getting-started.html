@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新手入門 — Getting Started</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>新手入門指南</h1>
+            <p>5 分鐘上手 Semi Inspection Desktop · FlaUI BDD · 已整合 GETTING_STARTED</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="00-getting-started.html" class="active">新手入門</a></li>
+                <li><a href="01-tps-to-bdd.html">1. TPS → BDD</a></li>
+                <li><a href="02-edit-bdd.html">2. 修改 BDD</a></li>
+                <li><a href="03-run-tests.html">3. 執行測試</a></li>
+                <li><a href="04-fix-tests.html">4. 修復測試</a></li>
+                <li><a href="05-read-reports.html">5. 讀取報告</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <section id="toc">
+                <div class="card ok">
+                    <strong>本頁 = GETTING_STARTED 精華。</strong>
+                    日常請用
+                    <span class="launch-bat" data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span>
+                    → <strong>[9]</strong> 開啟本頁。
+                    FlaUI 深度範例見
+                    <a href="../GETTING_STARTED.md#flaui-appendix" class="file-link"><code>GETTING_STARTED.md</code> 附錄</a>。
+                </div>
+                <h2>本頁目錄</h2>
+                <ul>
+                    <li><a href="#overview">這是什麼專案</a></li>
+                    <li><a href="#flowcharts">測試怎麼產出（誰做什麼）</a></li>
+                    <li><a href="#architecture">專案架構</a></li>
+                    <li><a href="#main-menu">main_menu 選項對照</a></li>
+                    <li><a href="#quick-start">5 步驟快速開始</a></li>
+                    <li><a href="#bats">常用 .bat</a></li>
+                    <li><a href="#learning-path">學習路徑</a></li>
+                    <li><a href="#tc-guide">10 個測試案例導覽</a></li>
+                    <li><a href="#paths">重要檔案位置</a></li>
+                    <li><a href="#faq">常見問題 FAQ</a></li>
+                    <li><a href="#tips">給新手的建議</a></li>
+                    <li><a href="#next">接下來讀什麼</a></li>
+                </ul>
+            </section>
+
+            <section id="overview">
+                <h2>這是什麼專案？</h2>
+                <p>完整的自動化測試系統，包含：</p>
+                <ol>
+                    <li><strong>被測應用程式 (SUT)</strong> —
+                        Semi Inspection Desktop（WinForms）：匯入 Recipe、查看參數、缺陷圖表、模擬檢測。</li>
+                    <li><strong>自動化測試框架</strong> —
+                        FlaUI + SpecFlow（Gherkin）+ 10 個 TC（功能與負面）。</li>
+                    <li><strong>工具鏈</strong> —
+                        <code>main_menu.bat</code>、Web 控制台、HTML 報告、互動式操作手冊。</li>
+                </ol>
+            </section>
+
+            <section id="flowcharts">
+                <h2>測試怎麼產出（誰做什麼）</h2>
+                <p>不必一次搞懂所有檔名。先記<strong>三種角色</strong>，再對到對應檔案：</p>
+
+                <div class="flowchart who-flow" aria-label="誰做什麼">
+                    <div class="flowchart-row who-row">
+                        <div class="flow-node who-a">
+                            <span class="flow-num">1</span>
+                            <strong>測試員／規格</strong>
+                            <span class="flow-meta">用白話寫「要測什麼」</span>
+                        </div>
+                        <span class="flow-arrow" aria-hidden="true">→</span>
+                        <div class="flow-node who-b primary">
+                            <span class="flow-num">2</span>
+                            <strong>自動化工程</strong>
+                            <span class="flow-meta">把規格變成可執行腳本</span>
+                        </div>
+                        <span class="flow-arrow" aria-hidden="true">→</span>
+                        <div class="flow-node who-c ok">
+                            <span class="flow-num">3</span>
+                            <strong>任何人／一鍵跑</strong>
+                            <span class="flow-meta">按選單就出結果</span>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="bat-table">
+                    <tr>
+                        <th>誰</th>
+                        <th>做什麼（人話）</th>
+                        <th>對應檔案／入口</th>
+                    </tr>
+                    <tr>
+                        <td><strong>測試員</strong></td>
+                        <td>訂目標、寫步驟、寫預期結果<br>再用 Given / When / Then 寫成規格</td>
+                        <td>
+                            <a href="../Automation_testcase/Test_cases/TEST_PLAN.md"
+                                class="file-link">TEST_PLAN.md</a><br>
+                            <a href="../Automation_testcase/Test_cases/TPS.md"
+                                class="file-link">TPS.md</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>自動化工程</strong></td>
+                        <td>
+                            規格 → 場景腳本<br>
+                            步驟「說什麼」→ 程式「做什麼」<br>
+                            真正的滑鼠／鍵盤操作集中在一層
+                        </td>
+                        <td>
+                            <code>Inspection_App.feature</code><br>
+                            <code>Inspection_AppSteps.cs</code><br>
+                            <code>PageObjects/*.cs</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>執行的人</strong></td>
+                        <td>不用改碼，只要啟動選單跑測、看報告</td>
+                        <td>
+                            <span class="launch-bat file-link"
+                                data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span>
+                            <code>[1] Run all tests</code><br>
+                            <code>[2] Run single test</code><br>
+                            <code>[3] Start web dashboard</code><br>
+                            <code>[6] Open test report</code>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="card ok">
+                    <strong>記一句就好：</strong>規格寫清楚 → 自動化對上規格 →
+                    <code>main_menu</code> 一鍵跑、看報告。<br>
+                    細節見 <a href="01-tps-to-bdd.html">第 1 章 TPS → BDD</a>。
+                </div>
+
+                <h3>三層怎麼對起來（可選看）</h3>
+                <div class="flowchart vertical simple-chain" aria-label="規格到報告一條線">
+                    <div class="flow-node">
+                        <span class="flow-num">寫</span>
+                        <strong>規格（給人讀）</strong>
+                        <span class="flow-meta">TEST_PLAN · <a href="../Automation_testcase/Test_cases/TPS.md"
+                                class="file-link">TPS.md</a></span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 對照實作</span>
+                    <div class="flow-node primary">
+                        <span class="flow-num">做</span>
+                        <strong>自動化（給電腦跑）</strong>
+                        <span class="flow-meta">Feature 說場景 · Steps 串流程 · PageObject 操控畫面</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ [1] Run all tests · [2] Run single test · [3] Start web dashboard</span>
+                    <div class="flow-node ok">
+                        <span class="flow-num">驗</span>
+                        <strong>結果（給人看）</strong>
+                        <span class="flow-meta">[6] Open test report ·
+                            <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html"
+                                class="file-link">TestResultReport.html</a>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="architecture">
+                <h2>專案架構</h2>
+                <div class="code-block">SQA Inspection App
+├── SemiInspectionDesktop.exe     ← 被測 App
+├── Test_cases/TPS.md + TEST_PLAN ← 規格
+├── Feature / Steps / PageObjects ← FlaUI BDD
+└── reports/TestResultReport.html ← 報告</div>
+            </section>
+
+            <section id="main-menu">
+                <h2>main_menu 選項對照</h2>
+                <p>日常優先雙擊專案根目錄
+                    <span class="launch-bat file-link" data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span>
+                    （純 ASCII，避免 CMD 中文亂碼）。
+                </p>
+                <table class="bat-table">
+                    <tr>
+                        <th>選項</th>
+                        <th>功能</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr class="cat-row">
+                        <td colspan="3">TEST</td>
+                    </tr>
+                    <tr>
+                        <td><code>[1]</code></td>
+                        <td>Run all tests</td>
+                        <td>建置 App + 測試專案，執行 TC01–TC10</td>
+                    </tr>
+                    <tr>
+                        <td><code>[2]</code></td>
+                        <td>Run single test</td>
+                        <td>輸入 TC 編號（例如 TC01）</td>
+                    </tr>
+                    <tr>
+                        <td><code>[3]</code></td>
+                        <td>Start web dashboard</td>
+                        <td><a href="http://localhost:6690/" target="_blank" rel="noopener">http://localhost:6690/</a>（需 Python）</td>
+                    </tr>
+                    <tr class="cat-row">
+                        <td colspan="3">APPLICATION</td>
+                    </tr>
+                    <tr>
+                        <td><code>[4]</code></td>
+                        <td>Start Inspection App</td>
+                        <td>啟動 Semi Inspection Desktop（必要時先建置）</td>
+                    </tr>
+                    <tr>
+                        <td><code>[5]</code></td>
+                        <td>Build Inspection App</td>
+                        <td>僅建置。亦可 <span class="launch-bat file-link"
+                                data-launch-bat="build_semi.bat"><code>build_semi.bat</code></span></td>
+                    </tr>
+                    <tr class="cat-row">
+                        <td colspan="3">REPORTS / DOCS / GUIDES / TOOLS</td>
+                    </tr>
+                    <tr>
+                        <td><code>[6]</code></td>
+                        <td>Open test report</td>
+                        <td>開啟 <a
+                                href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html"
+                                class="file-link">TestResultReport.html</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>[7]</code> / <code>[8]</code></td>
+                        <td>User guide</td>
+                        <td>手冊（Python / 離線）→ <a href="index.html">docs/index.html</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>[9]</code></td>
+                        <td>Getting started</td>
+                        <td>開啟本頁</td>
+                    </tr>
+                    <tr>
+                        <td><code>[10]</code>–<code>[12]</code></td>
+                        <td>Guides</td>
+                        <td>Windows 快速開始 / 無 Python / 疑難排解</td>
+                    </tr>
+                    <tr>
+                        <td><code>[13]</code></td>
+                        <td>Environment diagnostic</td>
+                        <td>Python、.NET、路徑、Port 6688/6690</td>
+                    </tr>
+                    <tr>
+                        <td><code>[14]</code></td>
+                        <td>Open TPS</td>
+                        <td><a href="../Automation_testcase/Test_cases/TPS.md"
+                                class="file-link"><code>TPS.md</code></a></td>
+                    </tr>
+                    <tr>
+                        <td><code>[15]</code></td>
+                        <td>FlaUI Inspector</td>
+                        <td><span class="launch-bat file-link"
+                                data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"><code>open_inspector.bat</code></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>[0]</code></td>
+                        <td>Exit</td>
+                        <td>離開選單</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="quick-start">
+                <h2>5 步驟快速開始</h2>
+
+                <h3>步驟 1：確認環境</h3>
+                <ul>
+                    <li>Windows 10/11、.NET SDK 8.0+、MSBuild</li>
+                    <li>Python 3.x（Web 控制台／手冊伺服器，可選）</li>
+                </ul>
+                <div class="code-block">dotnet --version
+python --version</div>
+                <p>或選單 <code>[13]</code> 環境診斷。</p>
+
+                <h3>步驟 2：開啟主選單與手冊</h3>
+                <p><strong>Windows：</strong>雙擊
+                    <span class="launch-bat file-link" data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span>
+                </p>
+                <ul>
+                    <li><code>[9]</code> → 本頁（新手入門）</li>
+                    <li><code>[7]</code>（Python）或 <code>[8]</code>（離線）→ 操作手冊</li>
+                    <li>Python 伺服器：<code>http://localhost:6688/docs/index.html</code></li>
+                </ul>
+                <p><strong>Linux / Codespaces：</strong>執行 <code>./open_user_manual.sh</code>；Port 問題見
+                    <a href="../PORT_FORWARDING_GUIDE.md" class="file-link">PORT_FORWARDING_GUIDE.md</a>。
+                </p>
+
+                <h3>步驟 3：啟動被測應用程式</h3>
+                <ul>
+                    <li><strong>推薦：</strong>選單 <code>[4]</code></li>
+                    <li>或先 <code>[5]</code>／<span class="launch-bat file-link"
+                            data-launch-bat="build_semi.bat"><code>build_semi.bat</code></span>，再 <code>[4]</code></li>
+                </ul>
+                <div class="card">驗證：視窗標題「Semi Inspection Desktop」、左側 File Tree、工具列有 Import Recipe / About。</div>
+
+                <h3>步驟 4：執行第一個測試</h3>
+                <ul>
+                    <li><strong>A（推薦）：</strong><code>[1] Run all tests</code> — 全跑 TC01–TC10</li>
+                    <li><strong>B：</strong><code>[2] Run single test</code> — 輸入例如 <code>TC01</code></li>
+                    <li><strong>C：</strong><code>[3] Start web dashboard</code> — Web 控制台勾選執行</li>
+                </ul>
+
+                <h3>步驟 5：查看測試報告</h3>
+                <p>選單 <code>[6] Open test report</code>。報告路徑：</p>
+                <div class="code-block">Automation_testcase/Project_FlaUIBDD/
+  Testcase_Inspection_App_FlaUI_BDD/reports/
+    TestResultReport.html   ← 主要報告
+    junit-results.xml
+    media/                  ← 失敗截圖</div>
+                <p>詳見 <a href="05-read-reports.html">第 5 章</a>。</p>
+
+                <div class="quick-actions">
+                    <a href="#" class="quick-action primary launch-bat" data-launch-bat="main_menu.bat">
+                        <h3>開啟主選單</h3>
+                        <p>日常建議入口</p>
+                        <code>main_menu.bat</code>
+                    </a>
+                    <a href="#" class="quick-action launch-bat" data-launch-bat="build_semi.bat">
+                        <h3>建置 App</h3>
+                        <p>等同選單 [5]</p>
+                        <code>build_semi.bat</code>
+                    </a>
+                    <a href="index.html" class="quick-action">
+                        <h3>操作手冊</h3>
+                        <p>五章完整流程</p>
+                        <code>docs/index.html</code>
+                    </a>
+                    <a href="../Automation_testcase/Test_cases/TPS.md" class="quick-action file-link">
+                        <h3>開啟 TPS</h3>
+                        <p>Gherkin 規格</p>
+                        <code>TPS.md</code>
+                    </a>
+                </div>
+            </section>
+
+            <section id="bats">
+                <h2>常用 .bat 一覽</h2>
+                <p>多數功能已收進 <code>main_menu.bat</code>。可單獨雙擊：</p>
+                <table class="bat-table">
+                    <tr>
+                        <th>批次檔</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td class="bat-name"><span class="launch-bat file-link"
+                                data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span></td>
+                        <td class="bat-desc">主選單（推薦入口）</td>
+                    </tr>
+                    <tr>
+                        <td class="bat-name"><span class="launch-bat file-link"
+                                data-launch-bat="build_semi.bat"><code>build_semi.bat</code></span></td>
+                        <td class="bat-desc">建置被測 App（= [5]）</td>
+                    </tr>
+                    <tr>
+                        <td class="bat-name"><code>setup_env.bat</code></td>
+                        <td class="bat-desc">環境變數；由其他腳本自動呼叫</td>
+                    </tr>
+                    <tr>
+                        <td class="bat-name"><span class="launch-bat file-link"
+                                data-launch-bat="Automation_testcase/Project_FlaUIBDD/web_dashboard/open_dashboard.bat"><code>open_dashboard.bat</code></span>
+                        </td>
+                        <td class="bat-desc">Web 控制台（= [3] Start web dashboard）</td>
+                    </tr>
+                    <tr>
+                        <td class="bat-name"><span class="launch-bat file-link"
+                                data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"><code>open_inspector.bat</code></span>
+                        </td>
+                        <td class="bat-desc">FlaUI Inspector（= [15]）</td>
+                    </tr>
+                    <tr>
+                        <td class="bat-name"><span class="launch-bat file-link"
+                                data-launch-bat="Automation_testcase/Test_cases/open_tps.bat"><code>open_tps.bat</code></span>
+                        </td>
+                        <td class="bat-desc">開啟 TPS.md（= [14]）</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="learning-path">
+                <h2>學習路徑（建議順序）</h2>
+                <h3>Level 1：了解專案（約 30 分鐘）</h3>
+                <ol>
+                    <li>讀 <a href="../README.md" class="file-link">README.md</a></li>
+                    <li>開本頁與 <a href="index.html">操作手冊</a> 標題</li>
+                    <li><code>main_menu</code> <code>[1] Run all tests</code>，再 <code>[6] Open test report</code></li>
+                </ol>
+                <h3>Level 2：理解規格（約 1 小時）</h3>
+                <ol>
+                    <li><a href="../Automation_testcase/Test_cases/TEST_PLAN.md"
+                            class="file-link">TEST_PLAN.md</a></li>
+                    <li><a href="../Automation_testcase/Test_cases/TPS.md" class="file-link">TPS.md</a>（Given / When /
+                        Then）</li>
+                    <li>選單 <code>[4]</code> 手動操作 App</li>
+                </ol>
+                <h3>Level 3：理解自動化（約 2 小時）</h3>
+                <ol>
+                    <li><a href="01-tps-to-bdd.html">第 1 章</a>：TPS → Feature → Steps → PageObjects</li>
+                    <li>看 Feature / StepDefinitions / PageObjects</li>
+                    <li>FlaUI 基礎：<a href="../GETTING_STARTED.md#flaui-appendix"
+                            class="file-link">GETTING_STARTED 附錄</a></li>
+                </ol>
+                <h3>Level 4–5：修改與新增</h3>
+                <ol>
+                    <li><a href="02-edit-bdd.html">第 2 章</a>、<a href="04-fix-tests.html">第 4 章</a></li>
+                    <li>選單 <code>[15]</code> Inspector，練習改一步驟</li>
+                    <li>新 TC：TPS → Feature → Steps → PageObject → <code>[2] Run single test</code> 驗證</li>
+                </ol>
+            </section>
+
+            <section id="tc-guide">
+                <h2>10 個測試案例快速導覽</h2>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>類型</th>
+                        <th>測試內容</th>
+                        <th>複雜度</th>
+                    </tr>
+                    <tr>
+                        <td><strong>TC01</strong></td>
+                        <td>功能</td>
+                        <td>匯入 Recipe</td>
+                        <td>★★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC02</strong></td>
+                        <td>功能</td>
+                        <td>檔案樹顯示</td>
+                        <td>★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC03</strong></td>
+                        <td>功能</td>
+                        <td>查看參數表格</td>
+                        <td>★★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC04</strong></td>
+                        <td>功能</td>
+                        <td>繪製缺陷圖表</td>
+                        <td>★★★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC05</strong></td>
+                        <td>功能</td>
+                        <td>雙擊檔案樹開啟 Recipe</td>
+                        <td>★★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC06</strong></td>
+                        <td>功能</td>
+                        <td>關於對話框</td>
+                        <td>★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC07</strong></td>
+                        <td>負面</td>
+                        <td>匯入無效檔案</td>
+                        <td>★★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC08</strong></td>
+                        <td>負面</td>
+                        <td>未載入資料時繪圖</td>
+                        <td>★★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC09</strong></td>
+                        <td>負面</td>
+                        <td>開啟不存在的檔案</td>
+                        <td>★★</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC10</strong></td>
+                        <td>功能</td>
+                        <td>執行檢測模擬</td>
+                        <td>★★★</td>
+                    </tr>
+                </table>
+                <div class="card">建議新手順序：TC02 → TC06 → TC03 → TC01 → TC05 → TC07</div>
+            </section>
+
+            <section id="paths">
+                <h2>重要檔案位置速查</h2>
+                <table>
+                    <tr>
+                        <th>項目</th>
+                        <th>路徑</th>
+                    </tr>
+                    <tr>
+                        <td>新手入門（本頁）</td>
+                        <td><code>docs/00-getting-started.html</code></td>
+                    </tr>
+                    <tr>
+                        <td>TPS / TEST_PLAN</td>
+                        <td><a href="../Automation_testcase/Test_cases/TPS.md"
+                                class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a> ·
+                            <a href="../Automation_testcase/Test_cases/TEST_PLAN.md"
+                                class="file-link"><code>TEST_PLAN.md</code></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Feature</td>
+                        <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature"
+                                class="file-link"><code>.../Features/Inspection_App.feature</code></a></td>
+                    </tr>
+                    <tr>
+                        <td>Steps / PageObjects</td>
+                        <td><code>.../StepDefinitions/</code> · <code>.../PageObjects/</code></td>
+                    </tr>
+                    <tr>
+                        <td>被測 EXE</td>
+                        <td><code>SemiInspectionDesktop/bin/Debug/SemiInspectionDesktop.exe</code></td>
+                    </tr>
+                    <tr>
+                        <td>測試資料</td>
+                        <td><code>Recipe_data/InspectionRecipe_Sample.json</code></td>
+                    </tr>
+                    <tr>
+                        <td>HTML 報告</td>
+                        <td><a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html"
+                                class="file-link"><code>.../reports/TestResultReport.html</code></a></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="faq">
+                <h2>常見問題 (FAQ)</h2>
+                <h3>Q1: Linux / Codespaces 能跑測試嗎？</h3>
+                <p>不行。FlaUI 與被測 App 為 Windows 專用。Linux 可改碼；Windows 執行測試；用 Git 同步。</p>
+
+                <h3>Q2: 如何查 AutomationId？</h3>
+                <p>選單 <code>[15]</code> 或
+                    <span class="launch-bat file-link"
+                        data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"><code>open_inspector.bat</code></span>
+                    → Hover Mode。詳見
+                    <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/README.md"
+                        class="file-link">tools/README.md</a>。
+                </p>
+
+                <h3>Q3: 測試失敗怎麼除錯？</h3>
+                <ol>
+                    <li><code>[6] Open test report</code> 看報告與截圖</li>
+                    <li><code>[4]</code> 手動重現</li>
+                    <li><code>[15]</code> 確認控制項 ID</li>
+                    <li>讀 <a href="04-fix-tests.html">第 4 章</a></li>
+                </ol>
+
+                <h3>Q4: 如何新增測試案例？</h3>
+                <p>TPS → Feature → Steps（只編排／Assert）→ PageObject → 選單 <code>[2] Run single test</code>。見
+                    <a href="02-edit-bdd.html">第 2 章</a>。
+                </p>
+
+                <h3>Q5: Web 控制台無法開啟？</h3>
+                <p>確認 <code>python --version</code>；選單 <code>[3] Start web dashboard</code> 或
+                    <code>web_dashboard/open_dashboard.bat</code>；檢查 Port 6690（選單 <code>[13]</code>）。
+                </p>
+            </section>
+
+            <section id="tips">
+                <h2>給新手的建議</h2>
+                <h3>建議做</h3>
+                <ul>
+                    <li>從本頁與操作手冊開始，先手動操作 App 再看自動化</li>
+                    <li>先跑現有測試；閱讀順序 TC02 → TC06 → …</li>
+                    <li>安裝並熟悉 FlaUI Inspector；優先 AutomationId 與快捷鍵</li>
+                    <li>小步迭代：一次改一個 TC 立刻驗證</li>
+                </ul>
+                <h3>避免做</h3>
+                <ul>
+                    <li>在 Linux 跑 FlaUI 測試</li>
+                    <li>在 Step Definitions 直接寫大量 FlaUI（應放 Page Object）</li>
+                    <li>寫死絕對路徑、忽略等待與 null 檢查</li>
+                    <li>跳過 TPS、同時改一堆 TC、忽略失敗原因</li>
+                </ul>
+            </section>
+
+            <section id="next">
+                <h2>接下來讀什麼</h2>
+                <div class="chapter-grid">
+                    <a href="01-tps-to-bdd.html" style="text-decoration:none;color:inherit;">
+                        <div class="chapter-card">
+                            <span class="chapter-num">第 1 章</span>
+                            <h3>TPS → BDD</h3>
+                            <p>規格落地成可執行自動化。</p>
+                        </div>
+                    </a>
+                    <a href="03-run-tests.html" style="text-decoration:none;color:inherit;">
+                        <div class="chapter-card">
+                            <span class="chapter-num">第 3 章</span>
+                            <h3>執行測試</h3>
+                            <p>CLI / 單一 TC / Web 控制台。</p>
+                        </div>
+                    </a>
+                    <a href="05-read-reports.html" style="text-decoration:none;color:inherit;">
+                        <div class="chapter-card">
+                            <span class="chapter-num">第 5 章</span>
+                            <h3>讀取報告</h3>
+                            <p>HTML / JUnit / 截圖。</p>
+                        </div>
+                    </a>
+                    <a href="../GETTING_STARTED.md#flaui-appendix" style="text-decoration:none;color:inherit;">
+                        <div class="chapter-card">
+                            <span class="chapter-num">附錄</span>
+                            <h3>FlaUI 操作詳解</h3>
+                            <p>Locators、Page Object、實戰範例（Markdown）。</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card ok" style="margin-top:16px;">
+                    下一步建議：<code>main_menu.bat</code> → <strong>[1] Run all tests</strong>，再
+                    <strong>[6] Open test report</strong>。
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>新手入門 · 已整合 GETTING_STARTED 精華</p>
+            <p><a href="index.html">操作手冊首頁</a> ·
+                <a href="../GETTING_STARTED.md#flaui-appendix">FlaUI 附錄 (MD)</a> ·
+                <a href="#toc">回到目錄</a>
+            </p>
+        </footer>
+    </div>
+    <script src="launcher.js"></script>
+</body>
+
+</html>
