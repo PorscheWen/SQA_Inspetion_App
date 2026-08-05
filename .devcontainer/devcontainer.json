@@ -1,0 +1,28 @@
+{
+    "name": "SQA Inspection App",
+    "forwardPorts": [
+        6688,
+        5000
+    ],
+    "portsAttributes": {
+        "6688": {
+            "label": "操作手冊伺服器",
+            "onAutoForward": "notify",
+            "visibility": "public",
+            "protocol": "http"
+        },
+        "5000": {
+            "label": "測試控制台",
+            "onAutoForward": "silent",
+            "visibility": "public",
+            "protocol": "http"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    }
+}
