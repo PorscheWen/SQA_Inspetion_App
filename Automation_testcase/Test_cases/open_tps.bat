@@ -20,5 +20,5 @@ if not exist "%TPS%" (
 
 start "" "%TPS%"
 echo 已在瀏覽器開啟: %TPS%
-echo 若出現亂碼，請先執行專案根目錄的 開啟操作手冊.bat 再雙擊本檔。
+echo 若出現亂碼，請先執行專案根目錄的 main_menu.bat 再雙擊本檔。
 exit /b 0

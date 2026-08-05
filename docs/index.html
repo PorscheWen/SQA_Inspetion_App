@@ -18,11 +18,11 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="active">首頁</a></li>
-                <li><a href="01-TPS轉BDD.html">1. TPS → BDD</a></li>
-                <li><a href="02-修改BDD.html">2. 修改 BDD</a></li>
-                <li><a href="03-執行測試.html">3. 執行測試</a></li>
-                <li><a href="04-修復測試.html">4. 修復測試</a></li>
-                <li><a href="05-讀取報告.html">5. 讀取報告</a></li>
+                <li><a href="01-tps-to-bdd.html">1. TPS → BDD</a></li>
+                <li><a href="02-edit-bdd.html">2. 修改 BDD</a></li>
+                <li><a href="03-run-tests.html">3. 執行測試</a></li>
+                <li><a href="04-fix-tests.html">4. 修復測試</a></li>
+                <li><a href="05-read-reports.html">5. 讀取報告</a></li>
             </ul>
         </nav>
 
@@ -42,14 +42,14 @@
                 </div>
                 <div class="card ok">
                     <strong>快速入口：</strong>雙擊 <span class="launch-bat"
-                        data-launch-bat="開啟操作手冊.bat"><code>開啟操作手冊.bat</code></span>
+                        data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span>
                     啟動本機伺服器並開啟此頁（<code>http://localhost:6688/docs/index.html</code>）。
                 </div>
             </section>
 
             <section>
                 <h2>快速啟動</h2>
-                <p>點擊下方卡片即可<strong>一鍵執行</strong>（會在新視窗啟動對應 .bat；需透過 <code>開啟操作手冊.bat</code> 開啟本頁）：</p>
+                <p>點擊下方卡片即可<strong>一鍵執行</strong>（會在新視窗啟動對應 .bat；需透過 <code>main_menu.bat</code> 開啟本頁）：</p>
                 <div class="quick-actions">
                     <a href="#" class="quick-action primary launch-bat" data-launch-bat="啟動InspectionApp.bat">
                         <h3>啟動 Inspection App</h3>
@@ -91,7 +91,7 @@
                 <ol>
                     <li><strong>讀取 TPS</strong> — 在 <a href="../Automation_testcase/Test_cases/TPS.md"
                             class="file-link"><code>Automation_testcase/Test_cases/TPS.md</code></a> 找到對應 TC 的 Given /
-                        When / Then。詳見 <a href="01-TPS轉BDD.html">第 1 章</a></li>
+                        When / Then。詳見 <a href="01-tps-to-bdd.html">第 1 章</a></li>
                     <li><strong>對照 Feature</strong> — 確認 <a
                             href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature"
                             class="file-link"><code>.../Features/Inspection_App.feature</code></a> 中 Scenario
@@ -102,7 +102,7 @@
                         新增或修改步驟綁定（只做編排與 Assert）。</li>
                     <li><strong>實作 PageObjects</strong> — FlaUI 操作放在 <a
                             href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/PageObjects/"
-                            class="file-link">Page Object</a>，<strong>不要</strong>寫在 Steps 內。詳見 <a href="02-修改BDD.html">第
+                            class="file-link">Page Object</a>，<strong>不要</strong>寫在 Steps 內。詳見 <a href="02-edit-bdd.html">第
                             2 章</a></li>
                     <li><strong>設定路徑</strong> — 更新 <a
                             href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/App.config"
@@ -111,46 +111,46 @@
                     <li><strong>驗證</strong> — 執行 <span class="launch-bat file-link"
                             data-launch-bat="build_semi.bat"><code>build_semi.bat</code></span> →
                         <code>dotnet build -c Release</code> → 單一 TC 測試（<span class="launch-bat file-link"
-                            data-launch-bat="執行單一測試.bat"><code>執行單一測試.bat</code></span>）。詳見 <a href="03-執行測試.html">第 3
+                            data-launch-bat="執行單一測試.bat"><code>執行單一測試.bat</code></span>）。詳見 <a href="03-run-tests.html">第 3
                             章</a>
                     </li>
                     <li><strong>確認報告</strong> — 檢查 <a
                             href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/bin/Release/net8.0-windows/reports/TestResultReport.html"
                             class="file-link"><code>.../reports/TestResultReport.html</code></a> 已產生。詳見 <a
-                            href="05-讀取報告.html">第 5 章</a>；失敗時見 <a href="04-修復測試.html">第 4 章</a></li>
+                            href="05-read-reports.html">第 5 章</a>；失敗時見 <a href="04-fix-tests.html">第 4 章</a></li>
                 </ol>
 
                 <h3>章節詳細說明</h3>
                 <div class="chapter-grid">
-                    <a href="01-TPS轉BDD.html" style="text-decoration:none;color:inherit;">
+                    <a href="01-tps-to-bdd.html" style="text-decoration:none;color:inherit;">
                         <div class="chapter-card">
                             <span class="chapter-num">第 1 章</span>
                             <h3>TPS 轉換成 BDD Testcases</h3>
                             <p>三層文件鏈、Gherkin → Feature → StepDefinitions → PageObjects 的轉換步驟與 TC 對照表。</p>
                         </div>
                     </a>
-                    <a href="02-修改BDD.html" style="text-decoration:none;color:inherit;">
+                    <a href="02-edit-bdd.html" style="text-decoration:none;color:inherit;">
                         <div class="chapter-card">
                             <span class="chapter-num">第 2 章</span>
                             <h3>如何修改 BDD Testcases</h3>
                             <p>修改既有 TC、新增 Scenario、同步 TPS 與 Feature、使用 Inspector 確認控制項。</p>
                         </div>
                     </a>
-                    <a href="03-執行測試.html" style="text-decoration:none;color:inherit;">
+                    <a href="03-run-tests.html" style="text-decoration:none;color:inherit;">
                         <div class="chapter-card">
                             <span class="chapter-num">第 3 章</span>
                             <h3>執行 BDD Automation Testcase</h3>
                             <p>CLI 一鍵執行、單一 TC、Web 控制台（port 6690）三種方式。</p>
                         </div>
                     </a>
-                    <a href="04-修復測試.html" style="text-decoration:none;color:inherit;">
+                    <a href="04-fix-tests.html" style="text-decoration:none;color:inherit;">
                         <div class="chapter-card">
                             <span class="chapter-num">第 4 章</span>
                             <h3>如何修復 Automation Testcase</h3>
                             <p>失敗排查流程、常見錯誤類型、FlaUI Inspector 除錯、修改 PageObject 與設定。</p>
                         </div>
                     </a>
-                    <a href="05-讀取報告.html" style="text-decoration:none;color:inherit;">
+                    <a href="05-read-reports.html" style="text-decoration:none;color:inherit;">
                         <div class="chapter-card">
                             <span class="chapter-num">第 5 章</span>
                             <h3>讀取 Report</h3>
@@ -162,7 +162,7 @@
 
             <section>
                 <h2>執行用批次檔（.bat）</h2>
-                <p>以下批次檔位於專案根目錄 <code>SQA_Inspetion_App\</code>，點擊名稱即可執行（需透過 <code>開啟操作手冊.bat</code> 開啟本頁）：</p>
+                <p>以下批次檔位於專案根目錄 <code>SQA_Inspetion_App\</code>，點擊名稱即可執行（需透過 <code>main_menu.bat</code> 開啟本頁）：</p>
                 <table class="bat-table">
                     <tr>
                         <th>分類</th>
@@ -176,7 +176,7 @@
                     <tr>
                         <td>手冊</td>
                         <td class="bat-name"><span class="launch-bat file-link"
-                                data-launch-bat="開啟操作手冊.bat"><code>開啟操作手冊.bat</code></span></td>
+                                data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span></td>
                         <td class="bat-desc">啟動本機伺服器（port 6688）並開啟本手冊<br><a href="index.html">docs/index.html</a>
                         </td>
                     </tr>

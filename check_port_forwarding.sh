@@ -13,7 +13,7 @@ echo "[1] 檢查本地服務 (localhost:${PORT})..."
 if curl -s "http://127.0.0.1:${PORT}/api/health" >/dev/null 2>&1; then
     echo "✅ 本地服務正常運行"
 else
-    echo "❌ 本地服務未運行，請先執行 ./開啟操作手冊.sh"
+    echo "❌ 本地服務未運行，請先執行 ./open_user_manual.sh"
     exit 1
 fi
 echo ""

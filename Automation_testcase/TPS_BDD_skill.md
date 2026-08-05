@@ -22,7 +22,7 @@ description: >-
 | FlaUI BDD 專案 | `Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/` |
 | Feature | `.../Features/Inspection_App.feature` |
 | Web 控制台 | `Automation_testcase/Project_FlaUIBDD/web_dashboard/`（port **6690**） |
-| 操作說明 | `.../Testcase_Inspection_App_FlaUI_BDD/操作說明.html` |
+| 操作說明 | `.../Testcase_Inspection_App_FlaUI_BDD/user_guide.html` |
 
 **應用程式常數（寫入 `App.config` 或環境變數，勿硬編在 Step 內）：**
 
@@ -275,7 +275,7 @@ cd SQA_Inspetion_App
 - [ ] TC07–TC09 驗證 MessageBox / 主視窗仍存在
 - [ ] TC01 FileDialog 在 IME 環境可 fallback
 - [ ] `dotnet test -c Release` 通過；報告含步驟截圖
-- [ ] 必要時更新 `操作說明.html`
+- [ ] 必要時更新 `user_guide.html`
 
 ## 延伸閱讀
 

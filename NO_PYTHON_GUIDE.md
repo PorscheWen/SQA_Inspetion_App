@@ -11,7 +11,7 @@
 ### 1. 查看操作手冊（離線版）
 
 ```cmd
-雙擊： 開啟操作手冊（無Python）.bat
+雙擊： main_menu.bat（選項 [8]）
 ```
 
 或直接開啟：`docs\index.html`
@@ -101,10 +101,10 @@ Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\reports\
 
 ```
 ├── README.md                    # 專案說明
-├── 新手入門指南.md              # 新手教學
-├── WINDOWS_快速開始.md          # Windows 快速開始
-├── WINDOWS_疑難排解.md          # 疑難排解指南
-├── 無Python使用指南.md          # 本文件
+├── GETTING_STARTED.md              # 新手教學
+├── WINDOWS_QUICK_START.md          # Windows 快速開始
+├── WINDOWS_TROUBLESHOOTING.md          # 疑難排解指南
+├── NO_PYTHON_GUIDE.md          # 本文件
 └── Automation_testcase\
     └── Test_cases\
         ├── TPS.md               # 測試規格
@@ -129,7 +129,7 @@ Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\reports\
 - 提供 HTTP 伺服器
 
 **替代方案：**
-- 使用 `開啟操作手冊（無Python）.bat` 開啟離線版
+- 使用 `main_menu.bat（選項 [8]）` 開啟離線版
 - 手動執行對應的 .bat 檔案
 
 ---
@@ -189,7 +189,7 @@ Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\reports\
 
 ```cmd
 # 方法 1: 離線版（推薦）
-雙擊： 開啟操作手冊（無Python）.bat
+雙擊： main_menu.bat（選項 [8]）
 
 # 方法 2: 直接開啟 HTML
 start docs\index.html
@@ -230,7 +230,7 @@ start docs\index.html
 
 1. **查看文件**
    ```cmd
-   開啟操作手冊（無Python）.bat
+   main_menu.bat（選項 [8]）
    ```
 
 2. **執行測試**
@@ -285,7 +285,7 @@ where msbuild
 ### 🟢 不需要 Python
 
 ```cmd
-開啟操作手冊（無Python）.bat  ← 新增！推薦使用
+main_menu.bat（選項 [8]）  ← 新增！推薦使用
 開啟測試報告.bat
 run_tests.bat
 執行單一測試.bat
@@ -297,7 +297,7 @@ build_semi.bat
 公司電腦工具選單.bat        ← 互動式選單（美化版）
 開啟快速開始指南.bat
 開啟疑難排解指南.bat
-開啟新手入門指南.bat
+main_menu.bat（選項 [9]）
 ```
 
 **提示：** 如果「公司電腦工具選單.bat」顯示亂碼或無法執行，請使用「工具選單（簡化版）.bat」。
@@ -305,7 +305,7 @@ build_semi.bat
 ### 🔴 需要 Python
 
 ```cmd
-開啟操作手冊.bat          ← 啟動 HTTP 伺服器
+main_menu.bat          ← 啟動 HTTP 伺服器
 啟動測試平台.bat           ← Web 控制台
 ```
 
@@ -334,7 +334,7 @@ dotnet --version
 
 **解決方法 1：使用無 Python 版本**
 ```cmd
-開啟操作手冊（無Python）.bat
+main_menu.bat（選項 [8]）
 ```
 
 **解決方法 2：直接開啟 HTML**
@@ -383,7 +383,7 @@ Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\
    （部分功能仍可用）
 
 2. **查看疑難排解指南**
-   - `WINDOWS_疑難排解.md`
+   - `WINDOWS_TROUBLESHOOTING.md`
    - 涵蓋常見問題
 
 3. **查看測試計畫**
@@ -415,4 +415,4 @@ Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\
 
 ---
 
-**👉 立即開始：** 執行 `開啟操作手冊（無Python）.bat` 查看完整教學！
+**👉 立即開始：** 執行 `main_menu.bat（選項 [8]）` 查看完整教學！

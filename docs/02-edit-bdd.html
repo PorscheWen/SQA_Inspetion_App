@@ -18,11 +18,11 @@
         <nav>
             <ul>
                 <li><a href="index.html">首頁</a></li>
-                <li><a href="01-TPS轉BDD.html">1. TPS → BDD</a></li>
-                <li><a href="02-修改BDD.html" class="active">2. 修改 BDD</a></li>
-                <li><a href="03-執行測試.html">3. 執行測試</a></li>
-                <li><a href="04-修復測試.html">4. 修復測試</a></li>
-                <li><a href="05-讀取報告.html">5. 讀取報告</a></li>
+                <li><a href="01-tps-to-bdd.html">1. TPS → BDD</a></li>
+                <li><a href="02-edit-bdd.html" class="active">2. 修改 BDD</a></li>
+                <li><a href="03-run-tests.html">3. 執行測試</a></li>
+                <li><a href="04-fix-tests.html">4. 修復測試</a></li>
+                <li><a href="05-read-reports.html">5. 讀取報告</a></li>
             </ul>
         </nav>
 
@@ -169,8 +169,8 @@
                 <p>修改 UI 相關 PageObject 前，建議用 Inspector 確認 AutomationId：</p>
                 <ol>
                     <li>雙擊 <a
-                            href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/開啟Inspector.bat"
-                            class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/開啟Inspector.bat</code></a>
+                            href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"
+                            class="file-link"><code>Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat</code></a>
                     </li>
                     <li>選擇行程 <strong>SemiInspectionDesktop</strong></li>
                     <li>檢查控制項的 Name、AutomationId、ControlType</li>
@@ -236,14 +236,14 @@
                 <div class="code-block">cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
                     dotnet build -c Release
                     dotnet test -c Release --filter "Name~TC03"</div>
-                <p>驗證通過後，參考 <a href="05-讀取報告.html">第 5 章：讀取報告</a> 確認 <a
+                <p>驗證通過後，參考 <a href="05-read-reports.html">第 5 章：讀取報告</a> 確認 <a
                         href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html"
                         class="file-link">TestResultReport.html</a>。</p>
             </section>
         </div>
 
         <footer>
-            <p><a href="01-TPS轉BDD.html">← 上一章</a> · <a href="index.html">首頁</a> · <a href="03-執行測試.html">下一章：執行測試 →</a>
+            <p><a href="01-tps-to-bdd.html">← 上一章</a> · <a href="index.html">首頁</a> · <a href="03-run-tests.html">下一章：執行測試 →</a>
             </p>
         </footer>
     </div>

@@ -60,7 +60,7 @@ tools/
 在 Windows 环境中，运行项目根目录下的批处理文件：
 
 ```batch
-開啟Inspector.bat
+open_inspector.bat
 ```
 
 这个脚本会：
@@ -77,7 +77,7 @@ tools\FlaUIInspector\FlaUIInspector.exe
 
 ## 🔍 Inspector 搜索路径
 
-`開啟Inspector.bat` 会按以下顺序搜索 FlaUI Inspector：
+`open_inspector.bat` 会按以下顺序搜索 FlaUI Inspector：
 
 1. 环境变量 `FLAUI_INSPECTOR_PATH` 指定的路径
 2. `tools\FlaUIInspector\FlaUIInspector.exe`（本目录）

@@ -65,7 +65,7 @@ taskkill /F /PID [PID]
 ```
 
 #### 方法 C: 使用不同的 Port
-編輯 `開啟操作手冊.bat`，修改：
+編輯 `main_menu.bat`，修改：
 ```batch
 set "PORT=6688"  →  set "PORT=8888"
 ```
@@ -119,7 +119,7 @@ set "PORT=6688"  →  set "PORT=8888"
 7. 按「確定」
 
 #### 方法 B: 以系統管理員身分執行
-1. 右鍵點擊 `開啟操作手冊.bat`
+1. 右鍵點擊 `main_menu.bat`
 2. 選擇「以系統管理員身分執行」
 
 ---
@@ -140,7 +140,7 @@ set "PORT=6688"  →  set "PORT=8888"
    ```
 4. 執行：
    ```cmd
-   開啟操作手冊.bat
+   main_menu.bat
    ```
 5. 現在可以看到完整的錯誤訊息
 
@@ -210,7 +210,7 @@ chcp 65001
 
 **1. 查看操作手冊（離線版）**
 ```cmd
-雙擊： 開啟操作手冊（無Python）.bat
+雙擊： main_menu.bat（選項 [8]）
 ```
 
 或直接開啟：
@@ -232,10 +232,10 @@ start docs\index.html
 
 詳細說明請參考：
 ```cmd
-雙擊： 開啟無Python使用指南.bat
+雙擊： main_menu.bat（選項 [11]）
 ```
 
-或查看 [無Python使用指南.md](無Python使用指南.md)
+或查看 [NO_PYTHON_GUIDE.md](NO_PYTHON_GUIDE.md)
 
 #### 功能對照
 
@@ -349,4 +349,4 @@ start docs\index.html
 
 - [Python 官方網站](https://www.python.org/)
 - [GitHub 專案](https://github.com/PorscheWen/SQA_Inspetion_App)
-- [新手入門指南](新手入門指南.md)
+- [新手入門指南](GETTING_STARTED.md)

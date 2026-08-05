@@ -16,7 +16,7 @@
 
 2. **找到 Port 6688**
    - 在 PORTS 列表中尋找 `6688`
-   - 如果沒有，請先執行 `./開啟操作手冊.sh` 啟動服務
+   - 如果沒有，請先執行 `./open_user_manual.sh` 啟動服務
 
 3. **設定為 Public**
    - 在 Port 6688 的列上按右鍵
@@ -51,7 +51,7 @@ gh codespace ports visibility 6688:public -c $CODESPACE_NAME
 ### Q1: Port 列表中沒有 6688？
 **A:** 確認服務已啟動：
 ```bash
-./開啟操作手冊.sh
+./open_user_manual.sh
 ```
 
 ### Q2: 設定為 Public 後仍無法訪問？
@@ -63,7 +63,7 @@ gh codespace ports visibility 6688:public -c $CODESPACE_NAME
 2. 重新啟動服務：
    ```bash
    # 按 Ctrl+C 停止現有服務
-   ./開啟操作手冊.sh
+   ./open_user_manual.sh
    ```
 
 ### Q3: 如何永久保持 Public 設定？
@@ -83,7 +83,7 @@ gh codespace ports visibility 6688:public -c $CODESPACE_NAME
 
 ## 快速檢查清單
 
-- [ ] 服務已啟動（執行 `./開啟操作手冊.sh`）
+- [ ] 服務已啟動（執行 `./open_user_manual.sh`）
 - [ ] Port 6688 顯示在 PORTS 面板
 - [ ] Visibility 設定為 **Public**
 - [ ] 可以在本地訪問 `http://localhost:6688/api/health`

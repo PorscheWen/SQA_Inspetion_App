@@ -38,7 +38,7 @@ ALLOWED_BATS: dict[str, str] = {
     "開啟測試報告.bat": "開啟測試報告",
     "啟動測試平台.bat": "啟動測試平台",
     "build_semi.bat": "建置被測 App",
-    "開啟操作手冊.bat": "重新開啟操作手冊",
+    "main_menu.bat": "重新開啟主選單",
 }
 
 DEFAULT_EXE = APP_ROOT / "SemiInspectionDesktop" / "bin" / "Debug" / "SemiInspectionDesktop.exe"

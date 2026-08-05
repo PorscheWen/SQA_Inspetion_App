@@ -8,7 +8,7 @@ echo   Inspection App FlaUI BDD - Operation Guide
 echo ========================================
 echo.
 
-set "GUIDE=%~dp0操作說明.html"
+set "GUIDE=%~dp0user_guide.html"
 if not exist "%GUIDE%" (
     echo [ERROR] Not found: %GUIDE%
     pause

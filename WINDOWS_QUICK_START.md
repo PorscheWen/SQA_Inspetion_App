@@ -66,7 +66,7 @@ dotnet --version
 - ✅ Port 可用性
 - ✅ 網路權限
 
-如果發現問題，請參考 [WINDOWS_疑難排解.md](WINDOWS_疑難排解.md)
+如果發現問題，請參考 [WINDOWS_TROUBLESHOOTING.md](WINDOWS_TROUBLESHOOTING.md)
 
 ---
 
@@ -75,7 +75,7 @@ dotnet --version
 ### 方法 1: 一鍵啟動（推薦）
 
 ```cmd
-雙擊： 開啟操作手冊.bat
+雙擊： main_menu.bat
 ```
 
 成功後會看到：
@@ -221,7 +221,7 @@ taskkill /F /PID <PID>
 C:\Projects\                         # ✅ 英文路徑，無空格
 └── SQA_Inspetion_App\              # ✅ 專案根目錄
     ├── 診斷工具.bat                # ← 先執行這個
-    ├── 開啟操作手冊.bat
+    ├── main_menu.bat
     ├── 開啟疑難排解指南.bat
     ├── run_tests.bat
     ├── 啟動測試平台.bat
@@ -237,8 +237,8 @@ C:\Program Files\SQA_Inspetion_App\    # 需要管理員權限
 ## 🆘 需要協助？
 
 1. **自動診斷：** 執行 `診斷工具.bat`
-2. **詳細說明：** 閱讀 [WINDOWS_疑難排解.md](WINDOWS_疑難排解.md)
-3. **操作手冊：** 執行 `開啟操作手冊.bat` 查看五個章節的詳細教學
+2. **詳細說明：** 閱讀 [WINDOWS_TROUBLESHOOTING.md](WINDOWS_TROUBLESHOOTING.md)
+3. **操作手冊：** 執行 `main_menu.bat` 查看五個章節的詳細教學
 4. **回報問題：** 在 GitHub Issues 提供診斷工具的輸出結果
 
 ---
@@ -260,7 +260,7 @@ C:\Program Files\SQA_Inspetion_App\    # 需要管理員權限
 成功完成上述步驟後，請參考：
 
 1. **[操作手冊](docs/index.html)**：詳細了解五個測試流程
-2. **[新手入門指南](新手入門指南.md)**：深入學習 BDD 測試編寫
+2. **[新手入門指南](GETTING_STARTED.md)**：深入學習 BDD 測試編寫
 3. **[TEST_PLAN.md](Automation_testcase/Test_cases/TEST_PLAN.md)**：理解測試策略
 
 祝測試愉快！🚀

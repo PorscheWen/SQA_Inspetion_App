@@ -138,7 +138,7 @@
             <h2>概述</h2>
             <p>本專案為 <strong>Semi Inspection Desktop</strong> 的自動化測試，以 Gherkin（<code>Features/Inspection_App.feature</code>）描述 TC01～TC10，並以 FlaUI 操作 WinForms UI。</p>
             <div class="card ok">
-                完整五章節操作手冊請見專案根目錄 <code>docs/index.html</code>，雙擊 <code>開啟操作手冊.bat</code> 開啟。
+                完整五章節操作手冊請見專案根目錄 <code>docs/index.html</code>，雙擊 <code>main_menu.bat</code> 開啟。
             </div>
             <div class="code-block">Testcase_Inspection_App_FlaUI_BDD/
 ├── Features/           Inspection_App.feature（Gherkin）
@@ -148,8 +148,8 @@
 ├── Hooks/              TestHooks.cs
 ├── tools/FlaUIInspector/   FlaUI Inspector（UI 偵錯）
 ├── reports/            junit-results.xml、HTML 報告
-├── 開啟Inspector.bat
-├── 開啟操作說明.bat    ← 本說明
+├── open_inspector.bat
+├── open_user_guide.bat    ← 本說明
 └── App.config          被測程式與 Recipe_data 路徑</div>
             <p>上層還有 <code>Project_FlaUIBDD/web_dashboard/</code> Web 控制台（port <strong>6690</strong>）。</p>
         </section>
@@ -182,7 +182,7 @@ dotnet test -c Release --no-build</div>
             <div class="code-block">dotnet test -c Release --filter "Name~TC01"</div>
 
             <h3>3. Web 控制台（建議）</h3>
-            <p>雙擊 <code>..\web_dashboard\開啟控制台.bat</code>，瀏覽器開啟 <a href="http://localhost:6690/">http://localhost:6690/</a>，可勾選 Feature、啟動 exe、執行 <code>dotnet test</code> 並看結果。</p>
+            <p>雙擊 <code>..\web_dashboard\open_dashboard.bat</code>，瀏覽器開啟 <a href="http://localhost:6690/">http://localhost:6690/</a>，可勾選 Feature、啟動 exe、執行 <code>dotnet test</code> 並看結果。</p>
 
             <h3>4. 查看 HTML 報告</h3>
             <p>測試完成後開啟：</p>
@@ -194,9 +194,9 @@ bin\Release\net8.0-windows\reports\SemiInspectionTestReport.html</div>
             <h2>批次檔一覽</h2>
             <table>
                 <tr><th>檔案</th><th>用途</th></tr>
-                <tr><td><code>開啟操作說明.bat</code></td><td>以系統預設瀏覽器開啟本說明（<code>操作說明.html</code>）</td></tr>
-                <tr><td><code>開啟Inspector.bat</code></td><td>啟動 Inspection App（若未執行）+ FlaUI Inspector，檢視控制項 AutomationId</td></tr>
-                <tr><td><code>..\web_dashboard\開啟控制台.bat</code></td><td>啟動 Web 測試控制台（port 6690）</td></tr>
+                <tr><td><code>open_user_guide.bat</code></td><td>以系統預設瀏覽器開啟本說明（<code>user_guide.html</code>）</td></tr>
+                <tr><td><code>open_inspector.bat</code></td><td>啟動 Inspection App（若未執行）+ FlaUI Inspector，檢視控制項 AutomationId</td></tr>
+                <tr><td><code>..\web_dashboard\open_dashboard.bat</code></td><td>啟動 Web 測試控制台（port 6690）</td></tr>
                 <tr><td><code>tools\install-flauinspect.ps1</code></td><td>下載並安裝 FlaUInspect 至 <code>tools\FlaUIInspector\</code></td></tr>
             </table>
         </section>
@@ -227,7 +227,7 @@ bin\Release\net8.0-windows\reports\SemiInspectionTestReport.html</div>
             <h2>FlaUI Inspector</h2>
             <ol>
                 <li>確認 <code>tools\FlaUIInspector\FlaUIInspector.exe</code> 存在；若無，執行 <code>tools\install-flauinspect.ps1</code>。</li>
-                <li>雙擊 <code>開啟Inspector.bat</code>。</li>
+                <li>雙擊 <code>open_inspector.bat</code>。</li>
                 <li>在 Inspector 選擇行程 <strong>SemiInspectionDesktop</strong>，檢查上述控制項的 Name / AutomationId。</li>
             </ol>
             <p>官方下載：<a href="https://github.com/FlaUI/FlaUInspect/releases" target="_blank">FlaUI/FlaUInspect</a>（v3 主程式為 <code>FlaUInspect.exe</code>，本專案已提供 <code>FlaUIInspector.exe</code> 別名）。</p>
@@ -265,7 +265,7 @@ bin\Release\net8.0-windows\reports\SemiInspectionTestReport.html</div>
 
     <footer>
         <p>Inspection App FlaUI BDD 操作說明 v1.0</p>
-        <p>雙擊 <strong>開啟操作說明.bat</strong> 可隨時開啟本頁</p>
+        <p>雙擊 <strong>open_user_guide.bat</strong> 可隨時開啟本頁</p>
     </footer>
 </div>
 </body>

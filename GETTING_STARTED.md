@@ -88,7 +88,7 @@ python --version      # 應顯示 3.x
 
 #### Windows 環境
 
-雙擊 **`開啟操作手冊.bat`**
+雙擊 **`main_menu.bat`**
 
 - 🌐 自動在瀏覽器開啟：http://localhost:6688/docs/index.html
 - 📚 閱讀五個章節，了解完整流程
@@ -96,14 +96,14 @@ python --version      # 應顯示 3.x
 
 #### Linux / Codespaces 環境
 
-執行 **`./開啟操作手冊.sh`**
+執行 **`./open_user_manual.sh`**
 
 ```bash
 # 賦予執行權限（首次執行）
-chmod +x 開啟操作手冊.sh
+chmod +x open_user_manual.sh
 
 # 啟動操作手冊伺服器
-./開啟操作手冊.sh
+./open_user_manual.sh
 ```
 
 腳本會自動執行 **5 項環境檢查**：
@@ -727,7 +727,7 @@ cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\tools
 ```
 
 **使用方法**：
-1. 執行 `開啟Inspector.bat`
+1. 執行 `open_inspector.bat`
 2. 點擊 **Hover Mode**
 3. 將滑鼠移到控制項上
 4. 查看屬性：
@@ -959,7 +959,7 @@ foreach (var el in allElements)
    ```bat
    cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\tools
    .\install-flauinspect.ps1
-   開啟Inspector.bat
+   open_inspector.bat
    ```
 4. **實作練習**：
    - 使用 Inspector 查看 UI 元素的 AutomationId
@@ -1035,11 +1035,11 @@ Automation_testcase/Project_FlaUIBDD/
 ```
 docs/
   ├── index.html                     ← 首頁（總覽）
-  ├── 01-TPS轉BDD.html               ← 第 1 章
-  ├── 02-修改BDD.html                ← 第 2 章
-  ├── 03-執行測試.html               ← 第 3 章
-  ├── 04-修復測試.html               ← 第 4 章
-  └── 05-讀取報告.html               ← 第 5 章
+  ├── 01-tps-to-bdd.html               ← 第 1 章
+  ├── 02-edit-bdd.html                ← 第 2 章
+  ├── 03-run-tests.html               ← 第 3 章
+  ├── 04-fix-tests.html               ← 第 4 章
+  └── 05-read-reports.html               ← 第 5 章
 ```
 
 ### 🎮 被測應用程式
@@ -1089,7 +1089,7 @@ Recipe_data/
 
 2. 啟動 Inspector：
    ```bat
-   開啟Inspector.bat
+   open_inspector.bat
    ```
 
 3. 在 Inspector 中：
@@ -1120,12 +1120,12 @@ Recipe_data/
 
 4. **使用 Inspector** — 確認控制項 ID 是否正確
    ```bat
-   開啟Inspector.bat
+   open_inspector.bat
    ```
 
 5. **閱讀操作手冊第 4 章** — 修復測試指南
    ```
-   docs/04-修復測試.html
+   docs/04-fix-tests.html
    ```
 
 ### Q4: 如何新增一個測試案例？

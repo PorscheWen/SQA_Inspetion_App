@@ -35,8 +35,8 @@ if [ ! -f "docs/server.py" ]; then
     echo -e "${RED}[錯誤] 找不到 docs/server.py${NC}"
     exit 1
 fi
-if [ ! -f "docs/新手入門指南.html" ]; then
-    echo -e "${RED}[錯誤] 找不到 docs/新手入門指南.html${NC}"
+if [ ! -f "GETTING_STARTED.md" ]; then
+    echo -e "${RED}[錯誤] 找不到 GETTING_STARTED.md${NC}"
     exit 1
 fi
 echo -e "${GREEN}✅ 必要檔案已存在${NC}"
@@ -78,11 +78,11 @@ echo -e "${GREEN}✅ 新手入門指南已啟動${NC}"
 echo "========================================"
 echo ""
 echo -e "${YELLOW}💡 提示:${NC}"
-echo "   • 本機網址: http://localhost:6688/docs/新手入門指南.html"
+echo "   • 本機網址: http://localhost:6688/GETTING_STARTED.md"
 
 if [ -n "${CODESPACE_NAME:-}" ]; then
     FORWARDED_URL="https://${CODESPACE_NAME}-6688.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}"
-    echo "   • Codespaces 網址: ${FORWARDED_URL}/docs/新手入門指南.html"
+    echo "   • Codespaces 網址: ${FORWARDED_URL}/GETTING_STARTED.md"
     echo ""
     echo -e "${YELLOW}   🔧 如無法開啟，請執行: ./check_port_forwarding.sh${NC}"
 fi

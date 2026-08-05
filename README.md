@@ -11,7 +11,7 @@ Semi Inspection Desktop 的 **FlaUI BDD 自動化測試平台**（可獨立運�
 **只需雙擊一個批次檔，即可使用所有功能：**
 
 ```bat
-雙擊： 主選單.bat
+雙擊： main_menu.bat
 ```
 
 **主選單包含所有功能：**
@@ -33,7 +33,7 @@ Semi Inspection Desktop 的 **FlaUI BDD 自動化測試平台**（可獨立運�
 - ✅ [8] 開啟操作手冊 (無 Python 版)
 - ✅ [11] 無 Python 使用指南
 
-或查看 [無Python使用指南.md](無Python使用指南.md)
+或查看 [NO_PYTHON_GUIDE.md](NO_PYTHON_GUIDE.md)
 
 ---
 
@@ -45,15 +45,15 @@ Semi Inspection Desktop 的 **FlaUI BDD 自動化測試平台**（可獨立運�
 - **[12] 疑難排解指南**
 
 或查看文件：
-- 📘 [WINDOWS_快速開始.md](WINDOWS_快速開始.md)
-- 🔧 [WINDOWS_疑難排解.md](WINDOWS_疑難排解.md)
+- 📘 [WINDOWS_QUICK_START.md](WINDOWS_QUICK_START.md)
+- 🔧 [WINDOWS_TROUBLESHOOTING.md](WINDOWS_TROUBLESHOOTING.md)
 
 ### 常見問題快速修復
 | 問題 | 解決方法 |
 |------|----------|
 | 🏢 公司電腦無法安裝 Python | 選單選項 [11] 查看無 Python 使用指南 |
 | ❌ 找不到 Python | 選單選項 [8] 使用離線版操作手冊 |
-| 💥 不知道如何開始 | 執行「主選單.bat」，所有功能都在裡面 |
+| 💥 不知道如何開始 | 執行「main_menu.bat」，所有功能都在裡面 |
 | 🔍 需要診斷環境 | 選單選項 [13] 環境診斷工具 |
 
 ---
@@ -69,7 +69,7 @@ SQA_Inspetion_App/
 ├── 啟動測試平台.bat                 # 開啟 Web 控制台 (port 6690)
 ├── config.json                     # 路徑設定摘要
 ├── docs/                           # HTML 操作手冊（五章節）
-├── 開啟操作手冊.bat                 # 開啟 docs/index.html
+├── main_menu.bat                 # 開啟 docs/index.html
 ├── 執行單一測試.bat                 # 執行指定 TC（如 TC01）
 ├── 開啟測試報告.bat                 # 開啟 TestResultReport.html
 └── Automation_testcase/
@@ -84,7 +84,7 @@ SQA_Inspetion_App/
 
 ## 操作手冊（HTML）
 
-**使用主選單開啟：** 執行 `主選單.bat`，選擇 [7] 或 [8]
+**使用主選單開啟：** 執行 `main_menu.bat`，選擇 [7] 或 [8]
 
 - **選項 [7]**：開啟操作手冊（需要 Python，提供完整互動功能）
 - **選項 [8]**：開啟操作手冊（無 Python 版，離線閱讀）
@@ -112,7 +112,7 @@ SQA_Inspetion_App/
 
 ```bat
 # 執行主選單
-雙擊： 主選單.bat
+雙擊： main_menu.bat
 
 # 選擇選項 [13] 環境診斷工具
 ```
@@ -126,7 +126,7 @@ SQA_Inspetion_App/
 
 ### 詳細疑難排解指南
 
-在主選單中選擇 [12] 或直接開啟 [WINDOWS_疑難排解.md](WINDOWS_疑難排解.md)
+在主選單中選擇 [12] 或直接開啟 [WINDOWS_TROUBLESHOOTING.md](WINDOWS_TROUBLESHOOTING.md)
 
 常見問題包括：
 1. ❌ 找不到 Python → 使用離線版操作手冊（選單選項 [8]）
@@ -142,7 +142,7 @@ SQA_Inspetion_App/
 ### 🎯 方式 A：使用主選單（強烈推薦）
 
 ```bat
-雙擊： 主選單.bat
+雙擊： main_menu.bat
 ```
 
 **主選單提供 15 個功能選項：**
@@ -226,7 +226,7 @@ build_semi.bat
 
 ```bat
 # 執行主選單
-雙擊： 主選單.bat
+雙擊： main_menu.bat
 
 # 選擇 [1] 執行全部測試
 # 或選擇 [2] 執行單一測試
