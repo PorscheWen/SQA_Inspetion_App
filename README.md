@@ -6,45 +6,55 @@ Semi Inspection Desktop 的 **FlaUI BDD 自動化測試平台**（可獨立運�
 
 ## 🪟 Windows 11 用戶請先看這裡！
 
-### 🏢 公司電腦無法安裝 Python？
-**不用擔心！大部分功能都不需要 Python。**
+### 🚀 快速開始 - 使用統一主選單
+
+**只需雙擊一個批次檔，即可使用所有功能：**
 
 ```bat
-雙擊： 開啟無Python使用指南.bat
+雙擊： 主選單.bat
 ```
 
-或查看 [無Python使用指南.md](無Python使用指南.md)
-
-**可用功能（無需 Python）：**
-- ✅ 查看操作手冊（離線版）→ `開啟操作手冊（無Python）.bat`
-- ✅ 執行全部測試 → `run_tests.bat`
-- ✅ 查看測試報告 → `開啟測試報告.bat`
-- ✅ 啟動被測程式 → `啟動InspectionApp.bat`
-
-**需要 Python 的功能（受限）：**
-- ⚠️ Web 測試控制台 → 改用命令列執行
-- ⚠️ 操作手冊互動按鈕 → 手動執行對應 .bat
+**主選單包含所有功能：**
+- ✅ 測試執行（全部測試、單一測試、Web 控制台）
+- ✅ 應用程式（啟動、建置）
+- ✅ 報告與文件（測試報告、操作手冊）
+- ✅ 指南與說明（新手入門、疑難排解等）
+- ✅ 工具（環境診斷、TPS、Inspector）
 
 ---
 
-### 第一次使用？執行診斷工具
-```bat
-雙擊： 診斷工具.bat
-```
+### 🏢 公司電腦無法安裝 Python？
+**不用擔心！大部分功能都不需要 Python。**
 
-### 遇到問題？查看指南
-- 📘 **快速開始**：[WINDOWS_快速開始.md](WINDOWS_快速開始.md) 或執行 `開啟快速開始指南.bat`
-- 🔧 **疑難排解**：[WINDOWS_疑難排解.md](WINDOWS_疑難排解.md) 或執行 `開啟疑難排解指南.bat`
-- 🏢 **無 Python**：[無Python使用指南.md](無Python使用指南.md) 或執行 `開啟無Python使用指南.bat`
+在主選單中選擇：
+- ✅ [1] 執行全部測試（無需 Python）
+- ✅ [2] 執行單一測試（無需 Python）
+- ✅ [6] 開啟測試報告（無需 Python）
+- ✅ [8] 開啟操作手冊 (無 Python 版)
+- ✅ [11] 無 Python 使用指南
+
+或查看 [無Python使用指南.md](無Python使用指南.md)
+
+---
+
+### 遇到問題？
+
+在主選單中選擇：
+- **[13] 環境診斷工具** - 自動檢查系統環境
+- **[10] Windows 快速開始指南**
+- **[12] 疑難排解指南**
+
+或查看文件：
+- 📘 [WINDOWS_快速開始.md](WINDOWS_快速開始.md)
+- 🔧 [WINDOWS_疑難排解.md](WINDOWS_疑難排解.md)
 
 ### 常見問題快速修復
 | 問題 | 解決方法 |
 |------|----------|
-| 🏢 公司電腦無法安裝 Python | 使用無 Python 版本工具 |
-| ❌ 找不到 Python | 安裝 Python 3.8+ 並勾選「Add to PATH」 |
-| 💥 批次檔閃退 | 從命令提示字元執行查看錯誤 |
-| 🔒 Port 被占用 | 執行診斷工具查看占用進程 |
-| 🚫 防火牆阻擋 | 以系統管理員身分執行 |
+| 🏢 公司電腦無法安裝 Python | 選單選項 [11] 查看無 Python 使用指南 |
+| ❌ 找不到 Python | 選單選項 [8] 使用離線版操作手冊 |
+| 💥 不知道如何開始 | 執行「主選單.bat」，所有功能都在裡面 |
+| 🔍 需要診斷環境 | 選單選項 [13] 環境診斷工具 |
 
 ---
 
@@ -74,7 +84,13 @@ SQA_Inspetion_App/
 
 ## 操作手冊（HTML）
 
-雙擊 **`開啟操作手冊.bat`** 或開啟 `docs/index.html`，內含五章節：
+**使用主選單開啟：** 執行 `主選單.bat`，選擇 [7] 或 [8]
+
+- **選項 [7]**：開啟操作手冊（需要 Python，提供完整互動功能）
+- **選項 [8]**：開啟操作手冊（無 Python 版，離線閱讀）
+- **直接開啟**：`docs/index.html`
+
+操作手冊內含五章節：
 
 1. TPS 轉換成 BDD testcases
 2. 如何修改 BDD testcases
@@ -87,63 +103,142 @@ SQA_Inspetion_App/
 | 階段 | 文件／工具 | 說明 |
 |------|------------|------|
 | 1. TPS → BDD | `Test_cases/TPS.md` → `Features/*.feature` | Gherkin 規格對應可執行 Scenario |
-| 2. 執行測試 | `run_tests.bat` 或 Web 控制台 | FlaUI 操作 Semi Inspection Desktop |
-| 3. 讀取報告 | `reports/SemiInspectionTestReport.html` | JUnit XML + HTML 報告 |
+| 2. 執行測試 | 主選單 [1] [2] [3] | FlaUI 操作 Semi Inspection Desktop |
+| 3. 讀取報告 | 主選單 [6] | JUnit XML + HTML 報告 |
 
 ## 🆘 疑難排解（Windows 11）
 
-如果執行批次檔時遇到問題（如閃退、找不到 Python、Port 占用等），請使用以下工具：
-
-### 自動診斷工具
+使用主選單的環境診斷工具：
 
 ```bat
-診斷工具.bat
+# 執行主選單
+雙擊： 主選單.bat
+
+# 選擇選項 [13] 環境診斷工具
 ```
 
-此工具會自動檢查：
+診斷工具會自動檢查：
 - ✅ Python 環境與版本
+- ✅ .NET 環境與版本  
 - ✅ 專案檔案完整性
 - ✅ Port 占用狀況
-- ✅ 防火牆與網路權限
-- ✅ 檔案系統權限
+- ✅ 被測程式與測試報告狀態
 
 ### 詳細疑難排解指南
 
-開啟 [WINDOWS_疑難排解.md](WINDOWS_疑難排解.md) 或執行：
-
-```bat
-開啟疑難排解指南.bat
-```
+在主選單中選擇 [12] 或直接開啟 [WINDOWS_疑難排解.md](WINDOWS_疑難排解.md)
 
 常見問題包括：
-1. ❌ 找不到 Python → 安裝 Python 並加入 PATH
-2. ⚠️ Port 6688/6690 被占用 → 關閉占用的程式
-3. ❌ 找不到 docs\server.py → 重新下載或檢查解壓縮
-4. 🔒 防火牆阻擋 → 新增例外規則或以系統管理員執行
-5. 💥 批次檔閃退 → 從命令提示字元執行查看錯誤訊息
+1. ❌ 找不到 Python → 使用離線版操作手冊（選單選項 [8]）
+2. ⚠️ Port 被占用 → 診斷工具會顯示占用進程
+3. ❌ 找不到檔案 → 檢查專案完整性
+4. 🔒 防火牆阻擋 → 以系統管理員執行主選單
+5. 💥 不知道如何開始 → 執行主選單，跟著選項操作
 
 ---
 
 ## 快速開始
 
-### 前置需求
+### 🎯 方式 A：使用主選單（強烈推薦）
+
+```bat
+雙擊： 主選單.bat
+```
+
+**主選單提供 15 個功能選項：**
+
+```
+【測試執行】
+  [1] 執行全部測試
+  [2] 執行單一測試
+  [3] 啟動測試平台 (Web 控制台)
+
+【應用程式】
+  [4] 啟動 Inspection App
+  [5] 建置 Inspection App
+
+【報告與文件】
+  [6] 開啟測試報告
+  [7] 開啟操作手冊
+  [8] 開啟操作手冊 (無 Python 版)
+
+【指南與說明】
+  [9]  新手入門指南
+  [10] Windows 快速開始指南
+  [11] 無 Python 使用指南
+  [12] 疑難排解指南
+
+【工具】
+  [13] 環境診斷工具
+  [14] 開啟 TPS 文件
+  [15] 開啟 FlaUI Inspector
+
+  [0] 退出
+```
+
+---
+
+### 🎯 方式 B：使用命令列
+
+如果需要直接執行特定功能：
+
+#### 執行全部測試
+
+```bat
+# 在主選單中選擇 [1]
+# 或使用命令列：
+cd SQA_Inspetion_App
+cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
+dotnet test -c Release
+```
+
+#### 執行單一測試
+
+```bat
+# 在主選單中選擇 [2]
+# 或使用命令列：
+cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
+dotnet test -c Release --filter "Name~TC01"
+```
+
+#### 建置應用程式
+
+```bat
+# 在主選單中選擇 [5]
+# 或直接執行：
+build_semi.bat
+```
+
+---
+
+## 前置需求
 
 - Windows 10/11
 - .NET SDK 8.0+
-- Python 3.x（Web 控制台）
+- Python 3.x（部分功能，如 Web 控制台、操作手冊伺服器）
 - MSBuild .NET 3.5（建置被測 App）
 
-### CLI 執行全部測試
+**注意**：Python 不是必需的，大部分功能都可以在沒有 Python 的情況下使用。
+
+### 執行測試的三種方式
+
+#### 方式 1：使用主選單（最簡單）
 
 ```bat
-cd SQA_Inspetion_App
-run_tests.bat
+# 執行主選單
+雙擊： 主選單.bat
+
+# 選擇 [1] 執行全部測試
+# 或選擇 [2] 執行單一測試
 ```
 
-### Web 控制台
+#### 方式 2：使用 Web 控制台（需要 Python）
 
 ```bat
-啟動測試平台.bat
+# 在主選單中選擇 [3]
+# 或使用命令列：
+cd Automation_testcase\Project_FlaUIBDD\web_dashboard
+python server.py
 ```
 
 瀏覽器開啟：**http://localhost:6690/**
@@ -152,14 +247,21 @@ run_tests.bat
 2. **執行已勾選的測試**
 3. **測試結果** — 查看通過率與 HTML 報告
 
-### 單一 TC
+#### 方式 3：使用命令列
 
 ```bat
+# 執行全部測試
 cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD
+dotnet build -c Release
+dotnet test -c Release
+
+# 執行單一測試
 dotnet test -c Release --filter "Name~TC01"
 ```
 
 ## 報告位置
+
+在主選單中選擇 [6] 開啟測試報告，或手動開啟：
 
 | 類型 | 路徑 |
 |------|------|
