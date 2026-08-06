@@ -24,6 +24,7 @@
                 <li><a href="03-run-tests.html">3. 執行測試</a></li>
                 <li><a href="04-fix-tests.html">4. 修復測試</a></li>
                 <li><a href="05-read-reports.html">5. 讀取報告</a></li>
+                <li><a href="flaui-tutorial.html">FlaUI 教學</a></li>
             </ul>
         </nav>
 
@@ -34,7 +35,8 @@
                     日常請用
                     <span class="launch-bat" data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span>
                     → <strong>[9]</strong> 開啟本頁。
-                    FlaUI 深度範例見
+                    FlaUI 教學見分頁
+                    <a href="flaui-tutorial.html">FlaUI 教學</a>；完整程式範例見
                     <a href="../GETTING_STARTED.md#flaui-appendix" class="file-link"><code>GETTING_STARTED.md</code> 附錄</a>。
                 </div>
                 <h2>本頁目錄</h2>
@@ -47,6 +49,17 @@
                     <li><a href="#bats">常用 .bat</a></li>
                     <li><a href="#learning-path">學習路徑</a></li>
                     <li><a href="#tc-guide">10 個測試案例導覽</a></li>
+                    <li><a href="flaui-tutorial.html">FlaUI 教學</a>（獨立分頁）
+                        <ul>
+                            <li><a href="flaui-tutorial.html#flaui-overview">定位與對照</a></li>
+                            <li><a href="flaui-tutorial.html#flaui-inspect">FlaUInspect 逐步</a></li>
+                            <li><a href="flaui-tutorial.html#flaui-locators">Locator 速查</a></li>
+                            <li><a href="flaui-tutorial.html#flaui-layers">三層架構</a></li>
+                            <li><a href="flaui-tutorial.html#flaui-tc-walk">TC 實戰走讀</a></li>
+                            <li><a href="flaui-tutorial.html#flaui-report">報告截圖</a></li>
+                            <li><a href="flaui-tutorial.html#flaui-practice">練習與反模式</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#paths">重要檔案位置</a></li>
                     <li><a href="#faq">常見問題 FAQ</a></li>
                     <li><a href="#tips">給新手的建議</a></li>
@@ -407,14 +420,14 @@ python --version</div>
                 <h3>Level 3：理解自動化（約 2 小時）</h3>
                 <ol>
                     <li><a href="01-tps-to-bdd.html">第 1 章</a>：TPS → Feature → Steps → PageObjects</li>
-                    <li>看 Feature / StepDefinitions / PageObjects</li>
-                    <li>FlaUI 基礎：<a href="../GETTING_STARTED.md#flaui-appendix"
+                    <li>分頁 <a href="flaui-tutorial.html">FlaUI 教學</a>：Inspect → Locator → TC02/06/03/01</li>
+                    <li>完整碼範例：<a href="../GETTING_STARTED.md#flaui-appendix"
                             class="file-link">GETTING_STARTED 附錄</a></li>
                 </ol>
                 <h3>Level 4–5：修改與新增</h3>
                 <ol>
                     <li><a href="02-edit-bdd.html">第 2 章</a>、<a href="04-fix-tests.html">第 4 章</a></li>
-                    <li>選單 <code>[15]</code> Inspector，練習改一步驟</li>
+                    <li>選單 <code>[15]</code> Inspector（對照 <a href="flaui-tutorial.html#flaui-inspect">逐步練習</a>），改一步驟</li>
                     <li>新 TC：TPS → Feature → Steps → PageObject → <code>[2] Run single test</code> 驗證</li>
                 </ol>
             </section>
@@ -489,9 +502,40 @@ python --version</div>
                         <td>★★★</td>
                     </tr>
                 </table>
-                <div class="card">建議新手順序：TC02 → TC06 → TC03 → TC01 → TC05 → TC07</div>
+                <div class="card">建議新手順序：TC02 → TC06 → TC03 → TC01 → TC05 → TC07。
+                    深度走讀見 <a href="flaui-tutorial.html#flaui-tc-walk">FlaUI TC 實戰</a>。</div>
             </section>
 
+            <section id="flaui-tutorial">
+                <h2>FlaUI 教學</h2>
+                <div class="card ok">
+                    <strong>已獨立成分頁：</strong>
+                    <a href="flaui-tutorial.html"><strong>FlaUI 教學</strong></a>
+                    — Inspect、Locator、Feature→Steps→PageObject、TC02/06/03/01 走讀。
+                </div>
+                <div class="quick-actions">
+                    <a href="flaui-tutorial.html" class="quick-action primary">
+                        <h3>開啟 FlaUI 教學</h3>
+                        <p>Inspector 到 TC 走讀</p>
+                        <code>docs/flaui-tutorial.html</code>
+                    </a>
+                    <a href="flaui-tutorial.html#flaui-inspect" class="quick-action">
+                        <h3>FlaUInspect</h3>
+                        <p>逐步練習與屬性對照</p>
+                        <code>#flaui-inspect</code>
+                    </a>
+                    <a href="flaui-tutorial.html#flaui-tc-walk" class="quick-action">
+                        <h3>TC 走讀</h3>
+                        <p>TC02 → 06 → 03 → 01</p>
+                        <code>#flaui-tc-walk</code>
+                    </a>
+                    <a href="../GETTING_STARTED.md#flaui-appendix" class="quick-action file-link">
+                        <h3>完整碼附錄</h3>
+                        <p>Page Object 長範例（Markdown）</p>
+                        <code>GETTING_STARTED.md</code>
+                    </a>
+                </div>
+            </section>
             <section id="paths">
                 <h2>重要檔案位置速查</h2>
                 <table>
@@ -502,6 +546,10 @@ python --version</div>
                     <tr>
                         <td>新手入門（本頁）</td>
                         <td><code>docs/00-getting-started.html</code></td>
+                    </tr>
+                    <tr>
+                        <td>FlaUI 教學截圖</td>
+                        <td><code>docs/assets/flaui/</code></td>
                     </tr>
                     <tr>
                         <td>TPS / TEST_PLAN</td>
@@ -545,7 +593,8 @@ python --version</div>
                 <p>選單 <code>[15]</code> 或
                     <span class="launch-bat file-link"
                         data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"><code>open_inspector.bat</code></span>
-                    → Hover Mode。詳見
+                    → Hover Mode。逐步圖文見
+                    <a href="flaui-tutorial.html#flaui-inspect">FlaUInspect 練習</a>；安裝見
                     <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/README.md"
                         class="file-link">tools/README.md</a>。
                 </p>
@@ -611,17 +660,25 @@ python --version</div>
                             <p>HTML / JUnit / 截圖。</p>
                         </div>
                     </a>
+                    <a href="flaui-tutorial.html" style="text-decoration:none;color:inherit;">
+                        <div class="chapter-card">
+                            <span class="chapter-num">分頁</span>
+                            <h3>FlaUI 教學</h3>
+                            <p>Inspect、Locator、TC02/06/03/01 走讀與截圖。</p>
+                        </div>
+                    </a>
                     <a href="../GETTING_STARTED.md#flaui-appendix" style="text-decoration:none;color:inherit;">
                         <div class="chapter-card">
                             <span class="chapter-num">附錄</span>
-                            <h3>FlaUI 操作詳解</h3>
+                            <h3>FlaUI 完整碼</h3>
                             <p>Locators、Page Object、實戰範例（Markdown）。</p>
                         </div>
                     </a>
                 </div>
                 <div class="card ok" style="margin-top:16px;">
-                    下一步建議：<code>main_menu.bat</code> → <strong>[1] Run all tests</strong>，再
-                    <strong>[6] Open test report</strong>。
+                    下一步建議：先走 <a href="flaui-tutorial.html#flaui-inspect">FlaUInspect</a>，再
+                    <code>main_menu</code> → <strong>[2]</strong> 跑 <code>TC06</code>，
+                    <strong>[6]</strong> 看報告截圖。
                 </div>
             </section>
         </div>
@@ -629,12 +686,34 @@ python --version</div>
         <footer>
             <p>新手入門 · 已整合 GETTING_STARTED 精華</p>
             <p><a href="index.html">操作手冊首頁</a> ·
+                <a href="flaui-tutorial.html">FlaUI 教學</a> ·
                 <a href="../GETTING_STARTED.md#flaui-appendix">FlaUI 附錄 (MD)</a> ·
                 <a href="#toc">回到目錄</a>
             </p>
         </footer>
     </div>
+    <div id="lightbox-flaui" onclick="this.classList.remove('open')" role="dialog" aria-modal="true" aria-label="截圖放大">
+        <span class="close" aria-hidden="true">&times;</span>
+        <img id="lightbox-flaui-img" src="" alt="screenshot enlarge">
+    </div>
     <script src="launcher.js"></script>
+    <script>
+        (function () {
+            var box = document.getElementById('lightbox-flaui');
+            var img = document.getElementById('lightbox-flaui-img');
+            document.querySelectorAll('.shot-fig img').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    img.src = el.src;
+                    img.alt = el.alt || 'screenshot';
+                    box.classList.add('open');
+                });
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') box.classList.remove('open');
+            });
+        })();
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-label="FlaUInspect step: launch">
+  <rect width="920" height="360" fill="#0d1117"/>
+  <text x="24" y="36" fill="#ff8c00" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="20" font-weight="700">Step 1  Launch FlaUInspect + App</text>
+  <rect x="40" y="70" width="380" height="240" rx="10" fill="#1a1a1a" stroke="#90ee90" stroke-width="2"/>
+  <text x="60" y="104" fill="#90ee90" font-family="Consolas, monospace" font-size="16">main_menu.bat ’ [15]</text>
+  <text x="60" y="136" fill="#d0d0d0" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="15">or open_inspector.bat</text>
+  <text x="60" y="180" fill="#9a9a9a" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="14">Starts:</text>
+  <text x="60" y="208" fill="#7ec8e3" font-family="Consolas, monospace" font-size="14">" SemiInspectionDesktop.exe</text>
+  <text x="60" y="236" fill="#7ec8e3" font-family="Consolas, monospace" font-size="14">" FlaUInspect.exe</text>
+  <text x="60" y="280" fill="#b0b0b0" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="13">Replace with your screenshot later:</text>
+  <text x="60" y="300" fill="#666" font-family="Consolas, monospace" font-size="12">assets/flaui/inspect_01_launch.png</text>
+  <text x="450" y="180" fill="#ff8c00" font-size="40" font-family="Segoe UI">’</text>
+  <rect x="500" y="70" width="380" height="240" rx="10" fill="#1a1a1a" stroke="#555"/>
+  <text x="520" y="110" fill="#ffb347" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="16" font-weight="700">Expected windows</text>
+  <rect x="530" y="130" width="320" height="70" rx="6" fill="#252525" stroke="#444"/>
+  <text x="548" y="172" fill="#d0d0d0" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="14">Semi Inspection Desktop</text>
+  <rect x="530" y="220" width="320" height="70" rx="6" fill="#252525" stroke="#444"/>
+  <text x="548" y="262" fill="#d0d0d0" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="14">FlaUInspect</text>
+</svg>

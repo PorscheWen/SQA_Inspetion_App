@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420" role="img" aria-label="FlaUInspect step: read properties">
+  <rect width="920" height="420" fill="#0d1117"/>
+  <text x="24" y="36" fill="#ff8c00" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="20" font-weight="700">Step 4  Read Properties Panel</text>
+  <rect x="60" y="60" width="800" height="320" rx="12" fill="#1a1a1a" stroke="#555"/>
+  <text x="84" y="98" fill="#87ceeb" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="15">Selected: Import Recipe (Button)</text>
+  <line x1="84" y1="118" x2="820" y2="118" stroke="#333"/>
+  <text x="84" y="155" fill="#9a9a9a" font-family="Consolas, monospace" font-size="15">Name</text>
+  <text x="280" y="155" fill="#d0d0d0" font-family="Consolas, monospace" font-size="15">Import Recipe</text>
+  <text x="84" y="195" fill="#90ee90" font-family="Consolas, monospace" font-size="15" font-weight="700">AutomationId </text>
+  <text x="280" y="195" fill="#90ee90" font-family="Consolas, monospace" font-size="15">btnImportRecipe</text>
+  <text x="84" y="235" fill="#9a9a9a" font-family="Consolas, monospace" font-size="15">ControlType</text>
+  <text x="280" y="235" fill="#d0d0d0" font-family="Consolas, monospace" font-size="15">Button</text>
+  <text x="84" y="275" fill="#9a9a9a" font-family="Consolas, monospace" font-size="15">ClassName</text>
+  <text x="280" y="275" fill="#d0d0d0" font-family="Consolas, monospace" font-size="15">WindowsForms10.BUTTON...</text>
+  <rect x="84" y="300" width="720" height="50" rx="8" fill="#1f2a1f" stroke="#90ee90"/>
+  <text x="104" y="331" fill="#90ee90" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="14">Company rule: prefer AutomationId in Page Object locators</text>
+  <text x="84" y="400" fill="#666" font-family="Consolas, monospace" font-size="12">Replace with real panel shot: assets/flaui/inspect_04_properties.png</text>
+</svg>

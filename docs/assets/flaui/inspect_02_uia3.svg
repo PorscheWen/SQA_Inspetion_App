@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="320" viewBox="0 0 920 320" role="img" aria-label="FlaUInspect step: choose UIA3">
+  <rect width="920" height="320" fill="#0d1117"/>
+  <text x="24" y="36" fill="#ff8c00" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="20" font-weight="700">Step 2  Choose UIA3</text>
+  <rect x="80" y="70" width="760" height="200" rx="12" fill="#1a1a1a" stroke="#555"/>
+  <text x="110" y="115" fill="#b0b0b0" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="15">Select automation backend (must match project)</text>
+  <rect x="140" y="145" width="240" height="70" rx="8" fill="#252525" stroke="#555"/>
+  <text x="210" y="187" fill="#888" font-family="Consolas, monospace" font-size="18">UIA2</text>
+  <rect x="440" y="145" width="280" height="70" rx="8" fill="#1f2a1f" stroke="#90ee90" stroke-width="3"/>
+  <text x="530" y="178" fill="#90ee90" font-family="Consolas, monospace" font-size="20" font-weight="700">UIA3 </text>
+  <text x="500" y="200" fill="#9a9a9a" font-family="Segoe UI, Microsoft JhengHei, sans-serif" font-size="13">same as FlaUI.UIA3 in tests</text>
+  <text x="110" y="250" fill="#666" font-family="Consolas, monospace" font-size="12">Replace: assets/flaui/inspect_02_uia3.png</text>
+</svg>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlaUI 教學</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>FlaUI 教學</h1>
+            <p>Semi Inspection Desktop · TC01–TC10 · Inspector／Locator／Page Object</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="00-getting-started.html">新手入門</a></li>
+                <li><a href="01-tps-to-bdd.html">1. TPS → BDD</a></li>
+                <li><a href="02-edit-bdd.html">2. 修改 BDD</a></li>
+                <li><a href="03-run-tests.html">3. 執行測試</a></li>
+                <li><a href="04-fix-tests.html">4. 修復測試</a></li>
+                <li><a href="05-read-reports.html">5. 讀取報告</a></li>
+                <li><a href="flaui-tutorial.html" class="active">FlaUI 教學</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <section id="top">
+                <h2>總覽</h2>
+                <p>對齊 FlaUI Getting Started（UIA／Inspector／Find／Interact），範例全部使用
+                    <strong>Semi Inspection Desktop</strong> 與本專案 TC01–TC10。</p>
+                <div class="card">
+                    <strong>學完能做什麼：</strong>用 FlaUInspect 讀出控制項屬性、對上本專案 Locator／Page Object，
+                    並能跟著精講 TC（TC02→06→03→01）看懂 Feature → Steps → UI 操作。
+                    規格怎麼變腳本見 <a href="01-tps-to-bdd.html">第 1 章</a>；本節專注<strong>怎麼操控 WinForms</strong>。
+                </div>
+                <nav class="flaui-subnav" aria-label="FlaUI 教學小目錄">
+                    <a href="#flaui-overview">定位與對照</a>
+                    <a href="#flaui-inspect">FlaUInspect</a>
+                    <a href="#flaui-locators">Locator</a>
+                    <a href="#flaui-layers">三層架構</a>
+                    <a href="#flaui-tc-walk">TC 走讀</a>
+                    <a href="#flaui-report">報告截圖</a>
+                    <a href="#flaui-practice">練習／反模式</a>
+                </nav>
+
+                <h3 id="flaui-overview">1. FlaUI ↔ 本專案對照</h3>
+                <p><strong>FlaUI</strong> 是 .NET 桌面 UI 自動化框架（類似 Web 的 Selenium），底層為 Windows UI Automation。
+                    本專案使用 <strong>FlaUI.UIA3</strong> + SpecFlow + NUnit + Page Object。</p>
+                <table>
+                    <tr>
+                        <th>官方／通用概念</th>
+                        <th>本專案落點</th>
+                    </tr>
+                    <tr>
+                        <td>Application / Window</td>
+                        <td><code>Hooks/TestHooks.cs</code> 啟動 <code>SemiInspectionDesktop.exe</code></td>
+                    </tr>
+                    <tr>
+                        <td>AutomationElement</td>
+                        <td>工具列、File Tree、DataGrid、MessageBox、檔案對話框</td>
+                    </tr>
+                    <tr>
+                        <td>Condition / Locator</td>
+                        <td><code>BasePage</code>：<code>ByAutomationId</code> / <code>ByName</code>…</td>
+                    </tr>
+                    <tr>
+                        <td>Interact（Click／Keyboard）</td>
+                        <td><code>MainWindowPage</code>、<code>WorkspacePage</code>、<code>FileDialogPage</code></td>
+                    </tr>
+                    <tr>
+                        <td>FlaUInspect</td>
+                        <td>選單 <code>[15]</code> 或
+                            <span class="launch-bat file-link"
+                                data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"><code>open_inspector.bat</code></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>失敗／步驟截圖</td>
+                        <td><code>ActionScreenshotHelper</code> →
+                            <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html"
+                                class="file-link">TestResultReport.html</a>
+                        </td>
+                    </tr>
+                </table>
+
+                <h3 id="flaui-inspect">2. FlaUInspect 操作步驟（含圖）</h3>
+                <p>只在 <strong>Windows</strong> 執行。安裝見
+                    <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/README.md"
+                        class="file-link">tools/README.md</a>。
+                </p>
+                <div class="card ok">
+                    <strong>自動開啟 App + FlaUInspect 並截圖：</strong>雙擊
+                    <span class="launch-bat file-link"
+                        data-launch-bat="docs/assets/flaui/capture_inspect_shots.bat"><code>docs/assets/flaui/capture_inspect_shots.bat</code></span>
+                    （會一併更新 App 三張圖與 Inspect 四張圖到 <code>docs/assets/flaui/</code>）。
+                    只截 App 也可用
+                    <span class="launch-bat file-link"
+                        data-launch-bat="docs/assets/flaui/capture_tutorial_shots.bat"><code>capture_tutorial_shots.bat</code></span>。
+                </div>
+                <div class="inspect-flow" aria-label="FlaUInspect 操作流程">
+                    <span>1 啟動</span><span class="arrow">→</span>
+                    <span>2 選 UIA3</span><span class="arrow">→</span>
+                    <span>3 確認 App</span><span class="arrow">→</span>
+                    <span>4 Hover</span><span class="arrow">→</span>
+                    <span>5 讀屬性</span><span class="arrow">→</span>
+                    <span>6 抄進 Page Object</span>
+                </div>
+
+                <ol class="step-list">
+                    <li>
+                        <h4>啟動 FlaUInspect 與被測 App</h4>
+                        <ol class="mini-ol">
+                            <li>雙擊 <span class="launch-bat file-link"
+                                    data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span> → 選
+                                <code>[15]</code> Open FlaUI Inspector</li>
+                            <li>或直接執行
+                                <span class="launch-bat file-link"
+                                    data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"><code>open_inspector.bat</code></span>
+                            </li>
+                            <li>腳本會：尋找 FlaUInspect →（若需要）啟動
+                                <code>SemiInspectionDesktop.exe</code> → 開啟 Inspector</li>
+                        </ol>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/inspect_01_launch.png" alt="步驟 1：Semi Inspection Desktop 與 FlaUInspect 並排"
+                                loading="lazy">
+                            <figcaption>自動截圖：左側被測 App、右側 FlaUInspect（
+                                <code>capture_inspect_shots.bat</code>）。</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <h4>選擇 UIA3（務必）</h4>
+                        <ol class="mini-ol">
+                            <li>FlaUInspect 啟動／設定畫面選 <strong>UIA3</strong></li>
+                            <li>本專案測試用 <code>FlaUI.UIA3</code>；選 UIA2 會與實際自動化不一致</li>
+                            <li>UIA2 僅在舊系統找不到節點時作 fallback，日常練習不要混用</li>
+                        </ol>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/inspect_02_uia3.png" alt="步驟 2：選擇 UIA3" loading="lazy">
+                            <figcaption>請在 FlaUInspect 選 <strong>UIA3</strong>（與專案 FlaUI.UIA3 一致）。</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <h4>確認 Semi Inspection Desktop 已開啟</h4>
+                        <ol class="mini-ol">
+                            <li>視窗標題應為 <code>Semi Inspection Desktop</code></li>
+                            <li>若沒開：選單 <code>[4] Start Inspection App</code></li>
+                            <li>核對左側 File Tree 出現 <code>Recipe_data</code>（沒有的話先確認測試資料目錄）</li>
+                        </ol>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/01_main_window_filetree.png"
+                                alt="步驟 3：Semi Inspection Desktop 主視窗與 File Tree" loading="lazy">
+                            <figcaption>真實 App 畫面（來自測試報告步驟圖）：工具列＋ File Tree。
+                                Inspector Hover 時請對準工具列按鈕或樹節點。</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <h4>開啟 Hover Mode 並懸停控制項</h4>
+                        <ol class="mini-ol">
+                            <li>在 FlaUInspect 開啟 <strong>Hover Mode</strong>（或「跟隨滑鼠」）</li>
+                            <li>把滑鼠移到 App 的目標控制項（建議先練 <strong>Import Recipe</strong>）</li>
+                            <li>左側元素樹應自動高亮對應節點；確認類型為 Button／TreeItem 等，而非整塊父容器</li>
+                        </ol>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/inspect_03_hover.png" alt="步驟 4：App 與 FlaUInspect 對照（Hover 練習）"
+                                loading="lazy">
+                            <figcaption>對照練習：左為 App 工具列目標、右為 FlaUInspect。
+                                請在 Inspector 開啟 Hover Mode，懸停 Import Recipe 等控制項。</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <h4>讀出並記錄屬性（抄到筆記／Page Object）</h4>
+                        <p>在屬性面板依序記下：</p>
+                        <table>
+                            <tr>
+                                <th>屬性</th>
+                                <th>用途</th>
+                                <th>Import Recipe 範例</th>
+                            </tr>
+                            <tr>
+                                <td><code>Name</code></td>
+                                <td>顯示文字、Tree 項名</td>
+                                <td><code>Import Recipe</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>AutomationId</code> ★</td>
+                                <td>最穩定位（優先）</td>
+                                <td><code>btnImportRecipe</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>ControlType</code></td>
+                                <td>Button / Tree / Edit…</td>
+                                <td>Button</td>
+                            </tr>
+                            <tr>
+                                <td><code>ClassName</code></td>
+                                <td>WinForms 輔助判斷</td>
+                                <td>WindowsForms10.BUTTON…</td>
+                            </tr>
+                        </table>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/inspect_04_properties.png" alt="步驟 5：FlaUInspect 視窗／屬性面板"
+                                loading="lazy">
+                            <figcaption>FlaUInspect 主視窗。在屬性面板記下 Name / AutomationId / ControlType / ClassName。
+                            </figcaption>
+                        </figure>
+                        <div class="code-block">// Page Object 常見寫法（對上 AutomationId）
+var button = window.FindFirstDescendant(
+    cf => cf.ByAutomationId("btnImportRecipe"));
+button?.Click();</div>
+                    </li>
+                    <li>
+                        <h4>必練控制項清單（依序 Hover）</h4>
+                        <p>把實際讀到的值填進「實測」欄（練習用）。建議順序如下：</p>
+                        <table>
+                            <tr>
+                                <th>畫面上的目標</th>
+                                <th>預期 AutomationId／Name</th>
+                                <th>本專案誰在用</th>
+                                <th>對照圖</th>
+                            </tr>
+                            <tr>
+                                <td>Import Recipe</td>
+                                <td><code>btnImportRecipe</code></td>
+                                <td><code>MainWindowPage</code>（Ctrl+I）</td>
+                                <td>主視窗工具列</td>
+                            </tr>
+                            <tr>
+                                <td>About</td>
+                                <td><code>btnToolbar0About</code></td>
+                                <td><code>MainWindowPage</code> / <code>MessageBoxPage</code></td>
+                                <td>主視窗工具列</td>
+                            </tr>
+                            <tr>
+                                <td>RawData</td>
+                                <td><code>btnParameters</code></td>
+                                <td><code>MainWindowPage</code>（Ctrl+E）</td>
+                                <td><a href="assets/flaui/03_rawdata_grid.png">03_rawdata_grid.png</a></td>
+                            </tr>
+                            <tr>
+                                <td>Defect Chart</td>
+                                <td><code>btnDefectChart</code></td>
+                                <td><code>MainWindowPage</code>（Ctrl+D）— <a href="#flaui-practice">作業 1</a></td>
+                                <td>主視窗工具列</td>
+                            </tr>
+                            <tr>
+                                <td>File Tree 檔名節點</td>
+                                <td>Name 含 <code>InspectionRecipe_Sample.json</code></td>
+                                <td><code>WorkspacePage.DoubleClickTreeItem</code></td>
+                                <td><a href="assets/flaui/01_main_window_filetree.png">01_…filetree.png</a></td>
+                            </tr>
+                            <tr>
+                                <td>Log 區</td>
+                                <td><code>txtToolLog</code></td>
+                                <td><code>WorkspacePage.LogContains</code></td>
+                                <td>主視窗下方</td>
+                            </tr>
+                            <tr>
+                                <td>開啟檔案對話框「檔名」欄</td>
+                                <td>AutomationId <code>1148</code></td>
+                                <td><code>FileDialogPage</code></td>
+                                <td><a href="assets/flaui/02_import_file_dialog.png">02_import_…png</a></td>
+                            </tr>
+                        </table>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/02_import_file_dialog.png" alt="檔案對話框對照：Import Recipe"
+                                loading="lazy">
+                            <figcaption>對照：Import Recipe 開啟後的檔案對話框。Hover 時改選對話框視窗節點，
+                                再找檔名欄（常見 AutomationId <code>1148</code>）。</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <h4>常見踩坑</h4>
+                        <ul>
+                            <li>Hover 抓到父容器而不是按鈕 → 再靠近圖示中心，或從樹展開選到 <code>Button</code> 節點。</li>
+                            <li>找不到 AutomationId → WinForms 可能只用 Name；本專案
+                                <code>FindWinFormsControl</code> 會兩邊都試。</li>
+                            <li>對話框出現後主視窗被擋住 → Inspector 先選對話框視窗，再 Hover 檔名欄／OK。</li>
+                            <li>選成 UIA2 → 樹內容可能與測試不符；請回到步驟 2 改 UIA3。</li>
+                        </ul>
+                        <div class="card ok">
+                            練完後：打開 <a href="#flaui-tc-walk">TC 走讀</a>，用 <code>[2] Run single test</code>
+                            跑 <code>TC02</code>／<code>TC06</code>，對照報告截圖。
+                        </div>
+                    </li>
+                </ol>
+
+                <h3 id="flaui-locators">3. Locator 與操作速查</h3>
+                <table>
+                    <tr>
+                        <th>方法</th>
+                        <th>說明</th>
+                        <th>優先級</th>
+                    </tr>
+                    <tr>
+                        <td><code>ByAutomationId</code></td>
+                        <td>最穩定、少受語系影響</td>
+                        <td>★★★★★</td>
+                    </tr>
+                    <tr>
+                        <td><code>ByName</code></td>
+                        <td>顯示文字／Tree 項名</td>
+                        <td>★★★</td>
+                    </tr>
+                    <tr>
+                        <td><code>ByClassName</code></td>
+                        <td>例如 DataGridView</td>
+                        <td>★★</td>
+                    </tr>
+                    <tr>
+                        <td><code>ByControlType</code></td>
+                        <td>類型過濾，通常搭配其他條件</td>
+                        <td>★</td>
+                    </tr>
+                </table>
+                <p><strong>公司慣例：</strong>工具列優先試<strong>快捷鍵</strong>（如 Ctrl+I Import），失敗再依 AutomationId 點擊。</p>
+                <div class="code-block">// 短片段：依 AutomationId 找按鈕並點擊
+var button = window.FindFirstDescendant(cf => cf.ByAutomationId("btnImportRecipe"));
+button?.Click();
+
+// 等待元素（避免寫死過長 Sleep）
+var el = Retry.WhileNull(
+    () => window.FindFirstDescendant(cf => cf.ByAutomationId("txtToolLog")),
+    TimeSpan.FromSeconds(10)
+).Result;</div>
+                <div class="card ok">完整 Page Object／ReadText／FileDialog 範例 →
+                    <a href="../GETTING_STARTED.md#flaui-appendix" class="file-link">GETTING_STARTED.md 附錄</a>。
+                </div>
+
+                <h3 id="flaui-layers">4. Feature → Steps → PageObject</h3>
+                <div class="code-block">Inspection_App.feature          ← Gherkin：人讀的場景
+        ↓
+Inspection_AppSteps.cs          ← 對齊 Given/When/Then（編排＋Assert）
+        ↓
+PageObjects/*.cs                ← 真正的 FlaUI 找元素／點擊／輸入
+        ↓
+ActionScreenshotHelper          ← 步驟圖寫進 TestResultReport</div>
+                <div class="card warn">
+                    <strong>規範：</strong>不要在 Step Definitions 裡直接 <code>FindFirstDescendant</code>。
+                    UI 操作集中在 Page Object，Steps 只呼叫 Page 方法並做斷言。
+                </div>
+
+                <h3 id="flaui-tc-walk">5. TC 實戰走讀</h3>
+                <p>建議精讀順序與初學路徑一致：<strong>TC02 → TC06 → TC03 → TC01</strong>。
+                    Feature 原文：
+                    <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature"
+                        class="file-link">Inspection_App.feature</a>。
+                    單跑：選單 <code>[2]</code> 輸入例如 <code>TC02</code>。
+                </p>
+
+                <article class="tc-walk" id="flaui-tc02">
+                    <h3><span class="tc-badge">精講</span> TC02 — File Tree shows Recipe_data</h3>
+                    <p><strong>目標：</strong>啟動後驗證主視窗標題、檔案樹可見、Recipe_data 含範例 JSON。</p>
+                    <div class="code-block">Then the main window title should be "Semi Inspection Desktop"
+And the file tree should be visible
+And Recipe_data should contain "InspectionRecipe_Sample.json"</div>
+                    <figure class="shot-fig">
+                        <img src="assets/flaui/01_main_window_filetree.png" alt="TC02 對照：File Tree 顯示 Recipe_data"
+                            loading="lazy">
+                        <figcaption>對照點：左樹根節點 <code>Recipe_data</code> 與
+                            <code>InspectionRecipe_Sample.json</code>。FlaUI 用 Name／Tree 遍歷驗證。</figcaption>
+                    </figure>
+                    <p><strong>短片段：</strong>Steps 呼叫 Workspace 檢查可見性；完整實作見
+                        <code>WorkspacePage</code> 與附錄。</p>
+                    <div class="card">踩坑：App 未含測試資料時樹是空的 → 先確認
+                        <code>Recipe_data/</code> 有範例檔，或依賴 TC01／Given「test data is ready」。</div>
+                </article>
+
+                <article class="tc-walk" id="flaui-tc06">
+                    <h3><span class="tc-badge">精講</span> TC06 — About dialog</h3>
+                    <p><strong>目標：</strong>點 About、關閉訊息框（MessageBox）。入門對話框控管。</p>
+                    <div class="code-block">When I click toolbar "About"
+And I close the message dialog</div>
+                    <div class="shot-slot">
+                        <strong>截圖：</strong>報告若跑過 TC06，步驟圖會有 About 彈窗與點 OK。
+                        立刻取得：選單 <code>[2]</code> → <code>TC06</code> → <code>[6] Open test report</code>。
+                    </div>
+                    <p><strong>關鍵頁面：</strong><code>MainWindowPage</code>（開 About）＋
+                        <code>MessageBoxPage</code>（關對話框）。</p>
+                    <div class="card">踩坑：對話框搶焦點失敗時 Enter／找 OK 按鈕會 timeout —
+                        Hooks／DialogHelper 有前景視窗處理，勿在 Step 硬 Sleep。</div>
+                </article>
+
+                <article class="tc-walk" id="flaui-tc03">
+                    <h3><span class="tc-badge">精講</span> TC03 — RawData parameter table</h3>
+                    <p><strong>目標：</strong>點 RawData，確認參數表可見、Log 含 "RawData"。</p>
+                    <div class="code-block">When I click toolbar "RawData"
+Then the data table should be visible
+And the log should contain "RawData"</div>
+                    <figure class="shot-fig">
+                        <img src="assets/flaui/03_rawdata_grid.png" alt="TC03 對照：RawData 參數表格"
+                            loading="lazy">
+                        <figcaption>右側 RawData 表格（Category / Parameter / Value）。
+                            斷言常查表格可見＋ <code>txtToolLog</code> 文字。</figcaption>
+                    </figure>
+                    <div class="code-block">// Steps 短片段
+Main.ClickToolbar("RawData");
+ClassicAssert.IsTrue(Workspace.IsGridVisible());</div>
+                    <div class="card">踩坑：未載入任何 Recipe 時表格可能空白但仍「可見」—
+                        與 TC08／TC09 負面案例區分清楚。</div>
+                </article>
+
+                <article class="tc-walk" id="flaui-tc01">
+                    <h3><span class="tc-badge">精講</span> TC01 — Import Recipe to Recipe_data</h3>
+                    <p><strong>目標：</strong>Import Recipe → 檔案對話框選 JSON → 切 RawData →
+                        驗證樹／表格參數／Log。Feature 使用 <strong>Scenario Outline + Examples（DDT）</strong>。</p>
+                    <div class="code-block">When I click toolbar "Import Recipe"
+And I select file "&lt;recipe_file&gt;" in the file dialog
+And I click toolbar "RawData"
+Then Recipe_data should contain "&lt;recipe_file&gt;"
+And the RawData parameter table should contain "&lt;expected_parameter&gt;"</div>
+                    <figure class="shot-fig">
+                        <img src="assets/flaui/02_import_file_dialog.png" alt="TC01：Import Recipe 檔案對話框"
+                            loading="lazy">
+                        <figcaption>檔案對話框標題「Import Recipe」。Page Object 找檔名欄（AutomationId
+                            <code>1148</code>）輸入完整路徑後確認開啟。</figcaption>
+                    </figure>
+                    <figure class="shot-fig">
+                        <img src="assets/flaui/03_rawdata_grid.png" alt="TC01 匯入後 RawData 含參數"
+                            loading="lazy">
+                        <figcaption>匯入成功後：可驗證例如 <code>Layer1_AOI_Recipe_v1</code>、
+                            <code>W-20260605-001</code>、<code>Brightfield</code>（Examples 列）。</figcaption>
+                    </figure>
+                    <div class="code-block">// FileDialog 概念短片段
+var path = Path.Combine(ConfigHelper.GetRecipeDataDirectory(), fileName);
+FileDialog.OpenFile(path);</div>
+                    <div class="card">踩坑：對話框未前景、路徑含空格、或選到
+                        <code>_invalid_sample.txt</code>（那是 TC07）。優先看報告步驟圖對照哪一步斷掉。</div>
+                </article>
+
+                <h4>其餘 TC（短卡）</h4>
+                <details class="tc-short">
+                    <summary>TC05 — 雙擊檔案樹開啟 Recipe（★★）</summary>
+                    <p><code>WorkspacePage.DoubleClickTreeItem</code>；Name 模糊比對。
+                        若表格未出可再點 RawData 當 fallback。</p>
+                </details>
+                <details class="tc-short">
+                    <summary>TC04 / TC10 — Defect Chart／Run Inspection（★★★）</summary>
+                    <p>多步驟工具列＋ Log assert（"Defect Chart" / "Run Inspection"）。
+                        快捷鍵 Ctrl+D / Ctrl+R。</p>
+                </details>
+                <details class="tc-short">
+                    <summary>TC07–TC09 — 負面案例（★★）</summary>
+                    <p>TC07 無效副檔名；TC08 無資料繪圖；TC09 開不存在檔。重點：主視窗仍存活、錯誤可關閉、檔案未被誤拷貝。</p>
+                </details>
+
+                <h3 id="flaui-report">6. 報告截圖怎麼用</h3>
+                <ul>
+                    <li>點擊／場景結束會由 <code>ActionScreenshotHelper</code> 擷圖並寫入報告（可設定於 App.config）。</li>
+                    <li>開啟：選單 <code>[6]</code> →
+                        <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/reports/TestResultReport.html"
+                            class="file-link">TestResultReport.html</a>
+                        （可點縮圖放大）。</li>
+                    <li>本頁教材圖來自報告步驟截圖，整理於 <code>docs/assets/flaui/</code>。
+                        重新產生：跑對應 TC 後從報告另存，或覆寫同名 PNG。</li>
+                </ul>
+                <p>讀報告細節見 <a href="05-read-reports.html">第 5 章</a>。</p>
+
+                <h3 id="flaui-practice">7. 練習作業與反模式</h3>
+                <ol>
+                    <li>用 FlaUInspect 找出 <strong>Defect Chart</strong> 的 AutomationId，對照上表是否為
+                        <code>btnDefectChart</code>。</li>
+                    <li>選單 <code>[2]</code> 只跑 <code>TC06</code>，打開報告比對 About／關閉步驟圖。</li>
+                    <li>（進階）故意改錯一句 Then 文字再跑，觀察失敗步驟的截圖差異，改回後確認綠燈。</li>
+                </ol>
+                <h4>反模式（不要做）</h4>
+                <ul>
+                    <li>在 Step 直接寫大量 FlaUI Find／Click</li>
+                    <li>過長 <code>Thread.Sleep</code> 取代 Retry／輪詢等待</li>
+                    <li>忽略 null、寫死本機絕對路徑</li>
+                    <li>Locator 一開始就用 ControlType 掃全樹</li>
+                </ul>
+                <div class="card ok">
+                    下一步：<a href="02-edit-bdd.html">第 2 章修改 BDD</a> ·
+                    <a href="04-fix-tests.html">第 4 章修復測試</a> ·
+                    <a href="../GETTING_STARTED.md#flaui-appendix" class="file-link">完整碼附錄</a>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>FlaUI 教學</p>
+            <p><a href="00-getting-started.html">新手入門</a> ·
+                <a href="../GETTING_STARTED.md#flaui-appendix">完整碼附錄 (MD)</a> ·
+                <a href="index.html">操作手冊首頁</a></p>
+        </footer>
+    </div>
+    <script src="launcher.js"></script>
+</body>
+
+</html>

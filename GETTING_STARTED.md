@@ -3,8 +3,10 @@
 > **主要入口（網頁版，已整合本文件精華）：** [`docs/00-getting-started.html`](docs/00-getting-started.html)  
 > 開啟方式：`main_menu.bat` → **[9] Getting started (web)**，或操作手冊導覽「新手入門」。
 
-本文 Markdown **不再重複** 5 步驟、選單對照、FAQ 等上手內容（請看網頁）。  
-以下僅保留 **FlaUI 深度附錄**（Locators、Page Object、實戰範例、反模式）。
+本文 Markdown **不再重複** 5 步驟、選單對照、FAQ、FlaUI 教學（請看網頁）。  
+- 上手：[`docs/00-getting-started.html`](docs/00-getting-started.html)  
+- **FlaUI 教學分頁：** [`docs/flaui-tutorial.html`](docs/flaui-tutorial.html)  
+以下僅保留 **FlaUI 深度碼附錄**（Locators、Page Object 長範例、反模式）。
 
 ## 網頁版章節導覽
 
@@ -15,6 +17,7 @@
 | main_menu / .bat | [main-menu](docs/00-getting-started.html#main-menu) · [bats](docs/00-getting-started.html#bats) |
 | 5 步驟快速開始 | [quick-start](docs/00-getting-started.html#quick-start) |
 | 學習路徑 / TC 導覽 | [learning-path](docs/00-getting-started.html#learning-path) · [tc-guide](docs/00-getting-started.html#tc-guide) |
+| **FlaUI 教學（網頁分頁）** | [`docs/flaui-tutorial.html`](docs/flaui-tutorial.html) · [Inspect](docs/flaui-tutorial.html#flaui-inspect) · [TC 走讀](docs/flaui-tutorial.html#flaui-tc-walk) |
 | 檔案位置 / FAQ / 建議 | [paths](docs/00-getting-started.html#paths) · [faq](docs/00-getting-started.html#faq) · [tips](docs/00-getting-started.html#tips) |
 | 操作手冊五章 | [docs/index.html](docs/index.html) |
 
