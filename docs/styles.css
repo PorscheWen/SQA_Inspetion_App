@@ -374,3 +374,152 @@ footer {
     }
     .flowchart:not(.vertical) .flow-node { max-width: 320px; width: 100%; }
 }
+
+/* FlaUI tutorial page */
+.flaui-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 20px;
+}
+.flaui-subnav a {
+    text-decoration: none;
+    color: #ffb347;
+    background: #252525;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+.flaui-subnav a:hover {
+    border-color: #ff8c00;
+    color: #fff;
+    background: #333;
+}
+.step-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+    counter-reset: flaui-step;
+}
+.step-list > li {
+    position: relative;
+    background: #252525;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 16px 16px 16px 64px;
+    margin-bottom: 12px;
+    counter-increment: flaui-step;
+}
+.step-list > li::before {
+    content: counter(flaui-step);
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ff8c00;
+    color: #1a1a1a;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+.step-list > li h4 {
+    margin: 0 0 8px;
+    color: #ffb347;
+}
+.shot-fig {
+    margin: 14px 0;
+    background: #0d1117;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+}
+.shot-fig img {
+    max-width: 100%;
+    width: 760px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    cursor: zoom-in;
+}
+.shot-fig figcaption {
+    margin-top: 10px;
+    color: #9a9a9a;
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-align: left;
+}
+.shot-slot {
+    border: 1px dashed #ff8c00;
+    background: #1f1a12;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    color: #d0d0d0;
+}
+.shot-slot strong { color: #ffb347; }
+.tc-walk {
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 18px 0;
+    background: #1f1f1f;
+}
+.tc-walk > h3 {
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+.tc-badge {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+.tc-short {
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 8px 0;
+    background: #252525;
+}
+.tc-short summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #87ceeb;
+}
+.tc-short[open] summary { color: #ffb347; margin-bottom: 8px; }
+#lightbox-flaui {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+#lightbox-flaui.open { display: flex; }
+#lightbox-flaui img {
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 8px;
+}
+#lightbox-flaui .close {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+}

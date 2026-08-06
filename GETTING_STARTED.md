@@ -15,6 +15,7 @@
 | main_menu / .bat | [main-menu](docs/00-getting-started.html#main-menu) · [bats](docs/00-getting-started.html#bats) |
 | 5 步驟快速開始 | [quick-start](docs/00-getting-started.html#quick-start) |
 | 學習路徑 / TC 導覽 | [learning-path](docs/00-getting-started.html#learning-path) · [tc-guide](docs/00-getting-started.html#tc-guide) |
+| **FlaUI 教學（網頁 Tab）** | [00b-flaui-tutorial.html](docs/00b-flaui-tutorial.html) |
 | 檔案位置 / FAQ / 建議 | [paths](docs/00-getting-started.html#paths) · [faq](docs/00-getting-started.html#faq) · [tips](docs/00-getting-started.html#tips) |
 | 操作手冊五章 | [docs/index.html](docs/index.html) |
 
