@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlaUI 企業導入教學 — SQA Inspection App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 本章專用：截圖、圖說、決策流程節點（沿用深色主題色系） */
+        figure.shot {
+            margin: 18px 0;
+            background: #0d1117;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 12px;
+        }
+        figure.shot img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        figure.shot figcaption {
+            margin-top: 10px;
+            color: #9a9a9a;
+            font-size: 0.9em;
+            text-align: center;
+            line-height: 1.5;
+        }
+        figure.shot figcaption b { color: #ffb347; }
+        .shot-missing {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            border: 1px dashed #ff8c00;
+            border-radius: 8px;
+            color: #c8c8c8;
+            text-align: center;
+            padding: 20px;
+            background: #161616;
+            line-height: 1.7;
+        }
+        .flow-node.decision {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, #2a2616 0%, #252525 100%);
+        }
+        .flow-node.decision strong { color: #ffd700; }
+        .flow-node.decision .flow-num { background: #ffd700; }
+        .flow-node.sut { border-color: #ff6b6b; }
+        .flow-node.sut strong { color: #ff9b9b; }
+        .flow-node.sut .flow-num { background: #ff6b6b; }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 10px 0 4px;
+            font-size: 0.88em;
+            color: #b0b0b0;
+        }
+        .legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+        .tc-table td:first-child { white-space: nowrap; font-weight: 600; color: #ffb347; }
+        .toc-2 { columns: 2; column-gap: 28px; }
+        @media (max-width: 700px) { .toc-2 { columns: 1; } }
+        .pill {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 999px;
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+        .pill.fn { background: #1f2a1f; color: #90ee90; border: 1px solid #3a5a3a; }
+        .pill.neg { background: #2a1f1f; color: #ff9b9b; border: 1px solid #5a3a3a; }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>FlaUI 企業導入教學</h1>
+            <p>Semi Inspection Desktop · FlaUI BDD 自動化測試平台 — 企業用完整指南 v1.0</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="00-getting-started.html">新手入門</a></li>
+                <li><a href="01-tps-to-bdd.html">1. TPS → BDD</a></li>
+                <li><a href="02-edit-bdd.html">2. 修改 BDD</a></li>
+                <li><a href="03-run-tests.html">3. 執行測試</a></li>
+                <li><a href="04-fix-tests.html">4. 修復測試</a></li>
+                <li><a href="05-read-reports.html">5. 讀取報告</a></li>
+                <li><a href="06-flaui-enterprise-guide.html" class="active">6. FlaUI 企業教學</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+
+            <section id="intro">
+                <h2>導言與適用對象</h2>
+                <p>本章是<strong>企業導入 FlaUI 桌面自動化測試</strong>的完整教學文件，內容參考
+                    <a href="https://github.com/FlaUI/FlaUI" target="_blank" rel="noopener">FlaUI 官方專案</a>與其教學資源，
+                    並<strong>對照本專案（SQA Inspection App）真實程式碼</strong>，提供實際案例流程、操作截圖、流程圖與導入指引。</p>
+
+                <div class="card ok">
+                    <strong>本章能帶走什麼：</strong>
+                    <ul>
+                        <li>理解 FlaUI 與 UI Automation（UIA2 / UIA3）的核心概念與運作原理。</li>
+                        <li>看懂本專案的<strong>企業級分層架構</strong>：Feature → Steps → PageObjects → FlaUI → 被測程式。</li>
+                        <li>掌握<strong>元素定位策略</strong>與 FlaUInspect 工具的使用。</li>
+                        <li>透過 <strong>TC01 匯入 Recipe</strong> 等真實案例，逐步了解一支測試從撰寫到執行的完整流程。</li>
+                        <li>建立<strong>報告、截圖證據、疑難排解與 CI 導入</strong>的企業實務。</li>
+                    </ul>
+                </div>
+
+                <table>
+                    <tr><th>讀者角色</th><th>建議閱讀重點</th></tr>
+                    <tr><td>測試員 / QA</td><td>導言、實際案例流程、執行方式、報告解讀</td></tr>
+                    <tr><td>自動化工程師</td><td>核心概念、專案架構、測試生命週期、元素定位、最佳實務</td></tr>
+                    <tr><td>主管 / 導入負責人</td><td>導言、專案架構、執行方式、CI 導入與最佳實務</td></tr>
+                </table>
+            </section>
+
+            <section id="what-is-flaui">
+                <h2>一、FlaUI 核心概念</h2>
+                <p><strong>FlaUI</strong>（Framework for Automated UI testing）是一套開源的 .NET UI 自動化函式庫，
+                    在 Microsoft 原生 <strong>UI Automation（UIA）</strong> API 之上提供乾淨、現代的封裝，
+                    可自動化 <strong>Win32、WinForms、WPF、UWP</strong> 等 Windows 桌面應用程式。</p>
+
+                <h3>UIA2 vs UIA3</h3>
+                <table>
+                    <tr><th>版本</th><th>NuGet 套件</th><th>適用</th><th>備註</th></tr>
+                    <tr><td>UIA2</td><td><code>FlaUI.UIA2</code></td><td>較舊的 Windows 應用</td><td>Managed-only；對 WPF / Store App 支援較弱</td></tr>
+                    <tr><td><strong>UIA3</strong></td><td><code>FlaUI.UIA3</code></td><td>現代應用（Win10+）</td><td><strong>建議採用</strong>；本專案即使用 UIA3</td></tr>
+                </table>
+                <div class="card warn">
+                    <strong>WinForms 小提醒：</strong>UIA3 在少數 WinForms 情境可能有相容性差異。本專案的被測程式是 WinForms，
+                    因此在 <code>BasePage</code> 內混用了多種讀值策略（Value / Text / LegacyIAccessible Pattern 與原生
+                    <code>WM_GETTEXT</code>）以提高穩定度，詳見「元素定位策略」。
+                </div>
+
+                <h3>官方最小範例（啟動 Notepad）</h3>
+                <p>FlaUI 的進入點通常是「應用程式」或「桌面」，取得一個 <code>AutomationElement</code>（例如主視窗）後，再往下尋找子元素並互動：</p>
+                <div class="code-block">using FlaUI.Core;
+using FlaUI.UIA3;
+using FlaUI.Core.AutomationElements;
+
+var app = FlaUI.Core.Application.Launch("notepad.exe");
+using (var automation = new UIA3Automation())
+{
+    var window = app.GetMainWindow(automation);
+    var button = window.FindFirstDescendant(cf =&gt; cf.ByName("OK"))?.AsButton();
+    button?.Invoke();
+}</div>
+
+                <h3>五個必懂物件</h3>
+                <table>
+                    <tr><th>概念</th><th>說明</th><th>本專案對應</th></tr>
+                    <tr><td><code>Application</code></td><td>啟動 / 附加 / 關閉被測程式</td><td><code>TestHooks.LaunchApplication()</code></td></tr>
+                    <tr><td><code>UIA3Automation</code></td><td>UIA 自動化引擎（進入點）</td><td><code>TestHooks._automation</code></td></tr>
+                    <tr><td><code>AutomationElement</code></td><td>畫面上的任一控制項</td><td>各 PageObject 內尋得的按鈕 / 表格 / 樹</td></tr>
+                    <tr><td><code>ConditionFactory (cf)</code></td><td>查詢條件：<code>ByAutomationId</code> / <code>ByName</code> / <code>ByClassName</code></td><td><code>BasePage.FindByAutomationId()</code> 等</td></tr>
+                    <tr><td><code>Patterns</code></td><td>控制模式：Invoke、Value、Text…</td><td><code>BasePage.Click()</code> / <code>ReadText()</code></td></tr>
+                </table>
+                <div class="card">
+                    <strong>等待策略：</strong>UI 是非同步的。<strong>不要用固定 <code>Sleep</code> 當作唯一等待</strong>，
+                    應使用 FlaUI 的 <code>Retry.WhileNull(...)</code> 輪詢直到元素出現。本專案所有尋找方法都以 <code>Retry.WhileNull</code> 實作。
+                </div>
+            </section>
+
+            <section id="architecture">
+                <h2>二、企業級專案架構</h2>
+                <p>本平台採用 <strong>BDD 分層架構</strong>：規格（人可讀）與實作（電腦可執行）分離，可維護性高、可由不同角色協作。</p>
+
+                <div class="flowchart vertical" aria-label="分層架構">
+                    <div class="flow-node">
+                        <span class="flow-num">規格</span>
+                        <strong>TPS.md（Gherkin 測試程序規格）</strong>
+                        <span class="flow-meta">Given / When / Then，人可讀、與程式對照</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 對照</span>
+                    <div class="flow-node">
+                        <span class="flow-num">場景</span>
+                        <strong>Feature（*.feature）</strong>
+                        <span class="flow-meta">SpecFlow 解析 Scenario 與標籤 @Functional / @Negative</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 綁定</span>
+                    <div class="flow-node primary">
+                        <span class="flow-num">編排</span>
+                        <strong>StepDefinitions（Inspection_AppSteps.cs）</strong>
+                        <span class="flow-meta">只做「流程編排 + 斷言」，不直接寫 FlaUI 操作</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 呼叫</span>
+                    <div class="flow-node primary">
+                        <strong>PageObjects（Main / Workspace / FileDialog / MessageBox）</strong>
+                        <span class="flow-meta">封裝 FlaUI 操作與元素定位，繼承 BasePage</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 驅動 UIA3</span>
+                    <div class="flow-node sut">
+                        <strong>Semi Inspection Desktop（被測程式 SUT）</strong>
+                        <span class="flow-meta">WinForms · Windows 專用</span>
+                    </div>
+                </div>
+
+                <h3>技術棧</h3>
+                <div class="flow">
+                    <span>SpecFlow 3.9</span> <span class="arrow">+</span>
+                    <span>NUnit 4</span> <span class="arrow">+</span>
+                    <span>FlaUI.UIA3 4</span> <span class="arrow">+</span>
+                    <span>.NET 8</span> <span class="arrow">+</span>
+                    <span>ExtentReports / JUnit</span>
+                </div>
+
+                <h3>目錄對照</h3>
+                <div class="code-block">Testcase_Inspection_App_FlaUI_BDD/
+├── Features/           Inspection_App.feature（10 個 Scenario）
+├── StepDefinitions/    Inspection_AppSteps.cs（Given/When/Then 綁定）
+├── PageObjects/        BasePage / MainWindowPage / WorkspacePage / FileDialogPage / MessageBoxPage
+├── Hooks/              TestHooks.cs（測試生命週期：啟動、截圖、報告、關閉）
+├── Helpers/            ConfigHelper / ScreenshotHelper / HtmlReportHelper / TestResultReportBuilder …
+├── App.config          ApplicationPath / Title / 逾時等設定（支援相對路徑與環境變數覆寫）
+└── reports/            測試後產生的 HTML / JUnit 報告與截圖</div>
+                <div class="card ok">
+                    <strong>企業維護原則：</strong>「Step 只編排、PageObject 只操作」。
+                    畫面改版時，通常<strong>只需改 PageObject 的元素定位</strong>，Feature 與 Step 幾乎不動。
+                </div>
+            </section>
+
+            <section id="lifecycle">
+                <h2>三、測試生命週期（SpecFlow Hooks）</h2>
+                <p>本專案在 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Hooks/TestHooks.cs" class="file-link"><code>TestHooks.cs</code></a>
+                    以 SpecFlow Hook 控制每一支測試的完整生命週期，並在每一步驟自動截圖、寫入報告。</p>
+
+                <div class="flowchart vertical" aria-label="測試生命週期">
+                    <div class="flow-node">
+                        <span class="flow-num">1</span>
+                        <strong>[BeforeTestRun]</strong>
+                        <span class="flow-meta">建立 <code>UIA3Automation</code>、初始化 HTML / Extent 報告</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 每個 Scenario</span>
+                    <div class="flow-node primary">
+                        <span class="flow-num">2</span>
+                        <strong>[BeforeScenario]</strong>
+                        <span class="flow-meta">Launch/Attach 被測程式 → <code>WaitForMainWindow()</code>（Retry 輪詢）→ 建立四個 PageObject 存入 ScenarioContext</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 每個 Step 前後</span>
+                    <div class="flowchart-row split">
+                        <div class="flow-node">
+                            <span class="flow-num">3</span>
+                            <strong>[BeforeStep]</strong>
+                            <span class="flow-meta">在報告開一個步驟節點</span>
+                        </div>
+                        <span class="flow-arrow" aria-hidden="true">→</span>
+                        <div class="flow-node">
+                            <span class="flow-num">4</span>
+                            <strong>[AfterStep]</strong>
+                            <span class="flow-meta">截圖；依 <code>TestError</code> 標記 Pass / Fail</span>
+                        </div>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ Scenario 結束</span>
+                    <div class="flow-node">
+                        <span class="flow-num">5</span>
+                        <strong>[AfterScenario]</strong>
+                        <span class="flow-meta">完成截圖 → 寫入結果 → <code>CloseApplication()</code>（關視窗 + 收尾殺進程）</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 全部結束</span>
+                    <div class="flow-node ok">
+                        <span class="flow-num">6</span>
+                        <strong>[AfterTestRun]</strong>
+                        <span class="flow-meta">Flush 報告、Dispose automation</span>
+                    </div>
+                </div>
+
+                <h3>啟動與尋窗（真實程式碼）</h3>
+                <div class="code-block">// TestHooks.LaunchApplication() — 已開啟則附加，否則啟動
+var exe = ConfigHelper.GetApplicationPath();
+var existing = Process.GetProcessesByName(ConfigHelper.GetProcessName());
+if (existing.Length &gt; 0)
+    _application = FlaUI.Core.Application.Attach(existing[0]);
+else
+    _application = FlaUI.Core.Application.Launch(exe);
+
+// WaitForMainWindow() — 以 Retry 輪詢，標題需包含設定的 ApplicationTitle
+return Retry.WhileNull(() =&gt; {
+    var win = _application.GetMainWindow(_automation, TimeSpan.FromSeconds(2));
+    if (win != null &amp;&amp; win.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
+        return win;
+    // 後援：掃描桌面上所有 Window 比對標題
+    ...
+}, timeout).Result;</div>
+                <div class="card warn">
+                    <strong>穩定性關鍵：</strong>每個 Scenario 都<strong>獨立啟動、結束時關閉並殺乾淨進程</strong>，避免測試之間互相污染。
+                    <code>@... the application has relaunched</code> 步驟會呼叫 <code>RelaunchApplication()</code> 重置狀態（TC01、TC08 使用）。
+                </div>
+            </section>
+
+            <section id="locators">
+                <h2>四、元素定位策略與 FlaUInspect</h2>
+                <p>UI 自動化最難的是「<strong>穩定地找到元素</strong>」。本專案採用<strong>多層後援</strong>策略，優先用最穩定的
+                    <code>AutomationId</code>，逐級退回到 <code>Name</code>、模糊比對，最後才用鍵盤快捷鍵。</p>
+
+                <div class="legend">
+                    <span><span class="dot" style="background:#90ee90"></span>最穩定</span>
+                    <span><span class="dot" style="background:#ffd700"></span>判斷 / 後援</span>
+                    <span><span class="dot" style="background:#ff6b6b"></span>最後手段</span>
+                </div>
+                <div class="flowchart vertical" aria-label="元素定位決策流程">
+                    <div class="flow-node ok">
+                        <span class="flow-num">1</span>
+                        <strong>ByAutomationId</strong>
+                        <span class="flow-meta"><code>FindFirstDescendant(cf =&gt; cf.ByAutomationId("btnImportRecipe"))</code></span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 找不到？</span>
+                    <div class="flow-node decision">
+                        <span class="flow-num">2</span>
+                        <strong>ByName</strong>
+                        <span class="flow-meta">以顯示文字尋找，例如 "About"</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 找不到？</span>
+                    <div class="flow-node decision">
+                        <span class="flow-num">3</span>
+                        <strong>模糊比對 / ClassName</strong>
+                        <span class="flow-meta"><code>FindByNameContains</code>、掃描所有 Descendants 比對關鍵字</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ 仍失敗？</span>
+                    <div class="flow-node sut">
+                        <span class="flow-num">4</span>
+                        <strong>鍵盤快捷鍵後援</strong>
+                        <span class="flow-meta">如 Import=Ctrl+I、RawData=Ctrl+E、Chart=Ctrl+D、Run=Ctrl+R；About 用 F10 選單導航</span>
+                    </div>
+                </div>
+
+                <h3>被測程式元素對照表（Element Map）</h3>
+                <p>下表整理本專案實際使用的 <code>AutomationId</code> 與對應快捷鍵，撰寫 / 修復測試時可直接查閱：</p>
+                <table>
+                    <tr><th>功能</th><th>AutomationId</th><th>快捷鍵</th><th>用於</th></tr>
+                    <tr><td>Import Recipe</td><td><code>btnImportRecipe</code></td><td>Ctrl+I</td><td>TC01、TC07</td></tr>
+                    <tr><td>RawData</td><td><code>btnParameters</code></td><td>Ctrl+E</td><td>TC01、TC03、TC04、TC10</td></tr>
+                    <tr><td>Defect Chart</td><td><code>btnDefectChart</code></td><td>Ctrl+D</td><td>TC04、TC08</td></tr>
+                    <tr><td>Run Inspection</td><td><code>btnRunInspection</code></td><td>Ctrl+R</td><td>TC10</td></tr>
+                    <tr><td>About</td><td><code>btnToolbar0About</code> / <code>menuToolsAbout</code></td><td>F10 導航</td><td>TC06</td></tr>
+                    <tr><td>檔案樹</td><td><code>treeFiles</code>（SysTreeView32）</td><td>—</td><td>TC02、TC05</td></tr>
+                    <tr><td>參數表格</td><td><code>dataGridParameters</code></td><td>—</td><td>TC01、TC03、TC05</td></tr>
+                    <tr><td>工具記錄</td><td><code>txtToolLog</code> / <code>lblToolPlugin</code></td><td>—</td><td>各 log 斷言</td></tr>
+                </table>
+
+                <h3>用 FlaUInspect 找出 AutomationId</h3>
+                <p><strong>FlaUInspect</strong> 是 FlaUI 官方的視覺化檢查工具（類似 Windows 的 Inspect.exe），可即時檢視應用程式的 UIA 元素樹與屬性。</p>
+                <div class="card">
+                    <ol>
+                        <li>在 <strong>Windows</strong> 上執行安裝：<code>tools\install-flauinspect.ps1</code>（詳見
+                            <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/README.md" class="file-link">tools/README.md</a>），或由
+                            <span class="launch-bat file-link" data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span> 選 [15]。</li>
+                        <li>啟動後選擇 <strong>UIA3</strong> 模式（本專案採用）。</li>
+                        <li>啟動被測程式，於 FlaUInspect 中<strong>懸停 / 點選</strong>目標控制項。</li>
+                        <li>在右側屬性面板讀取 <code>AutomationId</code>、<code>Name</code>、<code>ControlType</code>、<code>ClassName</code>。</li>
+                        <li>把 <code>AutomationId</code> 填回對應的 PageObject。</li>
+                    </ol>
+                </div>
+                <div class="card warn">
+                    <strong>限制：</strong>FlaUInspect 與被測 WinForms 程式<strong>僅能在 Windows 執行</strong>；
+                    在 Linux / CI（如本雲端環境）僅能建置測試專案與執行 Web 控制台，無法實際驅動桌面 UI。
+                </div>
+            </section>
+
+            <section id="case-flow">
+                <h2>五、實際案例流程：TC01 匯入 Recipe</h2>
+                <p>以最具代表性的 <span class="pill fn">Functional</span><strong>TC01 — Import Recipe to Recipe_data</strong>
+                    示範一支測試從<strong>規格 → 場景 → 步驟 → 頁面物件 → 斷言</strong>的完整鏈路。</p>
+
+                <div class="flowchart vertical" aria-label="TC01 執行流程">
+                    <div class="flow-node">
+                        <span class="flow-num">前置</span>
+                        <strong>test data is ready + application relaunched</strong>
+                        <span class="flow-meta">確保 <code>InspectionRecipe_Sample.json</code> 就緒、重啟 App 重置狀態</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ When</span>
+                    <div class="flow-node primary">
+                        <span class="flow-num">操作</span>
+                        <strong>Import Recipe → 選檔 → RawData</strong>
+                        <span class="flow-meta">Ctrl+I 開檔案對話框 → 選 sample → Ctrl+E 切換 RawData</span>
+                    </div>
+                    <span class="flow-arrow-v" aria-hidden="true">↓ Then</span>
+                    <div class="flow-node ok">
+                        <span class="flow-num">驗證</span>
+                        <strong>檔案已匯入 + 表格可見 + 含關鍵參數 + log 有紀錄</strong>
+                        <span class="flow-meta">Layer1_AOI_Recipe_v1 / W-20260605-001 / Brightfield</span>
+                    </div>
+                </div>
+
+                <h3>① Feature（場景與資料）</h3>
+                <div class="code-block">@Functional @Import @DDT
+Scenario Outline: TC01 - Import Recipe to Recipe_data
+  Given test data is ready
+  And the application has relaunched
+  When I click toolbar "Import Recipe"
+  And I select file "&lt;recipe_file&gt;" in the file dialog
+  And I click toolbar "RawData"
+  Then Recipe_data should contain "&lt;recipe_file&gt;"
+  And the data table should be visible
+  And the RawData view should show filename &lt;recipe_file&gt;
+  And the RawData parameter table should contain "&lt;expected_parameter&gt;"
+  And the log should contain "Import Recipe"
+
+  Examples:
+    | recipe_file                  | expected_parameter    |
+    | InspectionRecipe_Sample.json | Layer1_AOI_Recipe_v1  |
+    | InspectionRecipe_Sample.json | W-20260605-001        |
+    | InspectionRecipe_Sample.json | Brightfield           |</div>
+
+                <h3>② StepDefinitions（只編排 + 斷言）</h3>
+                <div class="code-block">[When(@"I click toolbar ""(.*)""")]
+public void WhenIClickToolbar(string buttonText) {
+    Main.ClickToolbar(buttonText);          // 交給 PageObject 操作
+    if (buttonText == "RawData") Workspace.WaitAfterDataTableAction();
+}
+
+[When(@"I select file ""(.*)"" in the file dialog")]
+public void WhenISelectFileInFileDialog(string fileName) {
+    var path = Path.Combine(ConfigHelper.GetRecipeDataDirectory(), fileName);
+    FileDialog.OpenFile(path);
+    Workspace.WaitAfterDataTableAction();
+}
+
+[Then(@"the RawData parameter table should contain ""(.*)""")]
+public void ThenTableContains(string expected) {
+    ClassicAssert.IsTrue(Workspace.GridContainsText(expected),
+        "RawData parameter table does not contain: " + expected);
+}</div>
+
+                <h3>③ PageObject（真正的 FlaUI 操作）</h3>
+                <div class="code-block">// MainWindowPage.ClickToolbar("Import Recipe")
+// → 先試快捷鍵 Ctrl+I，再退回 AutomationId=btnImportRecipe
+if (buttonText == "Import Recipe") { SendImportRecipeShortcut(); return; }
+
+// BasePage.Click() — 優先用 Invoke Pattern，失敗才用座標點擊，並自動截圖
+if (element.Patterns.Invoke.IsSupported) {
+    element.Patterns.Invoke.Pattern.Invoke();
+    ActionScreenshotHelper.CaptureClick(label, Window, element);   // 操作截圖
+}</div>
+
+                <div class="card ok">
+                    <strong>可觀察的結果：</strong>執行後於 <code>reports/</code> 產生 HTML 報告，
+                    每個步驟附上<strong>操作截圖</strong>，並在參數表格中比對到 <code>Layer1_AOI_Recipe_v1</code> 等關鍵字即判定 Pass。
+                </div>
+
+                <h3>負面案例：TC07 匯入非 JSON 檔</h3>
+                <p><span class="pill neg">Negative</span>驗證<strong>異常情況也要正確處理</strong>：匯入 <code>_invalid_sample.txt</code> 應顯示警告，
+                    且<strong>不可</strong>把無效檔複製成 <code>TC01_import_copy.json</code>。</p>
+                <div class="code-block">[Then(@"the invalid file should not be copied as TC01_import_copy\.json")]
+public void ThenInvalidNotCopied() {
+    ClassicAssert.IsFalse(TestDataHelper.ImportTargetExists(),
+        "Invalid file must not be copied to TC01_import_copy.json");
+}</div>
+            </section>
+
+            <section id="tc-overview">
+                <h2>六、10 個測試案例導覽</h2>
+                <p>本平台涵蓋 <strong>7 個功能</strong>與 <strong>3 個負面</strong>案例，完整對照見
+                    <a href="../Automation_testcase/Test_cases/TPS.md" class="file-link">TPS.md</a>。</p>
+                <table class="tc-table">
+                    <tr><th>ID</th><th>類別</th><th>驗證重點</th><th>關鍵操作</th></tr>
+                    <tr><td>TC01</td><td><span class="pill fn">功能</span></td><td>匯入 Recipe 並於 RawData 顯示參數</td><td>Import → 選檔 → RawData</td></tr>
+                    <tr><td>TC02</td><td><span class="pill fn">功能</span></td><td>檔案樹指向 Recipe_data、標題正確</td><td>檢視 treeFiles</td></tr>
+                    <tr><td>TC03</td><td><span class="pill fn">功能</span></td><td>RawData 切換並載入參數表</td><td>RawData (Ctrl+E)</td></tr>
+                    <tr><td>TC04</td><td><span class="pill fn">功能</span></td><td>缺陷圖表繪製（5 種缺陷）</td><td>RawData → Defect Chart</td></tr>
+                    <tr><td>TC05</td><td><span class="pill fn">功能</span></td><td>由檔案樹雙擊開啟 Recipe</td><td>雙擊樹節點</td></tr>
+                    <tr><td>TC06</td><td><span class="pill fn">功能</span></td><td>About 對話框顯示</td><td>About (F10 導航)</td></tr>
+                    <tr><td>TC07</td><td><span class="pill neg">負面</span></td><td>匯入非 JSON 顯示警告且不複製</td><td>Import 無效檔</td></tr>
+                    <tr><td>TC08</td><td><span class="pill neg">負面</span></td><td>未載入 Recipe 時圖表不崩潰</td><td>relaunch → Defect Chart</td></tr>
+                    <tr><td>TC09</td><td><span class="pill neg">負面</span></td><td>開啟不存在檔案顯示錯誤且不崩潰</td><td>RawData → 選不存在檔</td></tr>
+                    <tr><td>TC10</td><td><span class="pill fn">功能</span></td><td>模擬 AOI 檢測並寫入 log</td><td>RawData → Run Inspection</td></tr>
+                </table>
+            </section>
+
+            <section id="operate">
+                <h2>七、操作方式與操作截圖</h2>
+                <p>三種執行方式，任選其一。<strong>Web 測試控制台</strong>是最直覺的企業入口（勾選 → 執行 → 看報告）。</p>
+
+                <h3>方式一：CLI 一鍵</h3>
+                <div class="code-block"># 全部 TC（先建置被測 App + BDD 專案）
+cd SQA_Inspetion_App
+run_tests.bat
+
+# 單一 TC
+執行單一測試.bat TC01
+# 或
+dotnet test -c Release --filter "Name~TC01"</div>
+
+                <h3>方式二：Web 測試控制台（port 6690）</h3>
+                <p>啟動 <span class="launch-bat file-link" data-launch-bat="啟動測試平台.bat"><code>啟動測試平台.bat</code></span>
+                    後開啟 <a href="http://localhost:6690/" target="_blank" rel="noopener">http://localhost:6690/</a>：
+                    <strong>勾選要跑的 TC → 執行 → 即時進度 → HTML 報告</strong>。</p>
+
+                <figure class="shot">
+                    <img src="assets/console-testcases.png" alt="FlaUI BDD 測試控制台：TC01–TC10 清單與標籤"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="shot-missing" style="display:none;">操作截圖：測試控制台（TC01–TC10）<br>如未顯示，請啟動 <code>啟動測試平台.bat</code> 後於 http://localhost:6690/ 擷取</div>
+                    <figcaption><b>圖 7-1</b> FlaUI BDD 測試控制台：自動解析 <code>Inspection_App.feature</code>，
+                        列出 TC01–TC10 及其標籤（@Functional / @Negative / @Import…），可個別勾選。</figcaption>
+                </figure>
+
+                <figure class="shot">
+                    <img src="assets/console-selected.png" alt="測試控制台：勾選 TC 後準備執行"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="shot-missing" style="display:none;">操作截圖：勾選 TC 後執行</div>
+                    <figcaption><b>圖 7-2</b> 勾選欲執行的 Scenario 後，控制台送出
+                        <code>dotnet test --filter</code>，並顯示即時進度與通過率。</figcaption>
+                </figure>
+
+                <div class="card warn">
+                    <strong>平台限制：</strong>控制台的「解析案例、顯示報告」在 Linux / CI 也可運作；
+                    但<strong>實際執行 FlaUI 測試需 Windows</strong>（需啟動 WinForms 被測程式並以 UIA3 驅動）。
+                    上方截圖擷取自本控制台實際運作畫面。
+                </div>
+
+                <h3>方式三：主選單</h3>
+                <p>雙擊 <span class="launch-bat file-link" data-launch-bat="main_menu.bat"><code>main_menu.bat</code></span>，
+                    選 [1] 全部測試、[2] 單一測試、[3] Web 控制台、[15] FlaUInspect。</p>
+            </section>
+
+            <section id="reports">
+                <h2>八、報告與截圖證據</h2>
+                <p>每次執行都會產出可稽核的證據，適合企業品質報告與缺陷追蹤：</p>
+                <table>
+                    <tr><th>產出</th><th>路徑</th><th>用途</th></tr>
+                    <tr><td>ExtentReports HTML</td><td><code>reports/SemiInspectionTestReport.html</code></td><td>互動式報告，含每步驟截圖</td></tr>
+                    <tr><td>結果報告</td><td><code>reports/TestResultReport.html</code></td><td>總覽通過率與案例明細</td></tr>
+                    <tr><td>JUnit XML</td><td><code>reports/junit-results.xml</code></td><td>CI 整合（Jenkins / GitLab / Azure）</td></tr>
+                    <tr><td>操作截圖</td><td><code>bin/Release/net8.0-windows/Screenshots/</code></td><td>每次點擊與步驟結束自動擷取</td></tr>
+                </table>
+                <div class="card">
+                    截圖由 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Helpers/ActionScreenshotHelper.cs" class="file-link"><code>ActionScreenshotHelper</code></a>
+                    在 <code>BasePage.Click()</code> 與 <code>[AfterStep]</code> 自動產生；失敗時另存錯誤 log，方便回溯。
+                    報告解讀詳見 <a href="05-read-reports.html">第 5 章</a>。
+                </div>
+            </section>
+
+            <section id="best-practices">
+                <h2>九、疑難排解與企業最佳實務</h2>
+                <table>
+                    <tr><th>症狀</th><th>可能原因</th><th>建議做法</th></tr>
+                    <tr><td>找不到元素</td><td>AutomationId 改變 / 尚未渲染</td><td>用 FlaUInspect 重新確認；改用 <code>Retry.WhileNull</code> 加大逾時</td></tr>
+                    <tr><td>時好時壞（flaky）</td><td>固定 Sleep 太短、時序競態</td><td>以輪詢取代固定等待；操作後加入穩定點檢查</td></tr>
+                    <tr><td>點擊無效</td><td>Invoke Pattern 不支援</td><td>本專案已後援座標點擊（<code>ClickByBounds</code>）</td></tr>
+                    <tr><td>讀不到文字</td><td>WinForms 控制項不支援 Value Pattern</td><td>本專案後援 <code>WM_GETTEXT</code> / LegacyIAccessible</td></tr>
+                    <tr><td>NETSDK1136</td><td>目標框架非 Windows</td><td>維持 <code>net8.0-windows</code> 與 <code>EnableWindowsTargeting</code></td></tr>
+                    <tr><td>進程殘留</td><td>前次測試未關閉</td><td>本專案 <code>CloseApplication()</code> 會收尾殺進程；必要時手動清理</td></tr>
+                </table>
+
+                <h3>導入建議</h3>
+                <div class="card ok">
+                    <ul>
+                        <li><strong>先跑一支就好：</strong>導入時先讓 TC01 綠燈，再逐步擴充。</li>
+                        <li><strong>穩定優先：</strong>優先用 <code>AutomationId</code>；避免用畫面座標與固定 <code>Sleep</code>。</li>
+                        <li><strong>分層守則：</strong>Step 不寫 FlaUI；FlaUI 操作一律進 PageObject。</li>
+                        <li><strong>CI 整合：</strong>以 JUnit XML 串接 CI；<strong>Runner 需 Windows</strong>（可用互動式桌面 session 讓 UIA 正常運作）。</li>
+                        <li><strong>每次獨立：</strong>每個 Scenario 啟動 / 關閉自成一環，避免狀態污染。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="references">
+                <h2>十、參考資料</h2>
+                <ul>
+                    <li>FlaUI 官方專案：<a href="https://github.com/FlaUI/FlaUI" target="_blank" rel="noopener">github.com/FlaUI/FlaUI</a></li>
+                    <li>FlaUInspect（元素檢查工具）：<a href="https://github.com/FlaUI/FlaUInspect" target="_blank" rel="noopener">github.com/FlaUI/FlaUInspect</a>
+                        · 本專案安裝說明 <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/README.md" class="file-link">tools/README.md</a></li>
+                    <li>SpecFlow（BDD for .NET）、NUnit（測試框架）、ExtentReports（報告）</li>
+                    <li>本手冊其他章節：
+                        <a href="01-tps-to-bdd.html">1. TPS→BDD</a> ·
+                        <a href="02-edit-bdd.html">2. 修改 BDD</a> ·
+                        <a href="03-run-tests.html">3. 執行測試</a> ·
+                        <a href="04-fix-tests.html">4. 修復測試</a> ·
+                        <a href="05-read-reports.html">5. 讀取報告</a></li>
+                </ul>
+            </section>
+
+        </div>
+
+        <footer>
+            <p>SQA Inspection App · FlaUI 企業導入教學 v1.0</p>
+            <p>技術棧：SpecFlow 3.9 + NUnit 4 + FlaUI 4 (UIA3) + .NET 8</p>
+        </footer>
+    </div>
+    <script src="launcher.js"></script>
+</body>
+
+</html>
