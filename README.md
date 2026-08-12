@@ -172,10 +172,12 @@ SQA_Inspetion_App/
   [13] 環境診斷工具
   [14] 開啟 TPS 文件
   [15] 開啟 FlaUI Inspector
+  [16] FlaUI.Cli 錄製（匯出 JSON → BDD stub）
 
   [0] 退出
 ```
 
+FlaUI 教學（含 Inspector／CLI 錄製圖文）：[`docs/flaui-tutorial.html`](docs/flaui-tutorial.html)
 ---
 
 ### 🎯 方式 B：使用命令列

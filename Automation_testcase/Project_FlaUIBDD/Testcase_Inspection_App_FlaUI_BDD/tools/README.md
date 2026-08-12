@@ -1,150 +1,100 @@
-# FlaUI Inspector 安装与使用说明
+# FlaUI 工具：Inspector + CLI 錄製
 
-## 📋 简介
+**⚠️ 僅 Windows。** FlaUI Inspector／FlaUI.Cli 都依賴 Windows UI Automation。
 
-FlaUI Inspector 是用于检查和分析 Windows 应用程序 UI 自动化元素的工具，类似于 Windows SDK 中的 Inspect.exe。
+---
 
-**⚠️ 重要：FlaUI Inspector 只能在 Windows 环境中运行**
+## 1. FlaUI Inspector（元素探測）
 
-## 🚀 安装方法
+用來 Hover 控制項、抄 `AutomationId`／`Name`，**不錄製操作流程**。
 
-### 方法 1: Windows 环境（推荐）
-
-在 Windows PowerShell 中执行：
+### 安裝
 
 ```powershell
 cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\tools
 .\install-flauinspect.ps1
 ```
 
-### 方法 2: Linux/WSL 环境（仅下载）
+手動：https://github.com/FlaUI/FlaUInspect/releases/download/v3.0.0/FlaUInspect.3.0.0.zip  
+解壓到 `tools/FlaUIInspector/`，並複製 `FlaUInspect.exe` → `FlaUIInspector.exe`。
 
-在 Linux 或 WSL 终端中执行：
+### 啟動
 
-```bash
-cd Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools
-chmod +x install-flauinspect.sh
-./install-flauinspect.sh
+- 主選單 **[15]**
+- 或 `open_inspector.bat`
+
+圖文步驟：`docs/flaui-tutorial.html#flaui-inspect`
+
+---
+
+## 2. FlaUI.Cli／FlaUI.Tool（免費 CLI 錄製）
+
+[FlaUI.Cli](https://github.com/kodroi/FlaUI.Cli)（NuGet：`FlaUI.Tool`，MIT）可：
+
+- `session` 啟動／附加 App
+- `elem find/click/type` 操作 UI
+- `record start/export` 把 **CLI 指令步驟** 匯出成 JSON
+- `audit` 評分 selector（Stable／Acceptable／Fragile）
+
+**不是 TestComplete：** 不會錄滑鼠軌跡；要自己下（或用引導腳本下）`flaui elem ...`。
+
+### 需求
+
+- **.NET SDK 10+**（套件目標 `net10.0`）
+- 若本機只有 8／9：`winget install Microsoft.DotNet.SDK.10` 後**重開終端**
+
+### 安裝
+
+```powershell
+cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\tools
+.\install-flaui-cli.ps1
+flaui --help
 ```
 
-**注意**：虽然可以在 Linux 中下载，但工具仍需在 Windows 环境中运行。
+### 引導錄製 → BDD stub
 
-### 方法 3: 手动下载
+```bat
+open_flaui_record.bat
+```
 
-1. 访问：https://github.com/FlaUI/FlaUInspect/releases/download/v3.0.0/FlaUInspect.3.0.0.zip
-2. 下载并解压到：`tools/FlaUIInspector/`
-3. 将 `FlaUInspect.exe` 复制为 `FlaUIInspector.exe`
+或主選單 **[16]**。情境：About／RawData／Import／Custom。
 
-## 📂 安装位置
+輸出：`tools/recordings/session_*/recording.json` + 轉換 stub。
 
-安装后的文件结构：
+手動轉換範例：
+
+```powershell
+.\Convert-FlaUIRecordToBdd.ps1 `
+  -InputJson .\samples\tc06_about_record.json `
+  -OutDir .\samples `
+  -ScenarioName About
+```
+
+圖文步驟：`docs/flaui-tutorial.html#flaui-record`
+
+### 目錄結構
 
 ```
 tools/
-├── FlaUIInspector/
-│   ├── FlaUIInspector.exe  (主程序 - 别名)
-│   ├── FlaUInspect.exe     (主程序 - 原始)
-│   ├── FlaUI.Core.dll
-│   ├── FlaUI.UIA2.dll
-│   ├── FlaUI.UIA3.dll
-│   └── ... (其他依赖文件)
-├── install-flauinspect.ps1 (PowerShell 安装脚本)
-├── install-flauinspect.sh  (Bash 安装脚本)
-└── README.md               (本文档)
+├── FlaUIInspector/           # Inspector（gitignore 可忽略下載物）
+├── install-flauinspect.ps1
+├── install-flaui-cli.ps1
+├── flaui_record_workflow.ps1
+├── Convert-FlaUIRecordToBdd.ps1
+├── samples/
+│   ├── tc06_about_record.json
+│   ├── About_stub.feature
+│   ├── About_PageStub.cs
+│   └── About_mapping.md
+├── recordings/               # 本機錄製輸出（建議 gitignore）
+└── README.md
 ```
 
-## 🎯 使用方法
+---
 
-### 启动 Inspector
+## 3. 相關資源
 
-在 Windows 环境中，运行项目根目录下的批处理文件：
-
-```batch
-open_inspector.bat
-```
-
-这个脚本会：
-1. 自动搜索 FlaUI Inspector 的安装位置
-2. 检查并启动 SemiInspectionDesktop.exe（如果未运行）
-3. 启动 FlaUI Inspector 工具
-
-### 手动启动
-
-直接运行：
-```
-tools\FlaUIInspector\FlaUIInspector.exe
-```
-
-## 🔍 Inspector 搜索路径
-
-`open_inspector.bat` 会按以下顺序搜索 FlaUI Inspector：
-
-1. 环境变量 `FLAUI_INSPECTOR_PATH` 指定的路径
-2. `tools\FlaUIInspector\FlaUIInspector.exe`（本目录）
-3. `FlaUIInspector\FlaUIInspector.exe`（上级目录）
-4. `%USERPROFILE%\FlaUIInspector\FlaUIInspector.exe`
-5. `%USERPROFILE%\Downloads\FlaUIInspector\FlaUIInspector.exe`
-6. `%LOCALAPPDATA%\FlaUIInspector\FlaUIInspector.exe`
-7. `%LOCALAPPDATA%\Programs\FlaUIInspector\FlaUIInspector.exe`
-8. `C:\Tools\FlaUIInspector\FlaUIInspector.exe`
-
-## 🛠️ 自定义安装位置
-
-如果你将 FlaUI Inspector 安装到其他位置，可以设置环境变量：
-
-```batch
-set FLAUI_INSPECTOR_PATH=C:\YourPath\FlaUIInspector.exe
-```
-
-或在系统环境变量中永久设置。
-
-## ❗ 常见问题
-
-### Q: 为什么在 Linux/WSL 中无法运行？
-
-**A**: FlaUI Inspector 和 SemiInspectionDesktop 都是 .NET Windows Forms 应用程序，依赖 Windows API 和 UI Automation，无法在 Linux 中运行。
-
-### Q: 如何在开发容器中使用？
-
-**A**: 有几种方式：
-
-1. **推荐**：在 Windows 本地环境中运行应用和 Inspector
-2. 在 Linux 开发容器中编写和维护测试代码
-3. 使用 Git 在两个环境间同步代码
-
-### Q: 提示 "FlaUIInspector.exe not found"？
-
-**A**: 请运行对应环境的安装脚本：
-- Windows: `install-flauinspect.ps1`
-- Linux: `install-flauinspect.sh`（仅下载，需在 Windows 运行）
-
-### Q: 如何验证安装成功？
-
-**A**: 在 Windows 环境中检查文件：
-
-```batch
-dir tools\FlaUIInspector\*.exe
-```
-
-应该看到 `FlaUIInspector.exe` 和 `FlaUInspect.exe` 两个文件。
-
-## 📚 相关资源
-
-- **FlaUI 项目主页**: https://github.com/FlaUI/FlaUI
-- **FlaUI Inspector 仓库**: https://github.com/FlaUI/FlaUInspect
-- **官方文档**: https://github.com/FlaUI/FlaUI/wiki
-
-## 🔄 版本信息
-
-- **当前版本**: FlaUInspect v3.0.0
-- **下载日期**: 2026-08-04
-- **发布页面**: https://github.com/FlaUI/FlaUInspect/releases/tag/v3.0.0
-
-## 📝 更新
-
-如需更新到新版本：
-
-1. 访问 [Releases 页面](https://github.com/FlaUI/FlaUInspect/releases)
-2. 下载最新版本的 zip 文件
-3. 解压覆盖到 `tools/FlaUIInspector/` 目录
-4. 确保存在 `FlaUIInspector.exe` 别名文件
+- FlaUI：https://github.com/FlaUI/FlaUI
+- FlaUInspect：https://github.com/FlaUI/FlaUInspect
+- FlaUI.Cli：https://github.com/kodroi/FlaUI.Cli
+- 專案教學：`docs/flaui-tutorial.html`

@@ -12,7 +12,7 @@
     <div class="container">
         <header>
             <h1>FlaUI 教學</h1>
-            <p>Semi Inspection Desktop · TC01–TC10 · Inspector／Locator／Page Object</p>
+            <p>Semi Inspection Desktop · TC01–TC10 · Inspector／Locator／錄製 CLI／Page Object</p>
         </header>
 
         <nav>
@@ -41,6 +41,7 @@
                 <nav class="flaui-subnav" aria-label="FlaUI 教學小目錄">
                     <a href="#flaui-overview">定位與對照</a>
                     <a href="#flaui-inspect">FlaUInspect</a>
+                    <a href="#flaui-record">CLI 錄製</a>
                     <a href="#flaui-locators">Locator</a>
                     <a href="#flaui-layers">三層架構</a>
                     <a href="#flaui-tc-walk">TC 走讀</a>
@@ -77,6 +78,14 @@
                         <td>選單 <code>[15]</code> 或
                             <span class="launch-bat file-link"
                                 data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/open_inspector.bat"><code>open_inspector.bat</code></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FlaUI.Cli 錄製（免費）</td>
+                        <td>選單 <code>[16]</code> 或
+                            <span class="launch-bat file-link"
+                                data-launch-bat="open_flaui_record.bat"><code>open_flaui_record.bat</code></span>
+                            → 見 <a href="#flaui-record">CLI 錄製</a>
                         </td>
                     </tr>
                     <tr>
@@ -289,7 +298,135 @@ button?.Click();</div>
                     </li>
                 </ol>
 
-                <h3 id="flaui-locators">3. Locator 與操作速查</h3>
+                <h3 id="flaui-record">3. FlaUI.Cli 錄製 → SpecFlow（圖文）</h3>
+                <div class="card warn">
+                    <strong>與 TestComplete 的差異：</strong>FlaUI 本體<strong>沒有</strong>滑鼠軌跡錄製。
+                    免費工具 <a href="https://github.com/kodroi/FlaUI.Cli" target="_blank" rel="noopener">FlaUI.Cli</a>
+                    （NuGet：<code>FlaUI.Tool</code>）錄的是你在終端下的
+                    <code>elem find / click / type</code> 指令，匯出 JSON 後再整理成 BDD。
+                    適合加速找定位子與草稿 Scenario，<strong>不是</strong>一鍵產生可維護測試。
+                </div>
+                <figure class="shot-fig">
+                    <img src="assets/flaui/record_01_overview.png" alt="FlaUI.Cli 錄製到 SpecFlow 五步驟總覽"
+                        loading="lazy">
+                    <figcaption>總覽：安裝 → session／record → CLI 操作 → 匯出 JSON → 轉成 Feature／Page Object。</figcaption>
+                </figure>
+
+                <div class="inspect-flow" aria-label="FlaUI.Cli 錄製流程">
+                    <span>1 安裝</span><span class="arrow">→</span>
+                    <span>2 session</span><span class="arrow">→</span>
+                    <span>3 record + elem</span><span class="arrow">→</span>
+                    <span>4 export</span><span class="arrow">→</span>
+                    <span>5 轉 BDD</span><span class="arrow">→</span>
+                    <span>6 併入 Page Object</span>
+                </div>
+
+                <ol class="step-list">
+                    <li>
+                        <h4>安裝 FlaUI.Tool（需 .NET SDK 10+）</h4>
+                        <ol class="mini-ol">
+                            <li>本機若只有 .NET 8／9，先安裝 SDK 10：
+                                <code>winget install Microsoft.DotNet.SDK.10</code></li>
+                            <li>執行
+                                <span class="launch-bat file-link"
+                                    data-launch-bat="Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/install-flaui-cli.ps1"><code>tools\install-flaui-cli.ps1</code></span>
+                                （會安裝全域工具 <code>flaui</code>）</li>
+                            <li>新開終端，確認：<code>flaui --help</code></li>
+                        </ol>
+                        <div class="code-block">cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\tools
+.\install-flaui-cli.ps1
+flaui --help</div>
+                    </li>
+                    <li>
+                        <h4>一鍵引導錄製（推薦）</h4>
+                        <ol class="mini-ol">
+                            <li>先建置 App：主選單 <code>[5]</code></li>
+                            <li>主選單 <code>[16]</code> 或雙擊
+                                <span class="launch-bat file-link"
+                                    data-launch-bat="open_flaui_record.bat"><code>open_flaui_record.bat</code></span>
+                            </li>
+                            <li>選情境：<strong>About</strong>（對應 TC06）、RawData、Import、或 Custom</li>
+                            <li>腳本會：啟動 App → <code>record start</code> → 下 CLI 操作 →
+                                <code>record export</code> → 產生 Feature／Page stub</li>
+                        </ol>
+                        <div class="card ok">
+                            產出路徑：
+                            <code>tools\recordings\session_yyyyMMdd_HHmmss\</code>
+                            （含 <code>recording.json</code>、截圖、stub）。
+                        </div>
+                    </li>
+                    <li>
+                        <h4>手動 CLI 指令（與引導腳本相同）</h4>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/record_02_cli_steps.png" alt="終端 flaui 錄製指令逐步說明"
+                                loading="lazy">
+                            <figcaption>在終端下指令；錄製內容是這些 CLI 步驟，不是你在 App 上的滑鼠移動。</figcaption>
+                        </figure>
+                        <div class="code-block">flaui session new --app "SemiInspectionDesktop\bin\Debug\SemiInspectionDesktop.exe" --wait-title "Semi Inspection"
+flaui record start
+flaui elem find --aid "btnToolbar0About"
+flaui elem click --id &lt;上一步回傳的 id&gt;
+flaui screenshot --output about.png
+flaui record stop
+flaui record export --out recording.json
+flaui audit --recording
+flaui session end</div>
+                    </li>
+                    <li>
+                        <h4>JSON → SpecFlow／Page Object stub</h4>
+                        <figure class="shot-fig">
+                            <img src="assets/flaui/record_03_json_to_bdd.png" alt="recording.json 對應 Feature 與 Page Object"
+                                loading="lazy">
+                            <figcaption>Stable 的 AutomationId 優先寫進既有 Page Object；Gherkin 對齊
+                                <code>Inspection_App.feature</code> 既有步驟用語。</figcaption>
+                        </figure>
+                        <p>轉換腳本（範例 JSON 可先練）：</p>
+                        <div class="code-block">cd Automation_testcase\Project_FlaUIBDD\Testcase_Inspection_App_FlaUI_BDD\tools
+.\Convert-FlaUIRecordToBdd.ps1 `
+  -InputJson .\samples\tc06_about_record.json `
+  -OutDir .\samples `
+  -ScenarioName About</div>
+                        <p>會產生：</p>
+                        <ul>
+                            <li><code>About_stub.feature</code> — 草稿 Scenario</li>
+                            <li><code>About_PageStub.cs</code> — Find／Click 草稿（勿直接當正式碼）</li>
+                            <li><code>About_mapping.md</code> — 步驟對照表</li>
+                        </ul>
+                        <div class="card">
+                            <strong>合併規則：</strong>
+                            <ol class="mini-ol">
+                                <li>只採用 <code>selectorQuality = Stable</code>（或 Acceptable 且有明確 Name）</li>
+                                <li>UI 操作放進 <code>MainWindowPage</code>／<code>MessageBoxPage</code> 等，不要塞進 Steps</li>
+                                <li>能複用既有 Given／When／Then 就不要新造同義步驟</li>
+                                <li>用選單 <code>[2]</code> 跑對應 TC 驗證，再對照報告截圖</li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>與 FlaUInspect 怎麼搭配</h4>
+                        <table>
+                            <tr>
+                                <th>工具</th>
+                                <th>適合</th>
+                                <th>不適合</th>
+                            </tr>
+                            <tr>
+                                <td>FlaUInspect <code>[15]</code></td>
+                                <td>肉眼 Hover、抄 AutomationId、除錯找不到元素</td>
+                                <td>自動產出一連串操作步驟</td>
+                            </tr>
+                            <tr>
+                                <td>FlaUI.Cli <code>[16]</code></td>
+                                <td>用指令探索 UI、錄步驟、匯出 JSON、評分 selector</td>
+                                <td>像 TestComplete 那樣「點一下就錄滑鼠」</td>
+                            </tr>
+                        </table>
+                        <p>建議流程：Inspect 確認 ID → CLI 錄一條路徑 → stub 合併進 BDD →
+                            <code>dotnet test</code>／主選單跑測。</p>
+                    </li>
+                </ol>
+
+                <h3 id="flaui-locators">4. Locator 與操作速查</h3>
                 <table>
                     <tr>
                         <th>方法</th>
@@ -331,7 +468,7 @@ var el = Retry.WhileNull(
                     <a href="../GETTING_STARTED.md#flaui-appendix" class="file-link">GETTING_STARTED.md 附錄</a>。
                 </div>
 
-                <h3 id="flaui-layers">4. Feature → Steps → PageObject</h3>
+                <h3 id="flaui-layers">5. Feature → Steps → PageObject</h3>
                 <div class="code-block">Inspection_App.feature          ← Gherkin：人讀的場景
         ↓
 Inspection_AppSteps.cs          ← 對齊 Given/When/Then（編排＋Assert）
@@ -344,7 +481,7 @@ ActionScreenshotHelper          ← 步驟圖寫進 TestResultReport</div>
                     UI 操作集中在 Page Object，Steps 只呼叫 Page 方法並做斷言。
                 </div>
 
-                <h3 id="flaui-tc-walk">5. TC 實戰走讀</h3>
+                <h3 id="flaui-tc-walk">6. TC 實戰走讀</h3>
                 <p>建議精讀順序與初學路徑一致：<strong>TC02 → TC06 → TC03 → TC01</strong>。
                     Feature 原文：
                     <a href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/Features/Inspection_App.feature"
@@ -448,7 +585,7 @@ FileDialog.OpenFile(path);</div>
                     <p>TC07 無效副檔名；TC08 無資料繪圖；TC09 開不存在檔。重點：主視窗仍存活、錯誤可關閉、檔案未被誤拷貝。</p>
                 </details>
 
-                <h3 id="flaui-report">6. 報告截圖怎麼用</h3>
+                <h3 id="flaui-report">7. 報告截圖怎麼用</h3>
                 <ul>
                     <li>點擊／場景結束會由 <code>ActionScreenshotHelper</code> 擷圖並寫入報告（可設定於 App.config）。</li>
                     <li>開啟：選單 <code>[6]</code> →
@@ -460,11 +597,16 @@ FileDialog.OpenFile(path);</div>
                 </ul>
                 <p>讀報告細節見 <a href="05-read-reports.html">第 5 章</a>。</p>
 
-                <h3 id="flaui-practice">7. 練習作業與反模式</h3>
+                <h3 id="flaui-practice">8. 練習作業與反模式</h3>
                 <ol>
                     <li>用 FlaUInspect 找出 <strong>Defect Chart</strong> 的 AutomationId，對照上表是否為
                         <code>btnDefectChart</code>。</li>
                     <li>選單 <code>[2]</code> 只跑 <code>TC06</code>，打開報告比對 About／關閉步驟圖。</li>
+                    <li>跑一次 <code>Convert-FlaUIRecordToBdd.ps1</code> 對
+                        <code>tools\samples\tc06_about_record.json</code>，讀
+                        <code>About_mapping.md</code>，對照正式 <code>MainWindowPage</code>／TC06。</li>
+                    <li>（進階）安裝 FlaUI.Tool 後用 <code>[16]</code> 錄 About，把 Stable 的 aid 核對是否為
+                        <code>btnToolbar0About</code>。</li>
                     <li>（進階）故意改錯一句 Then 文字再跑，觀察失敗步驟的截圖差異，改回後確認綠燈。</li>
                 </ol>
                 <h4>反模式（不要做）</h4>

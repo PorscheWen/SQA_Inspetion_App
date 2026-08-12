@@ -1,0 +1,50 @@
+{
+  "tool": "FlaUI.Tool / FlaUI.Cli",
+  "app": "SemiInspectionDesktop",
+  "scenario": "About",
+  "note": "Sample export shape for docs and Convert-FlaUIRecordToBdd.ps1 demos. Live flaui record export may use slightly different field names; the converter accepts both.",
+  "steps": [
+    {
+      "seq": 1,
+      "command": "elem find",
+      "args": { "aid": "btnToolbar0About" },
+      "result": {
+        "elementId": "el_about",
+        "automationId": "btnToolbar0About",
+        "name": "About",
+        "controlType": "Button",
+        "selectorQuality": "Stable"
+      }
+    },
+    {
+      "seq": 2,
+      "command": "elem click",
+      "args": { "id": "el_about" },
+      "result": {
+        "automationId": "btnToolbar0About",
+        "name": "About",
+        "selectorQuality": "Stable"
+      }
+    },
+    {
+      "seq": 3,
+      "command": "elem find",
+      "args": { "name": "OK" },
+      "result": {
+        "elementId": "el_ok",
+        "name": "OK",
+        "controlType": "Button",
+        "selectorQuality": "Acceptable"
+      }
+    },
+    {
+      "seq": 4,
+      "command": "elem click",
+      "args": { "id": "el_ok" },
+      "result": {
+        "name": "OK",
+        "selectorQuality": "Acceptable"
+      }
+    }
+  ]
+}

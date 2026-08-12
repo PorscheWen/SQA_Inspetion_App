@@ -186,6 +186,25 @@
             </section>
 
             <section>
+                <h2>2.6b FlaUI.Cli 錄製草稿（免費、選用）</h2>
+                <p>若要加速探索操作路徑，可用免費 <strong>FlaUI.Cli</strong> 錄 CLI 步驟並轉成 Feature／Page stub（
+                    <strong>不是</strong> TestComplete 滑鼠錄製）。圖文說明：
+                    <a href="flaui-tutorial.html#flaui-record">FlaUI 教學 → CLI 錄製</a>。
+                </p>
+                <ol>
+                    <li>安裝：<a
+                            href="../Automation_testcase/Project_FlaUIBDD/Testcase_Inspection_App_FlaUI_BDD/tools/install-flaui-cli.ps1"
+                            class="file-link"><code>tools\install-flaui-cli.ps1</code></a>（需 .NET SDK 10+）</li>
+                    <li>主選單 <code>[16]</code> 或
+                        <span class="launch-bat file-link"
+                            data-launch-bat="open_flaui_record.bat"><code>open_flaui_record.bat</code></span>
+                    </li>
+                    <li>把 Stable 的 AutomationId 合併進既有 Page Object；Gherkin 對齊
+                        <code>Inspection_App.feature</code></li>
+                </ol>
+            </section>
+
+            <section>
                 <h2>2.7 修改 App.config</h2>
                 <table>
                     <tr>

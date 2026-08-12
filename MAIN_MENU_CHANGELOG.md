@@ -35,9 +35,20 @@
   [13] 環境診斷工具
   [14] 開啟 TPS 文件
   [15] 開啟 FlaUI Inspector
+  [16] FlaUI.Cli 錄製（匯出 JSON → BDD stub）
 
   [0] 退出
 ```
+
+---
+
+## 📅 更新日期：2026-08-12
+
+### 新增 [16] FlaUI.Cli 錄製
+
+- `open_flaui_record.bat` + `tools/install-flaui-cli.ps1` + `Convert-FlaUIRecordToBdd.ps1`
+- 圖文：`docs/flaui-tutorial.html#flaui-record`
+- 需 .NET SDK 10+（`FlaUI.Tool`）
 
 ---
 

@@ -32,6 +32,9 @@ venv/
 # FlaUI Inspector (download via install script)
 **/tools/FlaUIInspector/
 
+# FlaUI.Cli local recording sessions
+**/tools/recordings/
+
 # Web dashboard runtime state
 Automation_testcase/Project_FlaUIBDD/web_dashboard/data/*
 !Automation_testcase/Project_FlaUIBDD/web_dashboard/data/.gitignore

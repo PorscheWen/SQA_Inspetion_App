@@ -37,13 +37,14 @@ echo [TOOLS]
 echo   [13] Environment diagnostic
 echo   [14] Open TPS document
 echo   [15] Open FlaUI Inspector
+echo   [16] FlaUI.Cli record ^(export JSON → BDD stub^)
 echo.
 echo   [0] Exit
 echo.
 echo ========================================
 echo.
 
-set /p choice="Select option (0-15): "
+set /p choice="Select option (0-16): "
 
 REM ===== TEST =====
 if "%choice%"=="1" goto RUN_ALL_TESTS
@@ -69,12 +70,13 @@ REM ===== TOOLS =====
 if "%choice%"=="13" goto RUN_DIAGNOSTIC
 if "%choice%"=="14" goto OPEN_TPS
 if "%choice%"=="15" goto OPEN_INSPECTOR
+if "%choice%"=="16" goto OPEN_FLAUI_RECORD
 
 REM ===== EXIT =====
 if "%choice%"=="0" goto EXIT_MENU
 
 echo.
-echo [X] Invalid choice. Enter 0-15.
+echo [X] Invalid choice. Enter 0-16.
 timeout /t 2 >nul
 goto MAIN_MENU
 
@@ -597,6 +599,27 @@ if exist "%INSPECTOR_BAT%" (
     echo.
     echo Path:
     echo %INSPECTOR_BAT%
+    pause
+)
+
+goto MAIN_MENU
+
+:OPEN_FLAUI_RECORD
+cls
+echo ========================================
+echo   FlaUI.Cli Record → BDD stub
+echo ========================================
+echo.
+echo  Records CLI elem steps (not mouse capture).
+echo  Guide: docs\flaui-tutorial.html#flaui-record
+echo.
+
+set "RECORD_BAT=%PROJECT_ROOT%\open_flaui_record.bat"
+if exist "%RECORD_BAT%" (
+    call "%RECORD_BAT%"
+) else (
+    echo [X] open_flaui_record.bat not found.
+    echo %RECORD_BAT%
     pause
 )
 
